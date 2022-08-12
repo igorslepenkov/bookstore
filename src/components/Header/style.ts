@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { fonts } from "../../ui";
 import { Color } from "../../ui";
+import { ReactComponent as Logo } from "../../assets/search.svg";
 
 export const StyledHeader = styled.header`
   display: grid;
@@ -21,8 +22,16 @@ export const Title = styled.h2`
 `;
 
 export const SearchField = styled.span`
+  position: relative;
   display: flex;
   flex-direction: row;
+`;
+
+export const SearchLogo = styled(Logo)`
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translate(50%, -50%);
 `;
 
 export const NavLinks = styled.nav`
