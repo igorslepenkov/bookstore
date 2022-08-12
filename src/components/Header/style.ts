@@ -5,8 +5,8 @@ import { ReactComponent as Logo } from "../../assets/search.svg";
 
 export const StyledHeader = styled.header`
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr;
-  grid-gap: 3%;
+  grid-template-columns: 3fr 12fr 4fr;
+  grid-gap: 10%;
   align-items: center;
   max-height: 100px;
   padding: 24px 0;
