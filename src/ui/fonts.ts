@@ -6,6 +6,7 @@ const h1 = css`
   font-weight: 700;
   font-size: 56px;
   line-height: 64px;
+  text-transform: uppercase;
 `;
 
 const h2 = css`
@@ -14,6 +15,7 @@ const h2 = css`
   font-weight: 700;
   font-size: 40px;
   line-height: 60px;
+  text-transform: uppercase;
 `;
 
 const h3 = css`
@@ -22,6 +24,7 @@ const h3 = css`
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
+  text-transform: uppercase;
 `;
 
 const subline = css`
