@@ -5,4 +5,5 @@ export enum RoutesUrl {
   CART = "cart",
   FAVORITES = "favorites",
   ACCOUNT = "account",
+  REGISTER = "register",
 }
