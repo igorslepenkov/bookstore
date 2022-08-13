@@ -1,10 +1,10 @@
 import { Page } from "../Page";
 import { Title } from "../Title";
 
-export const MainPage = () => {
+export const AccountPage = () => {
   return (
     <Page>
-      <Title titleGrade={1} text="New Releases Books" />
+      <Title titleGrade={1} text="Account" />
     </Page>
   );
 };
