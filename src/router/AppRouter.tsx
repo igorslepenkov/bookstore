@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { BookPage } from "../components/BookPage";
+import { CartPage } from "../components/CartPage";
 import { MainPage } from "../components/MainPage";
 import { MainTemplate } from "../components/MainTemplate";
 import { SearchPage } from "../components/SearchPage";
@@ -12,6 +13,7 @@ export const AppRouter = () => {
         <Route index element={<MainPage />} />
         <Route path={RoutesUrl.SEARCH} element={<SearchPage />} />
         <Route path={RoutesUrl.BOOK} element={<BookPage />} />
+        <Route path={RoutesUrl.CART} element={<CartPage />} />
       </Route>
     </Routes>
   );
