@@ -1,10 +1,10 @@
+import { Page } from "../Page";
 import { Title } from "../Title";
-import { StyledMainPage } from "./style";
 
 export const MainPage = () => {
   return (
-    <StyledMainPage>
+    <Page>
       <Title titleGrade={1} text="New Releases Books" />
-    </StyledMainPage>
+    </Page>
   );
 };
