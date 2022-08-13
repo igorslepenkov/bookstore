@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { AccountPage } from "../components/AccountPage";
 import { BookPage } from "../components/BookPage";
 import { CartPage } from "../components/CartPage";
 import { FavoritesPage } from "../components/FavoritesPage";
@@ -16,6 +17,7 @@ export const AppRouter = () => {
         <Route path={RoutesUrl.BOOK} element={<BookPage />} />
         <Route path={RoutesUrl.CART} element={<CartPage />} />
         <Route path={RoutesUrl.FAVORITES} element={<FavoritesPage />} />
+        <Route path={RoutesUrl.ACCOUNT} element={<AccountPage />} />
       </Route>
     </Routes>
   );
