@@ -1,4 +1,4 @@
-import { fonts } from "./fonts";
+import { fonts } from "./typography";
 import { Color } from "./color";
 import { GlobalStyles } from "./GlobalStyles";
 import { indentsConstructor, Indent } from "./indents";
