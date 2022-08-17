@@ -36,11 +36,6 @@ const h3 = css`
   font-size: 24px;
   line-height: 32px;
   text-transform: uppercase;
-
-  @media (${Media.MD}) {
-    font-size: 40px;
-    line-height: 60px;
-  }
 `;
 
 const subline = css`

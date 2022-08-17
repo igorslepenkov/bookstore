@@ -12,4 +12,12 @@ export const StyledBooksList = styled.ul`
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
   }
+
+  @media (${Media.MD}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (${Media.MD_LG}) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
