@@ -14,6 +14,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { ErrorPage } from "../ErrorPage";
 import { Title } from "../Title";
 import { BookRating } from "../BookRating";
+import { authorsCutter } from "../../utils";
 
 interface IProps {
   book: IBook;
@@ -49,7 +50,9 @@ export const BookListItem = ({ book }: IProps) => {
         <Title titleGrade={3} text={bookDetails.title} />
 
         <BookAuthorsAndPublisher>
-          {`by ${bookDetails.authors}, ${bookDetails.publisher} ${bookDetails.year}`}
+          {`by ${authorsCutter(bookDetails.authors)}, ${
+            bookDetails.publisher
+          } ${bookDetails.year}`}
         </BookAuthorsAndPublisher>
 
         <BookCostAndRating>
