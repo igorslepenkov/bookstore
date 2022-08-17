@@ -48,14 +48,14 @@ class IndentConstructor {
       const mobile = `${property}: ${value[2]}px`;
 
       return css`
-        ${desktop};
+        ${mobile};
 
-        @media (${Media.MD}) {
-          ${tablet}
+        @media (${Media.LG}) {
+          ${desktop};
         }
 
-        @media (${Media.SM}) {
-          ${mobile}
+        @media (${Media.MD}) {
+          ${tablet};
         }
       `;
     }

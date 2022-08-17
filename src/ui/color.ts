@@ -1,5 +1,6 @@
 export enum Color {
-  TextBlack = "#313037",
-  InputPlaceholder = "#a8a8a8",
-  BackgroundFocusInput = "#F7F7F7",
+  Black = "#313037",
+  Grey = "#a8a8a8",
+  GreyLight = "#F7F7F7",
+  Blue = "#D7E4FD",
 }

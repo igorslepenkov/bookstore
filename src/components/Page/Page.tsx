@@ -1,7 +1,7 @@
 import { StyledSearchPage } from "./style";
 
 interface IProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 export const Page = ({ children }: IProps) => {

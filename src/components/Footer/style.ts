@@ -6,10 +6,10 @@ export const StyledFooter = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-top: 1px solid ${Color.BackgroundFocusInput};
+  border-top: 1px solid ${Color.GreyLight};
 `;
 
 export const FooterParagraph = styled.p`
   ${fonts.bodyRegular}
-  color: ${Color.InputPlaceholder};
+  color: ${Color.Grey};
 `;

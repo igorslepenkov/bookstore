@@ -1,21 +1,32 @@
 import { css } from "styled-components";
+import { Media } from "./media";
 
 const h1 = css`
   font-family: "Bebas Neue";
   font-style: normal;
   font-weight: 700;
-  font-size: 56px;
-  line-height: 64px;
+  font-size: 32px;
+  line-height: 44px;
   text-transform: uppercase;
+
+  @media (${Media.MD}) {
+    font-size: 56px;
+    line-height: 64px;
+  }
 `;
 
 const h2 = css`
   font-family: "Bebas Neue";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
-  line-height: 60px;
+  font-size: 28px;
+  line-height: 40px;
   text-transform: uppercase;
+
+  @media (${Media.MD}) {
+    font-size: 40px;
+    line-height: 60px;
+  }
 `;
 
 const h3 = css`
@@ -25,6 +36,11 @@ const h3 = css`
   font-size: 24px;
   line-height: 32px;
   text-transform: uppercase;
+
+  @media (${Media.MD}) {
+    font-size: 40px;
+    line-height: 60px;
+  }
 `;
 
 const subline = css`
