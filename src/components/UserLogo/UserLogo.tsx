@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { ReactComponent as Logo } from "../../assets/person.svg";
+import { StyledLogo } from "./style";
 
 export const UserLogo = () => {
   return (
     <Link to={RoutesUrl.HOME}>
-      <Logo />
+      <StyledLogo />
     </Link>
   );
 };

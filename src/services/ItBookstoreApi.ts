@@ -4,7 +4,7 @@ class ItBookstoreApi {
   private readonly baseUrl = process.env
     .REACT_APP_BOOKSTORE_API_BASE_URL as string;
   getOneByISBN = async (isbn: string) => {
-    const response = await axios.get(this.baseUrl + isbn);
+    const response = await axios.get(this.baseUrl + "books/" + isbn);
     return response.data;
   };
   getAllNew = async () => {
