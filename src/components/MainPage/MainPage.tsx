@@ -15,7 +15,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     bookstoreApi
-      .getAllNew()
+      .getNew()
       .then((result) => {
         setNewBooks(result.books);
         setLoading(false);

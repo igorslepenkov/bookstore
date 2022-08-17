@@ -26,7 +26,7 @@ export const BookListItem = ({ book }: IProps) => {
 
   useEffect(() => {
     bookstoreApi
-      .getOneByISBN(book.isbn13)
+      .getByISBN(book.isbn13)
       .then((result) => {
         setBookDetails(result);
         setLoading(false);
