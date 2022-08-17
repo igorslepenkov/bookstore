@@ -13,6 +13,7 @@ import {
 import ClipLoader from "react-spinners/ClipLoader";
 import { ErrorPage } from "../ErrorPage";
 import { Title } from "../Title";
+import { BookRating } from "../BookRating";
 
 interface IProps {
   book: IBook;
@@ -53,6 +54,7 @@ export const BookListItem = ({ book }: IProps) => {
 
         <BookCostAndRating>
           <BookCost>{bookDetails.price}</BookCost>
+          <BookRating rating={Number(bookDetails.rating)} />
         </BookCostAndRating>
       </StyledBookListItem>
     );
