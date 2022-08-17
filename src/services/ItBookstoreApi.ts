@@ -1,18 +1,28 @@
 import axios from "axios";
 
+enum Endpoint {
+  BookDetails = "books/",
+  New = "new",
+  Search = "search/",
+}
+
 class ItBookstoreApi {
-  private readonly baseUrl = process.env
+  private readonly BASE_URL = process.env
     .REACT_APP_BOOKSTORE_API_BASE_URL as string;
-  getOneByISBN = async (isbn: string) => {
-    const response = await axios.get(this.baseUrl + isbn);
+  public getByISBN = async (isbn: string) => {
+    const response = await axios.get(
+      this.BASE_URL + Endpoint.BookDetails + isbn
+    );
     return response.data;
   };
-  getAllNew = async () => {
-    const response = await axios.get(this.baseUrl + "new");
+
+  public getNew = async () => {
+    const response = await axios.get(this.BASE_URL + Endpoint.New);
     return response.data;
   };
-  search = async (searchPattern: string, page: number) => {
-    const url = this.baseUrl + "search/" + searchPattern + "/" + page;
+
+  public getBySearch = async (searchValue: string, page: number) => {
+    const url = this.BASE_URL + Endpoint.Search + searchValue + "/" + page;
     const response = await axios.get(url);
     return response.data;
   };

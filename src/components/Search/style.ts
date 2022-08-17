@@ -8,16 +8,16 @@ export const StyledSearch = styled.input`
   outline: none;
   border: 1px solid #e7e7e7;
   ${fonts.bodyRegular}
-  color: ${Color.TextBlack};
+  color: ${Color.Black};
 
   &:focus {
-    background-color: ${Color.BackgroundFocusInput};
+    background-color: ${Color.GreyLight};
     border: 2px solid #e7e7e7;
   }
 
   &::placeholder {
     ${fonts.bodyRegular}
-    color: ${Color.InputPlaceholder};
+    color: ${Color.Grey};
     opacity: 1;
   }
 `;
