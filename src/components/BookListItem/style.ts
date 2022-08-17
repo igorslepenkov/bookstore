@@ -5,6 +5,7 @@ import { fonts } from "../../ui";
 export const StyledBookListItem = styled.li`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const BookImageWrapper = styled.div`

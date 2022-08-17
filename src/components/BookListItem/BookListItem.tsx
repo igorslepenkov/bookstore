@@ -35,7 +35,7 @@ export const BookListItem = ({ book }: IProps) => {
         setError(err);
         setLoading(false);
       });
-  }, []);
+  }, [book.isbn13]);
 
   if (loading) {
     return <ClipLoader loading={loading} />;
