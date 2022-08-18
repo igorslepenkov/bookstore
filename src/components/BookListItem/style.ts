@@ -1,8 +1,15 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Color, indentsConstructor, Indent } from "../../ui";
 import { fonts } from "../../ui";
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export const StyledBookListItem = styled.li`
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +34,6 @@ export const BookImage = styled.img`
 `;
 
 export const BookAuthorsAndPublisher = styled.p`
-  flex-grow: 1;
   ${indentsConstructor.create(Indent.MB, 3)}
   ${indentsConstructor.create(Indent.MT, 8)}
   ${fonts.bodyRegular}

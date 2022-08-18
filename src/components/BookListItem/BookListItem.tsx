@@ -9,12 +9,14 @@ import {
   BookImage,
   BookImageWrapper,
   StyledBookListItem,
+  StyledLink,
   StyledTitle,
 } from "./style";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ErrorPage } from "../ErrorPage";
 import { BookRating } from "../BookRating";
-import { authorsCutter } from "../../utils";
+import { authorsCutter, createDinamicPath } from "../../utils";
+import { RoutesUrl } from "../../router";
 
 interface IProps {
   book: IBook;
@@ -42,24 +44,26 @@ export const BookListItem = ({ book }: IProps) => {
     return <ClipLoader loading={loading} />;
   } else if (bookDetails) {
     return (
-      <StyledBookListItem>
-        <BookImageWrapper>
-          <BookImage src={bookDetails.image} />
-        </BookImageWrapper>
+      <StyledLink to={createDinamicPath(RoutesUrl.BOOK, book.isbn13)}>
+        <StyledBookListItem>
+          <BookImageWrapper>
+            <BookImage src={bookDetails.image} />
+          </BookImageWrapper>
 
-        <StyledTitle>{bookDetails.title}</StyledTitle>
+          <StyledTitle>{bookDetails.title}</StyledTitle>
 
-        <BookAuthorsAndPublisher>
-          {`by ${authorsCutter(bookDetails.authors)}, ${
-            bookDetails.publisher
-          } ${bookDetails.year}`}
-        </BookAuthorsAndPublisher>
+          <BookAuthorsAndPublisher>
+            {`by ${authorsCutter(bookDetails.authors)}, ${
+              bookDetails.publisher
+            } ${bookDetails.year}`}
+          </BookAuthorsAndPublisher>
 
-        <BookCostAndRating>
-          <BookCost>{bookDetails.price}</BookCost>
-          <BookRating rating={Number(bookDetails.rating)} />
-        </BookCostAndRating>
-      </StyledBookListItem>
+          <BookCostAndRating>
+            <BookCost>{bookDetails.price}</BookCost>
+            <BookRating rating={Number(bookDetails.rating)} />
+          </BookCostAndRating>
+        </StyledBookListItem>
+      </StyledLink>
     );
   } else {
     console.log(error);
