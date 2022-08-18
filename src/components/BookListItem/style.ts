@@ -5,7 +5,7 @@ import { fonts } from "../../ui";
 export const StyledBookListItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const BookImageWrapper = styled.div`
@@ -15,11 +15,19 @@ export const BookImageWrapper = styled.div`
   ${indentsConstructor.create(Indent.MB, 6)}
 `;
 
+export const StyledTitle = styled.h3`
+  flex-grow: 1;
+  margin: 0;
+  ${fonts.h3}
+  color: ${Color.Black};
+`;
+
 export const BookImage = styled.img`
   width: 100%;
 `;
 
 export const BookAuthorsAndPublisher = styled.p`
+  flex-grow: 1;
   ${indentsConstructor.create(Indent.MB, 3)}
   ${indentsConstructor.create(Indent.MT, 8)}
   ${fonts.bodyRegular}

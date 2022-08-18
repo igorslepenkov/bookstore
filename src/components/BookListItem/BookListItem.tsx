@@ -9,10 +9,10 @@ import {
   BookImage,
   BookImageWrapper,
   StyledBookListItem,
+  StyledTitle,
 } from "./style";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ErrorPage } from "../ErrorPage";
-import { Title } from "../Title";
 import { BookRating } from "../BookRating";
 import { authorsCutter } from "../../utils";
 
@@ -47,7 +47,7 @@ export const BookListItem = ({ book }: IProps) => {
           <BookImage src={bookDetails.image} />
         </BookImageWrapper>
 
-        <Title titleGrade={3} text={bookDetails.title} />
+        <StyledTitle>{bookDetails.title}</StyledTitle>
 
         <BookAuthorsAndPublisher>
           {`by ${authorsCutter(bookDetails.authors)}, ${
