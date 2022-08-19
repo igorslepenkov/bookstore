@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Color, indentsConstructor, Indent } from "../../ui";
+import { Color, indentsConstructor, Indent, Media } from "../../ui";
 import { fonts } from "../../ui";
 
 export const StyledLink = styled(Link)`
@@ -16,8 +16,10 @@ export const StyledBookListItem = styled.li`
 `;
 
 export const BookImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
-  padding: 20px;
+  padding: 0 10px;
   background-color: ${Color.Blue};
   ${indentsConstructor.create(Indent.MB, 6)}
 `;
@@ -30,7 +32,8 @@ export const StyledTitle = styled.h3`
 `;
 
 export const BookImage = styled.img`
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 export const BookAuthorsAndPublisher = styled.p`
