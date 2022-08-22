@@ -28,20 +28,6 @@ export const BookDetails = styled.div`
   ${indentsConstructor.create(Indent.PT, 3)}
 `;
 
-export const BookCostAndRating = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  ${indentsConstructor.create(Indent.MB, 2)}
-  ${indentsConstructor.create(Indent.MB, 5)}
-`;
-
-export const BookCost = styled.p`
-  margin: 0;
-  ${fonts.h2}
-  color: ${Color.Black};
-`;
-
 export const BookDetailsList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -66,8 +52,15 @@ export const BookDetailValue = styled.span`
 
 export const AddToCartButton = styled.button`
   width: 100%;
+  ${indentsConstructor.create(Indent.MB, 4)}
   ${fonts.subline}
   border: none;
   background-color: ${Color.Black};
   color: ${Color.White};
+`;
+
+export const PreviewLink = styled.a`
+  ${fonts.bodyRegular}
+  color: ${Color.Black};
+  text-align: center;
 `;

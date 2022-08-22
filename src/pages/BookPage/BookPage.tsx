@@ -9,14 +9,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { bookstoreApi } from "../../services";
 import { IBookApiDetails } from "../../types";
-import { BookRating } from "../../components/BookRating";
 import { ErrorPage } from "../ErrorPage";
 import { Page } from "../../components/Page";
 import { Title } from "../../components/Title";
 import {
   AddToCartButton,
-  BookCost,
-  BookCostAndRating,
   BookDetail,
   BookDetails,
   BookDetailsImageWrapper,
@@ -25,15 +22,15 @@ import {
   BookDetailTitle,
   BookDetailValue,
   BookImage,
+  PreviewLink,
   StyledArrowLeft,
 } from "./style";
+import { BookCostAndRating } from "../../components/BookCostAndRating";
 
 export const BookPage = () => {
   const [book, setBook] = useState<IBookApiDetails>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError>();
-  const [showFullDescription, setShowFullDescription] =
-    useState<boolean>(false);
 
   const { isbn } = useParams();
 
@@ -73,6 +70,7 @@ export const BookPage = () => {
       ["Published", book.year],
       ["Pages", book.pages],
       ["Language", book.language],
+      ["ISBN", book.isbn13],
     ];
 
     return (
@@ -88,14 +86,15 @@ export const BookPage = () => {
             <BookImage src={book.image} />
           </BookDetailsImageWrapper>
           <BookDetails>
-            <BookCostAndRating>
-              <BookCost>{book.price}</BookCost>
-              <BookRating rating={Number(book.rating)} />
-            </BookCostAndRating>
+            <BookCostAndRating
+              appendPlace="page"
+              price={book.price}
+              rating={book.rating}
+            />
             <BookDetailsList>
               {bookDetailsArray.map((bookDetail) => {
                 return (
-                  <BookDetail>
+                  <BookDetail key={bookDetail[0]}>
                     <BookDetailTitle>{bookDetail[0]}</BookDetailTitle>
                     <BookDetailValue>{bookDetail[1]}</BookDetailValue>
                   </BookDetail>
@@ -103,6 +102,16 @@ export const BookPage = () => {
               })}
             </BookDetailsList>
             <AddToCartButton>Add to cart</AddToCartButton>
+            {book.pdf && book.pdf["Free eBook"] && (
+              <PreviewLink href={book.pdf["Free eBook"]}>
+                Free eBook
+              </PreviewLink>
+            )}
+            {book.pdf && !book.pdf["Free eBook"] && (
+              <PreviewLink href={Object.values(book.pdf)[0]}>
+                Preview book
+              </PreviewLink>
+            )}
           </BookDetails>
         </BookDetailsWrapper>
       </Page>

@@ -4,8 +4,6 @@ import { bookstoreApi } from "../../services";
 import { IBook, IBookApiDetails } from "../../types";
 import {
   BookAuthorsAndPublisher,
-  BookCost,
-  BookCostAndRating,
   BookImage,
   BookImageWrapper,
   StyledBookListItem,
@@ -14,9 +12,9 @@ import {
 } from "./style";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ErrorPage } from "../../pages/ErrorPage";
-import { BookRating } from "../BookRating";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
+import { BookCostAndRating } from "../BookCostAndRating";
 
 interface IProps {
   book: IBook;
@@ -58,10 +56,11 @@ export const BookListItem = ({ book }: IProps) => {
             } ${bookDetails.year}`}
           </BookAuthorsAndPublisher>
 
-          <BookCostAndRating>
-            <BookCost>{bookDetails.price}</BookCost>
-            <BookRating rating={Number(bookDetails.rating)} />
-          </BookCostAndRating>
+          <BookCostAndRating
+            appendPlace="list"
+            price={bookDetails.price}
+            rating={bookDetails.rating}
+          />
         </StyledBookListItem>
       </StyledLink>
     );
