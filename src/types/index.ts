@@ -38,3 +38,5 @@ export interface IBookApiDetails {
     [chapter: string]: string;
   };
 }
+
+export type BookDetailType = [string, string];

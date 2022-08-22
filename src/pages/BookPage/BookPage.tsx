@@ -8,24 +8,22 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { bookstoreApi } from "../../services";
-import { IBookApiDetails } from "../../types";
+import { BookDetailType, IBookApiDetails } from "../../types";
 import { ErrorPage } from "../ErrorPage";
 import { Page } from "../../components/Page";
 import { Title } from "../../components/Title";
 import {
   AddToCartButton,
-  BookDetail,
   BookDetails,
   BookDetailsImageWrapper,
-  BookDetailsList,
   BookDetailsWrapper,
-  BookDetailTitle,
-  BookDetailValue,
   BookImage,
   PreviewLink,
   StyledArrowLeft,
 } from "./style";
 import { BookCostAndRating } from "../../components/BookCostAndRating";
+import { authorsCutter } from "../../utils";
+import { BookDetailsList } from "../../components/BookDetailsList";
 
 export const BookPage = () => {
   const [book, setBook] = useState<IBookApiDetails>();
@@ -64,8 +62,8 @@ export const BookPage = () => {
   if (loading) {
     return <ClipLoader loading={loading} />;
   } else if (book) {
-    const bookDetailsArray = [
-      ["Authors", book.authors],
+    const bookDetailsArray: BookDetailType[] = [
+      ["Authors", authorsCutter(book.authors)],
       ["Publisher", book.publisher],
       ["Published", book.year],
       ["Pages", book.pages],
@@ -85,28 +83,24 @@ export const BookPage = () => {
           <BookDetailsImageWrapper>
             <BookImage src={book.image} />
           </BookDetailsImageWrapper>
+
           <BookDetails>
             <BookCostAndRating
               appendPlace="page"
               price={book.price}
               rating={book.rating}
             />
-            <BookDetailsList>
-              {bookDetailsArray.map((bookDetail) => {
-                return (
-                  <BookDetail key={bookDetail[0]}>
-                    <BookDetailTitle>{bookDetail[0]}</BookDetailTitle>
-                    <BookDetailValue>{bookDetail[1]}</BookDetailValue>
-                  </BookDetail>
-                );
-              })}
-            </BookDetailsList>
+
+            <BookDetailsList bookDetailsArray={bookDetailsArray} />
+
             <AddToCartButton>Add to cart</AddToCartButton>
+
             {book.pdf && book.pdf["Free eBook"] && (
               <PreviewLink href={book.pdf["Free eBook"]}>
                 Free eBook
               </PreviewLink>
             )}
+
             {book.pdf && !book.pdf["Free eBook"] && (
               <PreviewLink href={Object.values(book.pdf)[0]}>
                 Preview book

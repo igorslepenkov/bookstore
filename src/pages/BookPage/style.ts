@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { ArrowLeft } from "../../assets";
 import { Color, fonts, Indent, indentsConstructor } from "../../ui";
 
+interface ITabProps {
+  active: boolean;
+}
+
 export const StyledArrowLeft = styled(ArrowLeft)`
   ${indentsConstructor.create(Indent.MB, 4)}
   color: ${Color.Black};
@@ -28,28 +32,6 @@ export const BookDetails = styled.div`
   ${indentsConstructor.create(Indent.PT, 3)}
 `;
 
-export const BookDetailsList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  ${indentsConstructor.create(Indent.MB, 2)}
-`;
-
-export const BookDetail = styled.li`
-  display: flex;
-  flex-direction: column;
-  gap: 10%;
-`;
-
-export const BookDetailTitle = styled.span`
-  ${fonts.bodyRegular}
-  color: ${Color.Grey};
-`;
-
-export const BookDetailValue = styled.span`
-  ${fonts.bodyBold}
-  color: ${Color.Black};
-`;
-
 export const AddToCartButton = styled.button`
   width: 100%;
   ${indentsConstructor.create(Indent.MB, 4)}
@@ -61,6 +43,7 @@ export const AddToCartButton = styled.button`
 
 export const PreviewLink = styled.a`
   display: flex;
+  ${indentsConstructor.create(Indent.MB, 1)}
   ${fonts.bodyRegular}
   color: ${Color.Black};
   justify-content: center;
