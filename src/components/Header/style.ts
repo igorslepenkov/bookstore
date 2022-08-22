@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { fonts, Media } from "../../ui";
 import { Color } from "../../ui";
-import { ReactComponent as Logo } from "../../assets/search.svg";
+import { SearchLogo as Logo } from "../../assets";
 
 export const StyledHeader = styled.header`
   display: flex;

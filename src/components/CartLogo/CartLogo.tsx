@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { ReactComponent as Logo } from "../../assets/cart.svg";
+import { CartLogo as Logo } from "../../assets";
 
 export const CartLogo = () => {
   return (

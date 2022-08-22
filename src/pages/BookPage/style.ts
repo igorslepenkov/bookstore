@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowLeft } from "../../assets/arrow-left.svg";
+import { ArrowLeft } from "../../assets";
 import { Color, fonts, Indent, indentsConstructor } from "../../ui";
 
 export const StyledArrowLeft = styled(ArrowLeft)`

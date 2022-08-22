@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../../assets/heart.svg";
+import { HeartLogo as Logo } from "../../assets";
 import { Media } from "../../ui";
 
 export const StyledLogo = styled(Logo)`
