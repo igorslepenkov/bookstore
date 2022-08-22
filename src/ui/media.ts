@@ -1,7 +1,7 @@
 export enum Media {
-  SM = "min-width: 320px",
-  SM_MD = "min-width: 568px",
-  MD = "min-width: 768px",
-  MD_LG = "min-width: 992px",
-  LG = "min-width: 1200px",
+  XS = "@media(min-width: 320px)",
+  SM = "@media(min-width: 568px)",
+  MD = "@media(min-width: 768px)",
+  LG = "@media(min-width: 992px)",
+  XL = "@media(min-width: 1200px)",
 }

@@ -8,7 +8,7 @@ export const StyledBooksList = styled.ul`
   padding: 0;
   list-style: none;
 
-  @media (${Media.SM_MD}) {
+  @media (${Media.SM}) {
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
   }
@@ -17,7 +17,7 @@ export const StyledBooksList = styled.ul`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (${Media.MD_LG}) {
+  @media (${Media.LG}) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;

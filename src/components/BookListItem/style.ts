@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Color, indentsConstructor, Indent, Media } from "../../ui";
+import { Color, indentsConstructor, Indent } from "../../ui";
 import { fonts } from "../../ui";
 
 export const StyledLink = styled(Link)`
