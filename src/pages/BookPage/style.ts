@@ -60,7 +60,8 @@ export const AddToCartButton = styled.button`
 `;
 
 export const PreviewLink = styled.a`
+  display: flex;
   ${fonts.bodyRegular}
   color: ${Color.Black};
-  text-align: center;
+  justify-content: center;
 `;

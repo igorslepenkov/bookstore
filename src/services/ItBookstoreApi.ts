@@ -1,29 +1,32 @@
 import axios from "axios";
+import path from "path-browserify";
 
 enum Endpoint {
-  BookDetails = "books/",
+  BookDetails = "books",
   New = "new",
-  Search = "search/",
+  Search = "search",
 }
 
 class ItBookstoreApi {
   private readonly BASE_URL = process.env
     .REACT_APP_BOOKSTORE_API_BASE_URL as string;
+  private readonly API = axios.create({
+    baseURL: this.BASE_URL,
+  });
   public getByISBN = async (isbn: string) => {
-    const response = await axios.get(
-      this.BASE_URL + Endpoint.BookDetails + isbn
-    );
+    const url = path.join(Endpoint.BookDetails, isbn);
+    const response = await this.API.get(url);
     return response.data;
   };
 
   public getNew = async () => {
-    const response = await axios.get(this.BASE_URL + Endpoint.New);
+    const response = await this.API.get(Endpoint.New);
     return response.data;
   };
 
   public getBySearch = async (searchValue: string, page: number) => {
-    const url = this.BASE_URL + Endpoint.Search + searchValue + "/" + page;
-    const response = await axios.get(url);
+    const url = path.join(Endpoint.Search, searchValue, page.toString());
+    const response = await this.API.get(url);
     return response.data;
   };
 }
