@@ -13,7 +13,7 @@ import {
   StyledTitle,
 } from "./style";
 import ClipLoader from "react-spinners/ClipLoader";
-import { ErrorPage } from "../ErrorPage";
+import { ErrorPage } from "../../pages/ErrorPage";
 import { BookRating } from "../BookRating";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";

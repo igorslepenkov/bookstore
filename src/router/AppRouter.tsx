@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { AccountPage } from "../components/AccountPage";
-import { BookPage } from "../components/BookPage";
-import { CartPage } from "../components/CartPage";
-import { FavoritesPage } from "../components/FavoritesPage";
-import { MainPage } from "../components/MainPage";
+import { AccountPage } from "../pages/AccountPage";
+import { BookPage } from "../pages/BookPage";
+import { CartPage } from "../pages/CartPage";
+import { FavoritesPage } from "../pages/FavoritesPage";
+import { MainPage } from "../pages/MainPage";
 import { MainTemplate } from "../components/MainTemplate";
-import { RegisterPage } from "../components/RegisterPage";
-import { SearchPage } from "../components/SearchPage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { SearchPage } from "../pages/SearchPage";
 import { RoutesUrl } from "./routes";
 
 export const AppRouter = () => {

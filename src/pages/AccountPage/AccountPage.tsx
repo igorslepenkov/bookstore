@@ -1,5 +1,5 @@
-import { Page } from "../Page";
-import { Title } from "../Title";
+import { Page } from "../../components/Page";
+import { Title } from "../../components/Title";
 
 export const AccountPage = () => {
   return (

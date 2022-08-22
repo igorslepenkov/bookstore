@@ -19,6 +19,7 @@ export interface INewBooksApi {
 }
 
 export interface IBookApiDetails {
+  language: string;
   error: string;
   title: string;
   subtitle: string;
