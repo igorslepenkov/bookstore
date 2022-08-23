@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { Color, fonts, Indent, indentsConstructor } from "../../ui";
+import { Color, fonts, Indent, indentsConstructor, Media } from "../../ui";
 
 interface ITabProps {
   active: boolean;

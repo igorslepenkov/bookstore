@@ -5,4 +5,5 @@ export enum Color {
   Blue = "#D7E4FD",
   Orange = "#FEE9E2",
   White = "#FFFFFF",
+  PinkLight = "#F4EEFD",
 }

@@ -25,6 +25,7 @@ import { BookCostAndRating } from "../../components/BookCostAndRating";
 import { authorsCutter } from "../../utils";
 import { BookDetailsList } from "../../components/BookDetailsList";
 import { BookDetailsTabs } from "../../components/BookDetailsTabs";
+import { SubscribeToNewsletter } from "../../components/SubscribeToNewsletter";
 
 export const BookPage = () => {
   const [book, setBook] = useState<IBookApiDetails>();
@@ -110,6 +111,7 @@ export const BookPage = () => {
           </BookDetails>
         </BookDetailsWrapper>
         <BookDetailsTabs desc={book.desc} authors={book.authors} />
+        <SubscribeToNewsletter />
       </Page>
     );
   } else {
