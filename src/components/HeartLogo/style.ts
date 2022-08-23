@@ -5,7 +5,7 @@ import { Media } from "../../ui";
 export const StyledLogo = styled(Logo)`
   display: none;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     display: block;
   }
 `;

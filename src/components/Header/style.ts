@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
   padding: 24px 0;
   border-bottom: 1px solid ${Color.GreyLight};
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     display: grid;
     grid-template-columns: 3fr 12fr 4fr;
     grid-gap: 10%;
@@ -31,7 +31,7 @@ export const SearchField = styled.span`
   display: none;
   flex-direction: row;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     display: flex;
   }
 `;

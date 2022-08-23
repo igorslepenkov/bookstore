@@ -8,16 +8,16 @@ export const StyledBooksList = styled.ul`
   padding: 0;
   list-style: none;
 
-  @media (${Media.SM}) {
+  ${Media.SM} {
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
   }
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (${Media.LG}) {
+  ${Media.LG} {
     grid-template-columns: repeat(4, 1fr);
   }
 `;

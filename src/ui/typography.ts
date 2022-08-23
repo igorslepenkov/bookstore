@@ -9,7 +9,7 @@ const h1 = css`
   line-height: 44px;
   text-transform: uppercase;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     font-size: 56px;
     line-height: 64px;
   }
@@ -23,7 +23,7 @@ const h2 = css`
   line-height: 40px;
   text-transform: uppercase;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     font-size: 40px;
     line-height: 60px;
   }
