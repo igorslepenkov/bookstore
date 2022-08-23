@@ -1,5 +1,5 @@
-import { ReactComponent as Star } from "../../assets/star.svg";
-import { ReactComponent as GreyStar } from "../../assets/grey-star.svg";
+import { Star } from "../../assets";
+import { GreyStar } from "../../assets";
 import { StyledBookRating } from "./style";
 
 interface IProps {

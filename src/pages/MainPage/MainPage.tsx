@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { bookstoreApi } from "../../services";
 import { IBook } from "../../types";
-import { BooksList } from "../BooksList";
-import { Page } from "../Page";
-import { Title } from "../Title";
+import { BooksList } from "../../components/BooksList";
+import { Page } from "../../components/Page";
+import { Title } from "../../components/Title";
 import ClipLoader from "react-spinners/ClipLoader";
 import { AxiosError } from "axios";
 import { ErrorPage } from "../ErrorPage";
+import { SubscribeToNewsletter } from "../../components/SubscribeToNewsletter";
 
 export const MainPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -33,6 +34,7 @@ export const MainPage = () => {
       <Page>
         <Title titleGrade={1} text="New Releases Books" />
         <BooksList books={newBooks} />
+        <SubscribeToNewsletter />
       </Page>
     );
   } else {

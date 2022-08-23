@@ -19,6 +19,7 @@ export interface INewBooksApi {
 }
 
 export interface IBookApiDetails {
+  language: string;
   error: string;
   title: string;
   subtitle: string;
@@ -37,3 +38,5 @@ export interface IBookApiDetails {
     [chapter: string]: string;
   };
 }
+
+export type BookDetailType = [string, string];

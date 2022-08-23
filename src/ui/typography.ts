@@ -9,7 +9,7 @@ const h1 = css`
   line-height: 44px;
   text-transform: uppercase;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     font-size: 56px;
     line-height: 64px;
   }
@@ -23,7 +23,7 @@ const h2 = css`
   line-height: 40px;
   text-transform: uppercase;
 
-  @media (${Media.MD}) {
+  ${Media.MD} {
     font-size: 40px;
     line-height: 60px;
   }
@@ -60,7 +60,7 @@ const bodyBold = css`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 32px;
 `;
 
 export const fonts = { h1, h2, h3, subline, bodyRegular, bodyBold };

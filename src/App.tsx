@@ -1,12 +1,7 @@
 import { AppRouter } from "./router";
-import { StyledApp } from "./style";
 
 const App = () => {
-  return (
-    <StyledApp>
-      <AppRouter />
-    </StyledApp>
-  );
+  return <AppRouter />;
 };
 
 export default App;

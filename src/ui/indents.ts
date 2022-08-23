@@ -50,11 +50,11 @@ class IndentConstructor {
       return css`
         ${mobile};
 
-        @media (${Media.LG}) {
+        ${Media.LG} {
           ${desktop};
         }
 
-        @media (${Media.MD}) {
+        ${Media.MD} {
           ${tablet};
         }
       `;
