@@ -47,8 +47,8 @@ export const BookDetailsTabs = ({ desc, authors }: IProps) => {
       <TabContent>
         {activeTab === "desc" ? <TabContentText>{desc}</TabContentText> : false}
         {activeTab === "authors"
-          ? authorsLister(authors).map((author) => (
-              <TabContentText>{author}</TabContentText>
+          ? authorsLister(authors).map((author, idx) => (
+              <TabContentText key={idx}>{author}</TabContentText>
             ))
           : false}
       </TabContent>
