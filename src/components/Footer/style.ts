@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import { fonts } from "../../ui";
+import { fonts, Media } from "../../ui";
 import { Color } from "../../ui";
 
 export const StyledFooter = styled.footer`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   border-top: 1px solid ${Color.GreyLight};
+
+  ${Media.MD} {
+    flex-direction: row;
+  }
 `;
 
 export const FooterParagraph = styled.p`
