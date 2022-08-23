@@ -6,6 +6,8 @@ export const StyledSubscribeToNewsletter = styled.article`
   flex-direction: column;
   background-color: ${Color.PinkLight};
   padding: 40px;
+  ${indentsConstructor.create(Indent.MB, 1)}
+  ${indentsConstructor.create(Indent.MT, 1)}
 
   ${Media.LG} {
     padding: 56px 64px;
