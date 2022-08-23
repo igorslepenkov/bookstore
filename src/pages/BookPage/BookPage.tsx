@@ -108,8 +108,8 @@ export const BookPage = () => {
               </PreviewLink>
             )}
           </BookDetails>
-          <BookDetailsTabs desc={book.desc} authors={book.authors} />
         </BookDetailsWrapper>
+        <BookDetailsTabs desc={book.desc} authors={book.authors} />
       </Page>
     );
   } else {
