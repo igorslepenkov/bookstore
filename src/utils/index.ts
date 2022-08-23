@@ -1,3 +1,4 @@
 import { authorsCutter } from "./authorsCutter";
 import { createDinamicPath } from "./createDinamicPath";
-export { authorsCutter, createDinamicPath };
+import { authorsLister } from "./authorsLister";
+export { authorsCutter, createDinamicPath, authorsLister };

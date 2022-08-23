@@ -60,7 +60,7 @@ const bodyBold = css`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 32px;
 `;
 
 export const fonts = { h1, h2, h3, subline, bodyRegular, bodyBold };
