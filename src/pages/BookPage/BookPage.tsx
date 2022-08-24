@@ -8,7 +8,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { bookstoreApi } from "../../services";
-import { BookDetailType, IBookApiDetails } from "../../types";
+import { BookDetailType, IBook, IBookApiDetails } from "../../types";
 import { ErrorPage } from "../ErrorPage";
 import { Page } from "../../components/Page";
 import { Title } from "../../components/Title";
@@ -26,9 +26,10 @@ import { authorsCutter } from "../../utils";
 import { BookDetailsList } from "../../components/BookDetailsList";
 import { BookDetailsTabs } from "../../components/BookDetailsTabs";
 import { SubscribeToNewsletter } from "../../components/SubscribeToNewsletter";
+import { SimilarBooksList } from "../../components/SimilarBooksList";
 
 export const BookPage = () => {
-  const [book, setBook] = useState<IBookApiDetails>();
+  const [book, setBook] = useState<IBookApiDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError>();
 
@@ -112,6 +113,7 @@ export const BookPage = () => {
         </BookDetailsWrapper>
         <BookDetailsTabs desc={book.desc} authors={book.authors} />
         <SubscribeToNewsletter />
+        <SimilarBooksList bookTitle={book.title} isbn13={book.isbn13} />
       </Page>
     );
   } else {

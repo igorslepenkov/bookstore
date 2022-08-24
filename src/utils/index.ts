@@ -1,4 +1,5 @@
 import { authorsCutter } from "./authorsCutter";
 import { createDinamicPath } from "./createDinamicPath";
 import { authorsLister } from "./authorsLister";
-export { authorsCutter, createDinamicPath, authorsLister };
+import { getSearchPatterns } from "./getSearchPatterns";
+export { authorsCutter, createDinamicPath, authorsLister, getSearchPatterns };

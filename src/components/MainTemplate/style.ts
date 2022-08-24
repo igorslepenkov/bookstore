@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMainTemplate = styled.div`
+  box-sizing: content-box;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
