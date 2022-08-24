@@ -8,7 +8,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { bookstoreApi } from "../../services";
-import { BookDetailType, IBook, IBookApiDetails } from "../../types";
+import { BookDetailType, IBookApiDetails } from "../../types";
 import { ErrorPage } from "../ErrorPage";
 import { Page } from "../../components/Page";
 import { Title } from "../../components/Title";
@@ -113,6 +113,7 @@ export const BookPage = () => {
         </BookDetailsWrapper>
         <BookDetailsTabs desc={book.desc} authors={book.authors} />
         <SubscribeToNewsletter />
+        <Title text="Similar books" titleGrade={2} />
         <SimilarBooksList bookTitle={book.title} isbn13={book.isbn13} />
       </Page>
     );

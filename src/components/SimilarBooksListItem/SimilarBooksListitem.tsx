@@ -15,6 +15,7 @@ import { ErrorPage } from "../../pages/ErrorPage";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
 import { BookCostAndRating } from "../BookCostAndRating";
+import { resolvePath } from "react-router-dom";
 
 interface IProps {
   book: IBook;
@@ -42,7 +43,9 @@ export const SimilarBooksListItem = ({ book }: IProps) => {
     return <ClipLoader loading={loading} />;
   } else if (bookDetails) {
     return (
-      <StyledLink to={createDinamicPath(RoutesUrl.BOOK, book.isbn13)}>
+      <StyledLink
+        to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
+      >
         <StyledBookListItem>
           <BookImageWrapper>
             <BookImage src={bookDetails.image} />

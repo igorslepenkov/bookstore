@@ -8,14 +8,16 @@ export const useSimilarBooks = (bookTitle: string, isbn13: string) => {
   const searchPatterns = getSearchPatterns(bookTitle);
 
   useEffect(() => {
-    searchPatterns.map((pattern) => {
+    searchPatterns.forEach((pattern) => {
       bookstoreApi.getBySearch(pattern, 1).then((response) => {
         const books = response.books.filter((book) => book.isbn13 !== isbn13);
         const filteredBooks = books.filter((book) => {
-          const regex = new RegExp(`[^\w]${pattern}[^\w]`, "ig");
+          const regex = new RegExp(`${pattern}`, "ig");
           return regex.test(book.title);
         });
+
         const [first, second] = filteredBooks;
+
         setSimilarBooks((similarBooks) => {
           first && similarBooks?.push(first);
           second && similarBooks?.push(second);
@@ -24,13 +26,15 @@ export const useSimilarBooks = (bookTitle: string, isbn13: string) => {
             if (set.has(book.isbn13)) {
               set.delete(book.isbn13);
               return true;
+            } else {
+              return false;
             }
           });
           return filtered;
         });
       });
     });
-  }, [bookTitle]);
+  }, [bookTitle, isbn13, searchPatterns]);
 
   return similarBooks;
 };
