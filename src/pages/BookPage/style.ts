@@ -14,7 +14,7 @@ export const BookDetailsWrapper = styled.section`
   ${indentsConstructor.create(Indent.MT, 3)}
   ${indentsConstructor.create(Indent.MB, 1)}
 
-  ${Media.LG} {
+  ${Media.MD} {
     flex-direction: row;
     justify-content: space-between;
     gap: 5%;

@@ -8,33 +8,43 @@ export const useSimilarBooks = (bookTitle: string, isbn13: string) => {
   const searchPatterns = getSearchPatterns(bookTitle);
 
   useEffect(() => {
-    searchPatterns.forEach((pattern) => {
-      bookstoreApi.getBySearch(pattern, 1).then((response) => {
-        const books = response.books.filter((book) => book.isbn13 !== isbn13);
-        const filteredBooks = books.filter((book) => {
-          const regex = new RegExp(`${pattern}`, "ig");
-          return regex.test(book.title);
-        });
+    Promise.allSettled(
+      searchPatterns.map((pattern) => {
+        bookstoreApi.getBySearch(pattern, 1).then((response) => {
+          if (response.books) {
+            const books = response.books.filter(
+              (book) => book.isbn13 !== isbn13
+            );
+            const filteredBooks = books.filter((book) => {
+              const regex = new RegExp(`[^\\w]${pattern}[^\\w]`, "ig");
+              return regex.test(book.title);
+            });
 
-        const [first, second] = filteredBooks;
+            const [first, second] = filteredBooks;
 
-        setSimilarBooks((similarBooks) => {
-          first && similarBooks?.push(first);
-          second && similarBooks?.push(second);
-          const set = new Set(similarBooks.map((book) => book.isbn13));
-          const filtered = similarBooks.filter((book) => {
-            if (set.has(book.isbn13)) {
-              set.delete(book.isbn13);
-              return true;
-            } else {
-              return false;
-            }
-          });
-          return filtered;
+            setSimilarBooks((similarBooks) => {
+              first && similarBooks?.push(first);
+              second && similarBooks?.push(second);
+              const set = new Set(similarBooks.map((book) => book.isbn13));
+              const filtered = similarBooks.filter((book) => {
+                if (set.has(book.isbn13)) {
+                  set.delete(book.isbn13);
+                  return true;
+                } else {
+                  return false;
+                }
+              });
+              return filtered;
+            });
+          }
         });
-      });
-    });
-  }, [bookTitle, isbn13, searchPatterns]);
+        return pattern;
+      })
+    );
+    return () => {
+      setSimilarBooks([]);
+    };
+  }, [bookTitle, isbn13]);
 
   return similarBooks;
 };
