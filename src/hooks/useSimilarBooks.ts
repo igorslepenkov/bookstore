@@ -17,14 +17,15 @@ export const useSimilarBooks = (bookTitle: string, isbn13: string) => {
             );
             const filteredBooks = books.filter((book) => {
               const regex = new RegExp(`[^\\w]${pattern}[^\\w]`, "ig");
-              return regex.test(book.title);
+              return regex.test(book.title) || regex.test(book.subtitle);
             });
 
-            const [first, second] = filteredBooks;
+            const [first, second, third] = filteredBooks;
 
             setSimilarBooks((similarBooks) => {
-              first && similarBooks?.push(first);
-              second && similarBooks?.push(second);
+              first && similarBooks.push(first);
+              second && similarBooks.push(second);
+              third && similarBooks.push(third);
               const set = new Set(similarBooks.map((book) => book.isbn13));
               const filtered = similarBooks.filter((book) => {
                 if (set.has(book.isbn13)) {
