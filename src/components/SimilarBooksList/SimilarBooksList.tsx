@@ -4,12 +4,10 @@ import { SimilarBooksListItem } from "../SimilarBooksListItem";
 import { StyledSimilarBooksList } from "./style";
 
 interface IProps {
-  bookTitle: string;
-  isbn13: string;
+  similarBooks: IBook[];
 }
 
-export const SimilarBooksList = ({ bookTitle, isbn13 }: IProps) => {
-  const similarBooks = useSimilarBooks(bookTitle, isbn13);
+export const SimilarBooksList = ({ similarBooks }: IProps) => {
   return (
     <StyledSimilarBooksList>
       {similarBooks.map((book: IBook) => {
