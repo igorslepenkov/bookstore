@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import { AccountPage } from "../pages/AccountPage";
-import { BookPage } from "../pages/BookPage";
-import { CartPage } from "../pages/CartPage";
-import { FavoritesPage } from "../pages/FavoritesPage";
-import { MainPage } from "../pages/MainPage";
-import { MainTemplate } from "../components/MainTemplate";
-import { RegisterPage } from "../pages/RegisterPage";
-import { SearchPage } from "../pages/SearchPage";
+import { AccountPage } from "../pages";
+import { BookPage } from "../pages";
+import { CartPage } from "../pages";
+import { FavoritesPage } from "../pages";
+import { MainPage } from "../pages";
+import { MainTemplate } from "../components";
+import { RegisterPage } from "../pages";
+import { SearchPage } from "../pages";
 import { RoutesUrl } from "./routes";
+import { ErrorPage } from "../pages";
 
 export const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ export const AppRouter = () => {
         <Route path={RoutesUrl.FAVORITES} element={<FavoritesPage />} />
         <Route path={RoutesUrl.ACCOUNT} element={<AccountPage />} />
         <Route path={RoutesUrl.REGISTER} element={<RegisterPage />} />
+        <Route path={RoutesUrl.ERROR} element={<ErrorPage />} />
       </Route>
     </Routes>
   );

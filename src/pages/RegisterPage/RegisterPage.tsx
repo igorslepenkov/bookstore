@@ -1,5 +1,5 @@
-import { Page } from "../../components/Page";
-import { Title } from "../../components/Title";
+import { Page } from "../../components";
+import { Title } from "../../components";
 
 export const RegisterPage = () => {
   return (

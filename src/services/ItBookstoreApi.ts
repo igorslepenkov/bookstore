@@ -1,5 +1,6 @@
 import axios from "axios";
 import path from "path-browserify";
+import { IBooksApi } from "../types";
 
 enum Endpoint {
   BookDetails = "books",
@@ -24,7 +25,10 @@ class ItBookstoreApi {
     return response.data;
   };
 
-  public getBySearch = async (searchValue: string, page: number) => {
+  public getBySearch = async (
+    searchValue: string,
+    page: number
+  ): Promise<IBooksApi> => {
     const url = path.join(Endpoint.Search, searchValue, page.toString());
     const response = await this.API.get(url);
     return response.data;
