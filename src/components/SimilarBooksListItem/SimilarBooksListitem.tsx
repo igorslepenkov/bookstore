@@ -43,10 +43,10 @@ export const SimilarBooksListItem = ({ book }: IProps) => {
     return <ClipLoader loading={loading} />;
   } else if (bookDetails) {
     return (
-      <StyledLink
-        to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
-      >
-        <StyledBookListItem>
+      <StyledBookListItem>
+        <StyledLink
+          to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
+        >
           <BookImageWrapper>
             <BookImage src={bookDetails.image} />
           </BookImageWrapper>
@@ -64,8 +64,8 @@ export const SimilarBooksListItem = ({ book }: IProps) => {
             price={bookDetails.price}
             rating={bookDetails.rating}
           />
-        </StyledBookListItem>
-      </StyledLink>
+        </StyledLink>
+      </StyledBookListItem>
     );
   } else {
     console.log(error);

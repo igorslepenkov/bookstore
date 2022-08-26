@@ -1,2 +1,4 @@
 import { useSimilarBooks } from "./useSimilarBooks";
-export { useSimilarBooks };
+import { useScroll } from "./useScroll";
+import { useWindowSize } from "./useWindowSize";
+export { useSimilarBooks, useScroll, useWindowSize };
