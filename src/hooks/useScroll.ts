@@ -10,7 +10,6 @@ export const useScroll = (
       return ref.current.scrollLeft;
     } else return 0;
   });
-  console.log(scrollX);
 
   const [scrollValue, setScrollValue] = useState<number>(250);
 

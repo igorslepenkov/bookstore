@@ -11,11 +11,10 @@ import {
   StyledTitle,
 } from "./style";
 import ClipLoader from "react-spinners/ClipLoader";
-import { ErrorPage } from "../../pages/ErrorPage";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
 import { BookCostAndRating } from "../BookCostAndRating";
-import { resolvePath } from "react-router-dom";
+import { resolvePath, Navigate } from "react-router-dom";
 
 interface IProps {
   book: IBook;
@@ -24,7 +23,26 @@ interface IProps {
 export const SimilarBooksListItem = ({ book }: IProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError>();
-  const [bookDetails, setBookDetails] = useState<IBookApiDetails>();
+  const [bookDetails, setBookDetails] = useState<IBookApiDetails>({
+    language: "",
+    error: "",
+    title: "",
+    subtitle: "",
+    authors: "",
+    publisher: "",
+    isbn10: "",
+    isbn13: "",
+    pages: "",
+    year: "",
+    rating: "",
+    desc: "",
+    price: "",
+    image: "",
+    url: "",
+    pdf: {
+      Chapter1: "",
+    },
+  });
 
   useEffect(() => {
     bookstoreApi
@@ -41,34 +59,35 @@ export const SimilarBooksListItem = ({ book }: IProps) => {
 
   if (loading) {
     return <ClipLoader loading={loading} />;
-  } else if (bookDetails) {
-    return (
-      <StyledBookListItem>
-        <StyledLink
-          to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
-        >
-          <BookImageWrapper>
-            <BookImage src={bookDetails.image} />
-          </BookImageWrapper>
-
-          <StyledTitle>{bookDetails.title}</StyledTitle>
-
-          <BookAuthorsAndPublisher>
-            {`by ${authorsCutter(bookDetails.authors)}, ${
-              bookDetails.publisher
-            } ${bookDetails.year}`}
-          </BookAuthorsAndPublisher>
-
-          <BookCostAndRating
-            appendPlace="list"
-            price={bookDetails.price}
-            rating={bookDetails.rating}
-          />
-        </StyledLink>
-      </StyledBookListItem>
-    );
-  } else {
-    console.log(error);
-    return <ErrorPage />;
   }
+
+  if (error) {
+    return <Navigate to={RoutesUrl.ERROR} />;
+  }
+
+  return (
+    <StyledBookListItem>
+      <StyledLink
+        to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
+      >
+        <BookImageWrapper>
+          <BookImage src={bookDetails.image} />
+        </BookImageWrapper>
+
+        <StyledTitle>{bookDetails.title}</StyledTitle>
+
+        <BookAuthorsAndPublisher>
+          {`by ${authorsCutter(bookDetails.authors)}, ${
+            bookDetails.publisher
+          } ${bookDetails.year}`}
+        </BookAuthorsAndPublisher>
+
+        <BookCostAndRating
+          appendPlace="list"
+          price={bookDetails.price}
+          rating={bookDetails.rating}
+        />
+      </StyledLink>
+    </StyledBookListItem>
+  );
 };
