@@ -36,17 +36,17 @@ export const BookImage = styled.img`
 
 export const BookDetails = styled.div`
   flex-grow: 1;
-  border-top: 1px solid ${Color.GreyLight};
   ${indentsConstructor.create(Indent.PT, 3)}
+  border-top: 1px solid ${Color.GreyLight};
 `;
 
 export const AddToCartButton = styled.button`
   width: 100%;
   ${indentsConstructor.create(Indent.MB, 4)}
   ${fonts.h3}
+  color: ${Color.White};
   border: none;
   background-color: ${Color.Black};
-  color: ${Color.White};
 `;
 
 export const PreviewLink = styled.a`

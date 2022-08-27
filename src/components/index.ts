@@ -16,6 +16,7 @@ import { SimilarBooksListItem } from "./SimilarBooksListItem";
 import { SubscribeToNewsletter } from "./SubscribeToNewsletter";
 import { Title } from "./Title";
 import { UserLogo } from "./UserLogo";
+import { SignUpForm } from "./SignUpForm";
 
 export {
   BookCostAndRating,
@@ -36,4 +37,5 @@ export {
   SubscribeToNewsletter,
   Title,
   UserLogo,
+  SignUpForm,
 };
