@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Media } from "../../ui";
 
 export const StyledMainTemplate = styled.div`
   box-sizing: content-box;
@@ -7,5 +8,8 @@ export const StyledMainTemplate = styled.div`
   min-height: 100vh;
   max-width: 1120px;
   margin: auto;
-  padding: 0 24px;
+
+  ${Media.XS} {
+    padding: 0 24px;
+  }
 `;
