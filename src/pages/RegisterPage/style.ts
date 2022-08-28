@@ -32,6 +32,6 @@ export const FormTab = styled.h3`
   letter-spacing: 0.05em;
   text-align: center;
   border-bottom: ${({ isActive }: ITabProps) =>
-    isActive ? `2px solid ${Color.Black}` : `1px solid ${Color.GreyLight}`};
+    isActive ? `2px solid ${Color.Black}` : `2px solid ${Color.GreyLight}`};
   cursor: pointer;
 `;

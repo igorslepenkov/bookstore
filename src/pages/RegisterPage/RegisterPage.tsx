@@ -1,5 +1,5 @@
 import { KeyboardEventHandler, MouseEventHandler, useState } from "react";
-import { Page, SignUpForm } from "../../components";
+import { Page, SignInForm, SignUpForm } from "../../components";
 import { FormTab, FormTabsGroup, FromWrapper } from "./style";
 
 export const RegisterPage = () => {
@@ -47,7 +47,7 @@ export const RegisterPage = () => {
             Sign In
           </FormTab>
         </FormTabsGroup>
-        <SignUpForm />
+        {activeTab === "signup" ? <SignUpForm /> : <SignInForm />}
       </FromWrapper>
     </Page>
   );

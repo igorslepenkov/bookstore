@@ -19,6 +19,7 @@ import { UserLogo } from "./UserLogo";
 import { SignUpForm } from "./SignUpForm";
 import { Modal } from "./Modal";
 import { Portal } from "./Portal";
+import { SignInForm } from "./SignInForm";
 
 export {
   BookCostAndRating,
@@ -42,4 +43,5 @@ export {
   SignUpForm,
   Modal,
   Portal,
+  SignInForm,
 };
