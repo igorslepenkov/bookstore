@@ -12,6 +12,8 @@ import { emailRegex } from "../../regex";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { Color } from "../../ui";
+import { Modal } from "../Modal";
+import { useToggle } from "../../hooks";
 
 interface InputFields {
   email: string;
@@ -22,6 +24,7 @@ interface InputFields {
 export const SignUpForm = () => {
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
   const [requestError, setRequestError] = useState(null);
+  const [isModalOpen, toggleIsModalOpen] = useToggle();
   const {
     register,
     handleSubmit,
@@ -49,6 +52,7 @@ export const SignUpForm = () => {
         setRequestError(err);
       })
       .finally(() => {
+        toggleIsModalOpen();
         setIsRequestPending(false);
       });
 
@@ -112,6 +116,16 @@ export const SignUpForm = () => {
           "Submit"
         )}
       </SubmitButton>
+      <Modal
+        isOpen={isModalOpen}
+        status={requestError ? "error" : "success"}
+        message={
+          requestError
+            ? "Error"
+            : "User has been successfully registered! Please sign in to continue"
+        }
+        handler={toggleIsModalOpen}
+      />
     </StyledSignUpForm>
   );
 };

@@ -7,4 +7,5 @@ export enum Color {
   White = "#FFFFFF",
   PinkLight = "#F4EEFD",
   Danger = "#DF4759",
+  Success = "#22BB33",
 }

@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import { Color, fonts, Indent, indentsConstructor } from "../../ui";
+import { Color, fonts, Indent, indentsConstructor, Media } from "../../ui";
 
 export const StyledSignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   ${indentsConstructor.create(Indent.MT, 3)}
+
+  ${Media.MD} {
+    width: 544px;
+  }
 `;
 
 export const InputLabel = styled.label`

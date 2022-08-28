@@ -17,6 +17,8 @@ import { SubscribeToNewsletter } from "./SubscribeToNewsletter";
 import { Title } from "./Title";
 import { UserLogo } from "./UserLogo";
 import { SignUpForm } from "./SignUpForm";
+import { Modal } from "./Modal";
+import { Portal } from "./Portal";
 
 export {
   BookCostAndRating,
@@ -38,4 +40,6 @@ export {
   Title,
   UserLogo,
   SignUpForm,
+  Modal,
+  Portal,
 };
