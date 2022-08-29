@@ -6,6 +6,7 @@ import { FavoritesPage } from "./FavoritesPage";
 import { MainPage } from "./MainPage";
 import { RegisterPage } from "./RegisterPage";
 import { SearchPage } from "./SearchPage";
+import { ResetPasswordPage } from "./ResetPasswordPage";
 
 export {
   AccountPage,
@@ -16,4 +17,5 @@ export {
   MainPage,
   RegisterPage,
   SearchPage,
+  ResetPasswordPage,
 };

@@ -7,4 +7,5 @@ export enum RoutesUrl {
   ACCOUNT = "account",
   REGISTER = "register",
   ERROR = "error",
+  RESET = "reset",
 }

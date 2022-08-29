@@ -1,11 +1,11 @@
-import { ErrorNotification, ResetLink } from "./style";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { ErrorNotification } from "./style";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";
 import { emailRegex } from "../../regex";
 import { useState } from "react";
+import { useNavigate, resolvePath } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { resolvePath } from "react-router-dom";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
@@ -13,10 +13,10 @@ import { Form } from "../Form";
 
 interface InputFields {
   email: string;
-  password: string;
 }
 
-export const SignInForm = () => {
+export const ResetPasswordForm = () => {
+  const navigate = useNavigate();
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
   const [requestError, setRequestError] = useState(null);
   const {
@@ -27,12 +27,12 @@ export const SignInForm = () => {
   } = useForm<InputFields>();
   const auth = getAuth(firebaseApp);
 
-  const onSubmit = ({ email, password }: InputFields) => {
+  const onSubmit = ({ email }: InputFields) => {
     setIsRequestPending(true);
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        navigate(resolvePath(RoutesUrl.REGISTER));
       })
       .catch((err) => {
         setRequestError(err);
@@ -63,25 +63,6 @@ export const SignInForm = () => {
       {errors.email && (
         <ErrorNotification>{errors.email.message}</ErrorNotification>
       )}
-
-      <FormInputLabel htmlFor="password">Password</FormInputLabel>
-      <FormInput
-        {...register("password", {
-          required: "Please enter your password",
-          min: {
-            value: 6,
-            message: "Your password must contain at least 6 characters",
-          },
-        })}
-        id="password"
-        type="password"
-        placeholder="Your password"
-      />
-      {errors.password && (
-        <ErrorNotification>{errors.password.message}</ErrorNotification>
-      )}
-
-      <ResetLink to={resolvePath(RoutesUrl.RESET)}>Forgot password?</ResetLink>
 
       <FormSubmitButton isRequestPending={isRequestPending} />
     </Form>

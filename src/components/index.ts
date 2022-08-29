@@ -20,6 +20,12 @@ import { SignUpForm } from "./SignUpForm";
 import { Modal } from "./Modal";
 import { Portal } from "./Portal";
 import { SignInForm } from "./SignInForm";
+import { FormWrapper } from "./FormWrapper";
+import { ResetPasswordForm } from "./RestPasswordForm";
+import { FormSubmitButton } from "./FormSubmitButton";
+import { FormInput } from "./FormInput";
+import { FormInputLabel } from "./FormInputLabel";
+import { Form } from "./Form";
 
 export {
   BookCostAndRating,
@@ -44,4 +50,10 @@ export {
   Modal,
   Portal,
   SignInForm,
+  FormWrapper,
+  ResetPasswordForm,
+  FormSubmitButton,
+  FormInput,
+  FormInputLabel,
+  Form,
 };

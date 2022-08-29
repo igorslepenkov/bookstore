@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { AccountPage } from "../pages";
+import { AccountPage, ResetPasswordPage } from "../pages";
 import { BookPage } from "../pages";
 import { CartPage } from "../pages";
 import { FavoritesPage } from "../pages";
@@ -22,6 +22,7 @@ export const AppRouter = () => {
         <Route path={RoutesUrl.ACCOUNT} element={<AccountPage />} />
         <Route path={RoutesUrl.REGISTER} element={<RegisterPage />} />
         <Route path={RoutesUrl.ERROR} element={<ErrorPage />} />
+        <Route path={RoutesUrl.RESET} element={<ResetPasswordPage />} />
       </Route>
     </Routes>
   );

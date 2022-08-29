@@ -5,20 +5,6 @@ interface ITabProps {
   isActive: boolean;
 }
 
-export const FromWrapper = styled.div`
-  display: grid;
-  grid-template-rows: auto;
-  flex-direction: column;
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-
-  ${Media.MD} {
-    width: fit-content;
-    border: 1px solid ${Color.GreyLight};
-  }
-`;
-
 export const FormTabsGroup = styled.div`
   display: flex;
 `;

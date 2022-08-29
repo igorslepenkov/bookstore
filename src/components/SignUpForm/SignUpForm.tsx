@@ -1,19 +1,15 @@
-import {
-  ErrorNotification,
-  Input,
-  InputLabel,
-  StyledSignUpForm,
-  SubmitButton,
-} from "./style";
+import { ErrorNotification } from "./style";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";
 import { emailRegex } from "../../regex";
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
-import { Color } from "../../ui";
 import { Modal } from "../Modal";
 import { useToggle } from "../../hooks";
+import { FormSubmitButton } from "../FormSubmitButton";
+import { FormInput } from "../FormInput";
+import { FormInputLabel } from "../FormInputLabel";
+import { Form } from "../Form";
 
 interface InputFields {
   email: string;
@@ -60,9 +56,9 @@ export const SignUpForm = () => {
   };
 
   return (
-    <StyledSignUpForm onSubmit={handleSubmit(onSubmit)}>
-      <InputLabel htmlFor="email">Email</InputLabel>
-      <Input
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormInputLabel htmlFor="email">Email</FormInputLabel>
+      <FormInput
         {...register("email", {
           required: "Please enter your email",
           pattern: {
@@ -79,8 +75,8 @@ export const SignUpForm = () => {
         <ErrorNotification>{errors.email.message}</ErrorNotification>
       )}
 
-      <InputLabel htmlFor="password">Password</InputLabel>
-      <Input
+      <FormInputLabel htmlFor="password">Password</FormInputLabel>
+      <FormInput
         {...register("password", {
           required: "Please enter your password",
           min: {
@@ -96,10 +92,10 @@ export const SignUpForm = () => {
         <ErrorNotification>{errors.password.message}</ErrorNotification>
       )}
 
-      <InputLabel htmlFor="confirm">Confirm new password</InputLabel>
-      <Input
+      <FormInputLabel htmlFor="confirm">Confirm new password</FormInputLabel>
+      <FormInput
         {...register("confirm", {
-          required: "Please confirm youe password",
+          required: "Please confirm your password",
         })}
         id="confirm"
         type="password"
@@ -109,13 +105,8 @@ export const SignUpForm = () => {
         <ErrorNotification>{errors.confirm.message}</ErrorNotification>
       )}
 
-      <SubmitButton type="submit">
-        {isRequestPending ? (
-          <ClipLoader loading={isRequestPending} color={Color.White} />
-        ) : (
-          "Submit"
-        )}
-      </SubmitButton>
+      <FormSubmitButton isRequestPending={isRequestPending} />
+
       <Modal
         isOpen={isModalOpen}
         status={requestError ? "error" : "success"}
@@ -126,6 +117,6 @@ export const SignUpForm = () => {
         }
         handler={toggleIsModalOpen}
       />
-    </StyledSignUpForm>
+    </Form>
   );
 };
