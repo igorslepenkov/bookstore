@@ -53,3 +53,11 @@ export const NavLinks = styled.nav`
   flex-direction: row;
   justify-content: space-around;
 `;
+
+export const SignOutButton = styled.button`
+  ${fonts.bodyBold}
+  color: ${Color.Black};
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;

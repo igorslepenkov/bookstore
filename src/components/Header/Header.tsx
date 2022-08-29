@@ -1,3 +1,6 @@
+import { getAuth } from "firebase/auth";
+import { MouseEventHandler } from "react";
+import { useIsUserSignedIn } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
@@ -7,12 +10,20 @@ import {
   NavLinks,
   SearchField,
   SearchLogo,
+  SignOutButton,
   StyledHeader,
   StyledLink,
   Title,
 } from "./style";
 
 export const Header = () => {
+  const isUserSignedIn = useIsUserSignedIn();
+  const handleSignOut: MouseEventHandler<HTMLButtonElement> = (event) => {
+    if (event) {
+      const auth = getAuth();
+      auth.signOut();
+    }
+  };
   return (
     <StyledHeader>
       <StyledLink to={RoutesUrl.HOME}>
@@ -25,7 +36,13 @@ export const Header = () => {
       <NavLinks>
         <HeartLogo />
         <CartLogo />
-        <UserLogo />
+        {isUserSignedIn ? (
+          <SignOutButton type="button" onClick={handleSignOut}>
+            Sign Out
+          </SignOutButton>
+        ) : (
+          <UserLogo />
+        )}
       </NavLinks>
     </StyledHeader>
   );
