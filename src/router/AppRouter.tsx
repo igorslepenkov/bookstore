@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { AccountPage, ResetPasswordPage } from "../pages";
+import {
+  AccountPage,
+  ConfirmPasswordResetPage,
+  ResetPasswordPage,
+} from "../pages";
 import { BookPage } from "../pages";
 import { CartPage } from "../pages";
 import { FavoritesPage } from "../pages";
@@ -23,6 +27,10 @@ export const AppRouter = () => {
         <Route path={RoutesUrl.REGISTER} element={<RegisterPage />} />
         <Route path={RoutesUrl.ERROR} element={<ErrorPage />} />
         <Route path={RoutesUrl.RESET} element={<ResetPasswordPage />} />
+        <Route
+          path={RoutesUrl.CONFIRM_RESET}
+          element={<ConfirmPasswordResetPage />}
+        />
       </Route>
     </Routes>
   );

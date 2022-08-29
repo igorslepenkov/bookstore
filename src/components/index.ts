@@ -26,6 +26,7 @@ import { FormSubmitButton } from "./FormSubmitButton";
 import { FormInput } from "./FormInput";
 import { FormInputLabel } from "./FormInputLabel";
 import { Form } from "./Form";
+import { ConfirmResetPasswordForm } from "./ConfirmResetPasswordForm";
 
 export {
   BookCostAndRating,
@@ -56,4 +57,5 @@ export {
   FormInput,
   FormInputLabel,
   Form,
+  ConfirmResetPasswordForm,
 };

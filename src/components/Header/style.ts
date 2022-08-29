@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { fonts, Media } from "../../ui";
 import { Color } from "../../ui";
 import { SearchLogo as Logo } from "../../assets";
+import { Link } from "react-router-dom";
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -16,6 +17,10 @@ export const StyledHeader = styled.header`
     grid-template-columns: 3fr 12fr 4fr;
     grid-gap: 10%;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const Title = styled.h2`

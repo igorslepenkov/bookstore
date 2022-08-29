@@ -7,6 +7,7 @@ import { MainPage } from "./MainPage";
 import { RegisterPage } from "./RegisterPage";
 import { SearchPage } from "./SearchPage";
 import { ResetPasswordPage } from "./ResetPasswordPage";
+import { ConfirmPasswordResetPage } from "./ConfirmPasswordResetPage";
 
 export {
   AccountPage,
@@ -18,4 +19,5 @@ export {
   RegisterPage,
   SearchPage,
   ResetPasswordPage,
+  ConfirmPasswordResetPage,
 };

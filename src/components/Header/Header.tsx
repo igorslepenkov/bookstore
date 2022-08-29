@@ -1,3 +1,4 @@
+import { RoutesUrl } from "../../router";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
@@ -7,13 +8,16 @@ import {
   SearchField,
   SearchLogo,
   StyledHeader,
+  StyledLink,
   Title,
 } from "./style";
 
 export const Header = () => {
   return (
     <StyledHeader>
-      <Title>Bookstore</Title>
+      <StyledLink to={RoutesUrl.HOME}>
+        <Title>Bookstore</Title>
+      </StyledLink>
       <SearchField>
         <Search />
         <SearchLogo />
