@@ -3,7 +3,7 @@ import {
   CloseButton,
   ModalNotification,
   ModalNotificationWrapper,
-  ModalStatus,
+  ModalStatusHeading,
   StyledModal,
 } from "./style";
 
@@ -24,7 +24,7 @@ export const Modal = ({ isOpen, status, message, handler }: IProps) => {
           <CloseButton type="button" onClick={handler}>
             Close
           </CloseButton>
-          <ModalStatus status={status}>{status}</ModalStatus>
+          <ModalStatusHeading status={status}>{status}</ModalStatusHeading>
           <ModalNotification>{message}</ModalNotification>
         </ModalNotificationWrapper>
       </StyledModal>

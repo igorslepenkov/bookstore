@@ -28,7 +28,7 @@ export const ModalNotificationWrapper = styled.div`
   text-align: center;
 `;
 
-export const ModalStatus = styled.h2`
+export const ModalStatusHeading = styled.h2`
   ${fonts.h2}
   color: ${({ status }: ModalStatusProps) =>
     status === "success" ? Color.Success : Color.Danger};

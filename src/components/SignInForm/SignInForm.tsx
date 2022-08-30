@@ -1,4 +1,4 @@
-import { ErrorNotification, ResetLink, StyledLink } from "./style";
+import { ErrorNotification, ResetLink } from "./style";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";

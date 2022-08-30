@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color, fonts, Indent, indentsConstructor, Media } from "../../ui";
+import { Color, fonts, Indent, indentsConstructor } from "../../ui";
 
 interface ITabProps {
   isActive: boolean;

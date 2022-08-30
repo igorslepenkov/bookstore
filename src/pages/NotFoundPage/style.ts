@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color, Indent, indentsConstructor } from "../../ui";
+import { Indent, indentsConstructor } from "../../ui";
 
 export const StyledNotFoundPage = styled.main`
   flex-grow: 1;
