@@ -16,6 +16,18 @@ import { SimilarBooksListItem } from "./SimilarBooksListItem";
 import { SubscribeToNewsletter } from "./SubscribeToNewsletter";
 import { Title } from "./Title";
 import { UserLogo } from "./UserLogo";
+import { SignUpForm } from "./SignUpForm";
+import { Modal } from "./Modal";
+import { Portal } from "./Portal";
+import { SignInForm } from "./SignInForm";
+import { FormWrapper } from "./FormWrapper";
+import { ResetPasswordForm } from "./RestPasswordForm";
+import { FormSubmitButton } from "./FormSubmitButton";
+import { FormInput } from "./FormInput";
+import { FormInputLabel } from "./FormInputLabel";
+import { Form } from "./Form";
+import { ConfirmResetPasswordForm } from "./ConfirmResetPasswordForm";
+import { FormServerMessage } from "./FormServerMessage";
 
 export {
   BookCostAndRating,
@@ -36,4 +48,16 @@ export {
   SubscribeToNewsletter,
   Title,
   UserLogo,
+  SignUpForm,
+  Modal,
+  Portal,
+  SignInForm,
+  FormWrapper,
+  ResetPasswordForm,
+  FormSubmitButton,
+  FormInput,
+  FormInputLabel,
+  Form,
+  ConfirmResetPasswordForm,
+  FormServerMessage,
 };

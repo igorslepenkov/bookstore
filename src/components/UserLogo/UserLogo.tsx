@@ -4,7 +4,7 @@ import { StyledLogo } from "./style";
 
 export const UserLogo = () => {
   return (
-    <Link to={RoutesUrl.HOME}>
+    <Link to={RoutesUrl.ACCOUNT}>
       <StyledLogo />
     </Link>
   );

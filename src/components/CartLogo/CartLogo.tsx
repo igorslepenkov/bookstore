@@ -4,7 +4,7 @@ import { CartLogo as Logo } from "../../assets";
 
 export const CartLogo = () => {
   return (
-    <Link to={RoutesUrl.HOME}>
+    <Link to={RoutesUrl.CART}>
       <Logo />
     </Link>
   );

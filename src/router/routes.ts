@@ -7,4 +7,7 @@ export enum RoutesUrl {
   ACCOUNT = "account",
   REGISTER = "register",
   ERROR = "error",
+  RESET = "reset",
+  CONFIRM_RESET = "resetPassword",
+  NOT_FOUND = "*",
 }
