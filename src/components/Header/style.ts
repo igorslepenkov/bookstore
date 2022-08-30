@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
 
   ${Media.MD} {
     display: grid;
-    grid-template-columns: 3fr 12fr 4fr;
+    grid-template-columns: 3fr 12fr 6fr;
     grid-gap: 10%;
   }
 `;

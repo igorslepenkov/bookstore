@@ -27,6 +27,7 @@ import { FormInput } from "./FormInput";
 import { FormInputLabel } from "./FormInputLabel";
 import { Form } from "./Form";
 import { ConfirmResetPasswordForm } from "./ConfirmResetPasswordForm";
+import { FormServerMessage } from "./FormServerMessage";
 
 export {
   BookCostAndRating,
@@ -58,4 +59,5 @@ export {
   FormInputLabel,
   Form,
   ConfirmResetPasswordForm,
+  FormServerMessage,
 };

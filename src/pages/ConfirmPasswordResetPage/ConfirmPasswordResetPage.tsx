@@ -6,7 +6,7 @@ export const ConfirmPasswordResetPage = () => {
   let { search } = useLocation();
   const firebaseParams = getFirebaseParamsFromUrl(search);
   if (firebaseParams) {
-    const { oobCode } = firebaseParams;
+    const oobCode = firebaseParams;
 
     return (
       <Page>

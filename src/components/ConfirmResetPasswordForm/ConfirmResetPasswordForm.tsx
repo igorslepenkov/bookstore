@@ -26,7 +26,6 @@ interface InputFields {
 export const ConfirmResetPasswordForm = ({ oobCode }: IProps) => {
   const navigate = useNavigate();
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestError, setRequestError] = useState(null);
   const {
     register,
     handleSubmit,
@@ -50,9 +49,7 @@ export const ConfirmResetPasswordForm = ({ oobCode }: IProps) => {
       .then(() => {
         confirmPasswordReset(auth, oobCode, password);
         navigate(resolvePath(RoutesUrl.REGISTER));
-      })
-      .catch((err) => {
-        setRequestError(err);
+        alert("Your password has been successfully reset!");
       })
       .finally(() => {
         setIsRequestPending(false);

@@ -1,12 +1,10 @@
 import { firebaseResetPasswordUrl } from "../regex";
 
-export const getFirebaseParamsFromUrl = (
-  url: string
-): { mode: string; oobCode: string } | { mode: null; oobCode: null } => {
+export const getFirebaseParamsFromUrl = (url: string): string | null => {
   const match = url.match(firebaseResetPasswordUrl);
-  if (match) {
-    return { mode: match[1], oobCode: match[2] };
+  if (match && match.length > 1) {
+    return match[1];
   } else {
-    return { mode: null, oobCode: null };
+    return null;
   }
 };

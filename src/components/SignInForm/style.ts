@@ -12,3 +12,7 @@ export const ResetLink = styled(Link)`
   color: ${Color.Black};
   text-decoration: none;
 `;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;

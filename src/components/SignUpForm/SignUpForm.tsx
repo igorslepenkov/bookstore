@@ -10,6 +10,7 @@ import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
+import { AUTH_ERROR_CODES } from "../../errors";
 
 interface InputFields {
   email: string;
@@ -19,7 +20,10 @@ interface InputFields {
 
 export const SignUpForm = () => {
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestError, setRequestError] = useState(null);
+  const [requestMessage, setRequestMessage] = useState<string>("");
+  const [requestStatus, setRequestStatus] = useState<
+    "success" | "error" | null
+  >(null);
   const [isModalOpen, toggleIsModalOpen] = useToggle();
   const {
     register,
@@ -41,11 +45,16 @@ export const SignUpForm = () => {
     setIsRequestPending(true);
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
+      .then(() => {
+        setRequestStatus("success");
       })
       .catch((err) => {
-        setRequestError(err);
+        if (err.code === AUTH_ERROR_CODES.EMAIL_ALLREADY_EXISTS) {
+          setRequestStatus("error");
+          setRequestMessage(
+            "This email is already occupied. PLease sign in or use another email address"
+          );
+        }
       })
       .finally(() => {
         toggleIsModalOpen();
@@ -109,10 +118,10 @@ export const SignUpForm = () => {
 
       <Modal
         isOpen={isModalOpen}
-        status={requestError ? "error" : "success"}
+        status={requestStatus ? "error" : "success"}
         message={
-          requestError
-            ? "Error"
+          requestStatus === "error"
+            ? requestMessage
             : "User has been successfully registered! Please sign in to continue"
         }
         handler={toggleIsModalOpen}

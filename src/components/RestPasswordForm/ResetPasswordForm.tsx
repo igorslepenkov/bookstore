@@ -1,24 +1,25 @@
-import { ErrorNotification } from "./style";
+import { ErrorNotification, StyledLink } from "./style";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";
 import { emailRegex } from "../../regex";
 import { useState } from "react";
-import { useNavigate, resolvePath } from "react-router-dom";
+import { resolvePath } from "react-router-dom";
 import { RoutesUrl } from "../../router";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
+import { AUTH_ERROR_CODES } from "../../errors";
+import { FormServerMessage } from "../FormServerMessage";
 
 interface InputFields {
   email: string;
 }
 
 export const ResetPasswordForm = () => {
-  const navigate = useNavigate();
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestError, setRequestError] = useState(null);
+  const [requestMessage, setRequestMessage] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -32,10 +33,14 @@ export const ResetPasswordForm = () => {
 
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        navigate(resolvePath(RoutesUrl.REGISTER));
+        setRequestMessage(
+          `Please, check your email. You will recieve link to reset your password. Click here if you want to go back to register page.`
+        );
       })
       .catch((err) => {
-        setRequestError(err);
+        if (err.code === AUTH_ERROR_CODES.USER_NOT_FOUND) {
+          setRequestMessage("USer with such email does not exist");
+        }
       })
       .finally(() => {
         setIsRequestPending(false);
@@ -46,6 +51,11 @@ export const ResetPasswordForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {requestMessage && (
+        <StyledLink to={resolvePath(RoutesUrl.REGISTER)}>
+          <FormServerMessage>{requestMessage}</FormServerMessage>
+        </StyledLink>
+      )}
       <FormInputLabel htmlFor="email">Email</FormInputLabel>
       <FormInput
         {...register("email", {

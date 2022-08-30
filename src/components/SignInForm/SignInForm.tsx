@@ -1,4 +1,4 @@
-import { ErrorNotification, ResetLink } from "./style";
+import { ErrorNotification, ResetLink, StyledLink } from "./style";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";
@@ -10,6 +10,8 @@ import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
+import { AUTH_ERROR_CODES } from "../../errors";
+import { FormServerMessage } from "../FormServerMessage";
 
 interface InputFields {
   email: string;
@@ -18,7 +20,7 @@ interface InputFields {
 
 export const SignInForm = () => {
   const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestError, setRequestError] = useState(null);
+  const [requestMessage, setRequestMessage] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -31,11 +33,20 @@ export const SignInForm = () => {
     setIsRequestPending(true);
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
       .catch((err) => {
-        setRequestError(err);
+        setRequestMessage(
+          "Unexpected error recieved from server. PLease try again later"
+        );
+
+        if (err.code === AUTH_ERROR_CODES.USER_NOT_FOUND) {
+          setRequestMessage("We could not find user with such credentials");
+        }
+
+        if (err.code === AUTH_ERROR_CODES.INVALID_PASSWORD) {
+          setRequestMessage(
+            "It seems that you have entered the wrong password. PLease try again"
+          );
+        }
       })
       .finally(() => {
         setIsRequestPending(false);
@@ -46,6 +57,9 @@ export const SignInForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {requestMessage && (
+        <FormServerMessage>{requestMessage}</FormServerMessage>
+      )}
       <FormInputLabel htmlFor="email">Email</FormInputLabel>
       <FormInput
         {...register("email", {

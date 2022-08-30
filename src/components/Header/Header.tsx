@@ -36,13 +36,12 @@ export const Header = () => {
       <NavLinks>
         <HeartLogo />
         <CartLogo />
+        <UserLogo />
         {isUserSignedIn ? (
           <SignOutButton type="button" onClick={handleSignOut}>
             Sign Out
           </SignOutButton>
-        ) : (
-          <UserLogo />
-        )}
+        ) : null}
       </NavLinks>
     </StyledHeader>
   );
