@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fonts, Media } from "../../ui";
+import { fonts, Indent, indentsConstructor, Media } from "../../ui";
 import { Color } from "../../ui";
 import { SearchLogo as Logo } from "../../assets";
 import { Link } from "react-router-dom";
@@ -51,10 +51,11 @@ export const SearchLogo = styled(Logo)`
 export const NavLinks = styled.nav`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const SignOutButton = styled.button`
+  ${indentsConstructor.create(Indent.ML, 7)}
   ${fonts.bodyBold}
   color: ${Color.Black};
   background-color: transparent;

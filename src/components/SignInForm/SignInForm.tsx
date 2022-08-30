@@ -33,6 +33,9 @@ export const SignInForm = () => {
     setIsRequestPending(true);
 
     signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setRequestMessage("You can now start using bookstore!");
+      })
       .catch((err) => {
         setRequestMessage(
           "Unexpected error recieved from server. PLease try again later"

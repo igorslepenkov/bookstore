@@ -21,10 +21,11 @@ export const ModalNotificationWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: fit-content();
-  width: 70vw;
-  padding: 10px;
+  width: fit-content;
+  padding: 15px;
   background-color: ${Color.White};
   border: 2px solid #e7e7e7;
+  text-align: center;
 `;
 
 export const ModalStatus = styled.h2`

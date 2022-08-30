@@ -49,6 +49,7 @@ export const SignUpForm = () => {
         setRequestStatus("success");
       })
       .catch((err) => {
+        console.log(err);
         if (err.code === AUTH_ERROR_CODES.EMAIL_ALLREADY_EXISTS) {
           setRequestStatus("error");
           setRequestMessage(
@@ -118,7 +119,7 @@ export const SignUpForm = () => {
 
       <Modal
         isOpen={isModalOpen}
-        status={requestStatus ? "error" : "success"}
+        status={requestStatus === "error" ? "error" : "success"}
         message={
           requestStatus === "error"
             ? requestMessage
