@@ -10,6 +10,7 @@ export const StyledSimilarBooksListWrapper = styled.div`
 
 export const StyledSimilarBooksList = styled.ul`
   display: flex;
+  justify-content: center;
   ${indentsConstructor.create(Indent.MT, 2)}
   column-gap: 32px;
   overflow-x: hidden;

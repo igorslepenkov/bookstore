@@ -8,9 +8,8 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledBookListItem = styled.li`
-  min-width: 250px;
+  width: 250px;
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
