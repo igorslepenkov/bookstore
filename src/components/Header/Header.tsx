@@ -1,7 +1,8 @@
-import { getAuth } from "firebase/auth";
 import { MouseEventHandler } from "react";
-import { useIsUserSignedIn } from "../../hooks";
 import { RoutesUrl } from "../../router";
+import { signOut } from "../../store/features/userSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { getUserIsLoggedIn } from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
@@ -17,11 +18,11 @@ import {
 } from "./style";
 
 export const Header = () => {
-  const isUserSignedIn = useIsUserSignedIn();
+  const isUserSignedIn = getUserIsLoggedIn();
+  const dispatch = useAppDispatch();
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (event) {
-      const auth = getAuth();
-      auth.signOut();
+      dispatch(signOut());
     }
   };
   return (

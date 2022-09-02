@@ -1,16 +1,18 @@
 import { ErrorNotification } from "./style";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useForm } from "react-hook-form";
-import { firebaseApp } from "../../firebase";
 import { emailRegex } from "../../regex";
-import { useState } from "react";
 import { Modal } from "../Modal";
 import { useToggle } from "../../hooks";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
-import { AUTH_ERROR_CODES } from "../../errors";
+import {
+  getUserError,
+  getUserIsLoading,
+} from "../../store/selectors/userSelectors";
+import { useAppDispatch } from "../../store/hooks";
+import { signUp } from "../../store/features/userSlice";
 
 interface InputFields {
   email: string;
@@ -19,12 +21,10 @@ interface InputFields {
 }
 
 export const SignUpForm = () => {
-  const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestMessage, setRequestMessage] = useState<string>("");
-  const [requestStatus, setRequestStatus] = useState<
-    "success" | "error" | null
-  >(null);
+  const isRequestPending = getUserIsLoading();
+  const requestMessage = getUserError();
   const [isModalOpen, toggleIsModalOpen] = useToggle();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -32,36 +32,15 @@ export const SignUpForm = () => {
     formState: { errors },
     setError,
   } = useForm<InputFields>();
-  const auth = getAuth(firebaseApp);
-
-  const onSubmit = ({ email, password, confirm }: InputFields) => {
+  const onSubmit = async ({ email, password, confirm }: InputFields) => {
     if (password !== confirm) {
       setError("confirm", {
         message: "Passwords do not match",
       });
       return;
     }
-
-    setIsRequestPending(true);
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setRequestStatus("success");
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.code === AUTH_ERROR_CODES.EMAIL_ALLREADY_EXISTS) {
-          setRequestStatus("error");
-          setRequestMessage(
-            "This email is already occupied. PLease sign in or use another email address"
-          );
-        }
-      })
-      .finally(() => {
-        toggleIsModalOpen();
-        setIsRequestPending(false);
-      });
-
+    await dispatch(signUp({ email, password }));
+    toggleIsModalOpen();
     reset();
   };
 
@@ -119,11 +98,11 @@ export const SignUpForm = () => {
 
       <Modal
         isOpen={isModalOpen}
-        status={requestStatus === "error" ? "error" : "success"}
+        status={requestMessage ? "error" : "success"}
         message={
-          requestStatus === "error"
+          requestMessage
             ? requestMessage
-            : "User has been successfully registered! Please sign in to continue"
+            : "User has been successfully registered! You are allready signed in and may continue using this app"
         }
         handler={toggleIsModalOpen}
       />
