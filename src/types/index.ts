@@ -1,3 +1,5 @@
+import { UserMetadata } from "firebase/auth";
+
 export interface IBook {
   title: string;
   subtitle: string;
@@ -40,3 +42,9 @@ export interface IBookApiDetails {
 }
 
 export type BookDetailType = [string, string];
+
+export interface IUser {
+  id: string;
+  email: string | null;
+  meta: UserMetadata;
+}

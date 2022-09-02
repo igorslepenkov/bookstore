@@ -45,6 +45,7 @@ export const useSimilarBooks = (bookTitle: string, isbn13: string) => {
     return () => {
       setSimilarBooks([]);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookTitle, isbn13]);
 
   return similarBooks;

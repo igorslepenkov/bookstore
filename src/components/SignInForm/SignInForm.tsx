@@ -1,17 +1,19 @@
 import { ErrorNotification, ResetLink } from "./style";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
-import { firebaseApp } from "../../firebase";
 import { emailRegex } from "../../regex";
-import { useState } from "react";
 import { RoutesUrl } from "../../router";
 import { resolvePath } from "react-router-dom";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
-import { AUTH_ERROR_CODES } from "../../errors";
 import { FormServerMessage } from "../FormServerMessage";
+import {
+  getUserError,
+  getUserIsLoading,
+} from "../../store/selectors/userSelectors";
+import { useAppDispatch } from "../../store/hooks";
+import { signIn } from "../../store/features/userSlice";
 
 interface InputFields {
   email: string;
@@ -19,42 +21,17 @@ interface InputFields {
 }
 
 export const SignInForm = () => {
-  const [isRequestPending, setIsRequestPending] = useState<boolean>(false);
-  const [requestMessage, setRequestMessage] = useState<string>("");
+  const isRequestPending = getUserIsLoading();
+  const requestMessage = getUserError();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<InputFields>();
-  const auth = getAuth(firebaseApp);
-
   const onSubmit = ({ email, password }: InputFields) => {
-    setIsRequestPending(true);
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setRequestMessage("You can now start using bookstore!");
-      })
-      .catch((err) => {
-        setRequestMessage(
-          "Unexpected error recieved from server. PLease try again later"
-        );
-
-        if (err.code === AUTH_ERROR_CODES.USER_NOT_FOUND) {
-          setRequestMessage("We could not find user with such credentials");
-        }
-
-        if (err.code === AUTH_ERROR_CODES.INVALID_PASSWORD) {
-          setRequestMessage(
-            "It seems that you have entered the wrong password. PLease try again"
-          );
-        }
-      })
-      .finally(() => {
-        setIsRequestPending(false);
-      });
-
+    dispatch(signIn({ email, password }));
     reset();
   };
 

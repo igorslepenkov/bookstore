@@ -1,6 +1,6 @@
 import axios from "axios";
 import path from "path-browserify";
-import { IBooksApi } from "../types";
+import { IBookApiDetails, IBooksApi, INewBooksApi } from "../types";
 
 enum Endpoint {
   BookDetails = "books",
@@ -16,21 +16,18 @@ class ItBookstoreApi {
   });
   public getByISBN = async (isbn: string) => {
     const url = path.join(Endpoint.BookDetails, isbn);
-    const response = await this.API.get(url);
+    const response = await this.API.get<IBookApiDetails>(url);
     return response.data;
   };
 
   public getNew = async () => {
-    const response = await this.API.get(Endpoint.New);
+    const response = await this.API.get<INewBooksApi>(Endpoint.New);
     return response.data;
   };
 
-  public getBySearch = async (
-    searchValue: string,
-    page: number
-  ): Promise<IBooksApi> => {
+  public getBySearch = async (searchValue: string, page: number) => {
     const url = path.join(Endpoint.Search, searchValue, page.toString());
-    const response = await this.API.get(url);
+    const response = await this.API.get<IBooksApi>(url);
     return response.data;
   };
 }

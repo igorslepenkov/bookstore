@@ -1,14 +1,19 @@
 import { KeyboardEventHandler, MouseEventHandler, useState } from "react";
 import { FormWrapper, Page, SignInForm, SignUpForm } from "../../components";
+import { clearErrors } from "../../store/";
+import { useAppDispatch } from "../../store/hooks";
 import { FormTab, FormTabsGroup } from "./style";
 
 export const RegisterPage = () => {
   const [activeTab, setActiveTab] = useState<string>("signup");
+  const dispatch = useAppDispatch();
+
   const handleTabClick: MouseEventHandler<HTMLHeadingElement> = ({
     currentTarget,
   }) => {
     if (currentTarget.dataset.tab) {
       const { tab } = currentTarget.dataset;
+      dispatch(clearErrors());
       setActiveTab(tab);
     }
   };
@@ -19,6 +24,7 @@ export const RegisterPage = () => {
     if (event.key === "Enter") {
       if (event.currentTarget.dataset.tab) {
         const { tab } = event.currentTarget.dataset;
+        dispatch(clearErrors());
         setActiveTab(tab);
       }
     }
