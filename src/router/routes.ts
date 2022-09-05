@@ -1,6 +1,6 @@
 export enum RoutesUrl {
   HOME = "/",
-  SEARCH = "search",
+  SEARCH = "search/:pattern",
   BOOK = "book/:isbn",
   CART = "cart",
   FAVORITES = "favorites",

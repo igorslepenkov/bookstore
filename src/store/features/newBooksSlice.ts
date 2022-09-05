@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isPending } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IBook } from "../../types";
 import { bookstoreApi } from "../../services";
 import { AxiosError } from "axios";
@@ -46,7 +46,7 @@ export const newBooksSlice = createSlice({
       }
     });
 
-    builder.addMatcher(isPending(), (state) => {
+    builder.addCase(fetchNewBooks.pending, (state) => {
       state.error = "";
       state.isLoading = true;
     });
