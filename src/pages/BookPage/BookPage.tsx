@@ -23,18 +23,18 @@ import { useSimilarBooks } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import {
   fetchBook,
-  getBook,
-  getBookError,
-  getBookIsLoading,
+  useGetBook,
+  useGetBookError,
+  useGetBookIsLoading,
 } from "../../store";
 import { useAppDispatch } from "../../store/hooks";
 
 export const BookPage = () => {
   const { isbn } = useParams();
   const dispatch = useAppDispatch();
-  const book = getBook();
-  const loading = getBookIsLoading();
-  const error = getBookError();
+  const book = useGetBook();
+  const loading = useGetBookIsLoading();
+  const error = useGetBookError();
 
   const navigate = useNavigate();
 

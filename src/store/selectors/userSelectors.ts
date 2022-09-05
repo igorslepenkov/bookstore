@@ -1,8 +1,9 @@
 import { useAppSelector } from "../hooks";
 
-export const getUser = () => useAppSelector((state) => state.user.user);
-export const getUserIsLoggedIn = () =>
+export const useGetUser = () => useAppSelector((state) => state.user.user);
+export const useGetUserIsLoggedIn = () =>
   useAppSelector((state) => state.user.isLoggedIn);
-export const getUserIsLoading = () =>
+export const useGetUserIsLoading = () =>
   useAppSelector((state) => state.user.isLoading);
-export const getUserError = () => useAppSelector((state) => state.user.error);
+export const useGetUserError = () =>
+  useAppSelector((state) => state.user.error);

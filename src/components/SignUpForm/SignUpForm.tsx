@@ -8,8 +8,8 @@ import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import {
-  getUserError,
-  getUserIsLoading,
+  useGetUserError,
+  useGetUserIsLoading,
 } from "../../store/selectors/userSelectors";
 import { useAppDispatch } from "../../store/hooks";
 import { signUp } from "../../store/features/userSlice";
@@ -21,8 +21,8 @@ interface InputFields {
 }
 
 export const SignUpForm = () => {
-  const isRequestPending = getUserIsLoading();
-  const requestMessage = getUserError();
+  const isRequestPending = useGetUserIsLoading();
+  const requestMessage = useGetUserError();
   const [isModalOpen, toggleIsModalOpen] = useToggle();
   const dispatch = useAppDispatch();
   const {

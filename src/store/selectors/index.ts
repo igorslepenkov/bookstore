@@ -1,21 +1,29 @@
-import { getNewBooks, getIsLoading, getError } from "./newBooksSelectors";
 import {
-  getUserIsLoading,
-  getUser,
-  getUserError,
-  getUserIsLoggedIn,
+  useGetNewBooks,
+  useGetIsLoading,
+  useGetError,
+} from "./newBooksSelectors";
+import {
+  useGetUserIsLoading,
+  useGetUser,
+  useGetUserError,
+  useGetUserIsLoggedIn,
 } from "./userSelectors";
-import { getBook, getBookIsLoading, getBookError } from "./bookSelectors";
+import {
+  useGetBook,
+  useGetBookIsLoading,
+  useGetBookError,
+} from "./bookSelectors";
 
 export {
-  getNewBooks,
-  getError,
-  getIsLoading,
-  getUserIsLoading,
-  getUser,
-  getUserError,
-  getUserIsLoggedIn,
-  getBook,
-  getBookIsLoading,
-  getBookError,
+  useGetNewBooks,
+  useGetError,
+  useGetIsLoading,
+  useGetUserIsLoading,
+  useGetUser,
+  useGetUserError,
+  useGetUserIsLoggedIn,
+  useGetBook,
+  useGetBookIsLoading,
+  useGetBookError,
 };

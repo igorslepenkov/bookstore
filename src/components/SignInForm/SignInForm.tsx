@@ -9,8 +9,8 @@ import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
 import {
-  getUserError,
-  getUserIsLoading,
+  useGetUserError,
+  useGetUserIsLoading,
 } from "../../store/selectors/userSelectors";
 import { useAppDispatch } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
@@ -21,8 +21,8 @@ interface InputFields {
 }
 
 export const SignInForm = () => {
-  const isRequestPending = getUserIsLoading();
-  const requestMessage = getUserError();
+  const isRequestPending = useGetUserIsLoading();
+  const requestMessage = useGetUserError();
   const dispatch = useAppDispatch();
   const {
     register,

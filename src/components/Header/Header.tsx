@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { getUserIsLoggedIn } from "../../store/selectors";
+import { useGetUserIsLoggedIn } from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
@@ -18,7 +18,7 @@ import {
 } from "./style";
 
 export const Header = () => {
-  const isUserSignedIn = getUserIsLoggedIn();
+  const isUserSignedIn = useGetUserIsLoggedIn();
   const dispatch = useAppDispatch();
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (event) {

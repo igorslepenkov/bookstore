@@ -1,6 +1,7 @@
 import { useAppSelector } from "../hooks";
 
-export const getBookIsLoading = () =>
+export const useGetBookIsLoading = () =>
   useAppSelector((state) => state.book.isLoading);
-export const getBook = () => useAppSelector((state) => state.book.book);
-export const getBookError = () => useAppSelector((state) => state.book.error);
+export const useGetBook = () => useAppSelector((state) => state.book.book);
+export const useGetBookError = () =>
+  useAppSelector((state) => state.book.error);

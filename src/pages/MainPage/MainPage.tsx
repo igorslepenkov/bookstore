@@ -8,12 +8,12 @@ import { Navigate } from "react-router-dom";
 import { RoutesUrl } from "../../router";
 import { fetchNewBooks } from "../../store/features/newBooksSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { getError, getIsLoading, getNewBooks } from "../../store";
+import { useGetError, useGetIsLoading, useGetNewBooks } from "../../store";
 
 export const MainPage = () => {
-  const loading = getIsLoading();
-  const error = getError();
-  const newBooks = getNewBooks();
+  const loading = useGetIsLoading();
+  const error = useGetError();
+  const newBooks = useGetNewBooks();
 
   const dispatch = useAppDispatch();
 
