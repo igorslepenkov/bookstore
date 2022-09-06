@@ -18,15 +18,11 @@ export const usePagination = () => {
       }
       if (totalPagesArray.length <= 7) {
         setPaginationArray(totalPagesArray);
-      } else if (totalPagesArray.length - currentPage <= 7) {
+      } else if (totalPagesArray.length - currentPage < 5) {
         const numbersToRight = totalPagesArray.length - currentPage;
-        const numbersToLeft = 6 - numbersToRight - 2;
+        const numbersToLeft = 8 - numbersToRight - 1;
         setPaginationArray(
-          [1, "..."]
-            .concat(
-              totalPagesArray.slice(totalPagesArray.length - numbersToLeft)
-            )
-            .concat(totalPagesArray.slice(currentPage))
+          [1, "..."].concat(totalPagesArray.slice(currentPage - numbersToLeft))
         );
       } else if (currentPage <= 2) {
         let paginationArray: (string | number)[] = [];

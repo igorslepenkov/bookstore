@@ -46,12 +46,16 @@ export const searchBooksSlice = createSlice({
   initialState,
   reducers: {
     incrementPage: (state) => {
-      if (state.page) {
+      if (
+        state.page !== null &&
+        state.total &&
+        state.page < Math.floor(state.total / 10)
+      ) {
         state.page += 1;
       }
     },
     decrementPage: (state) => {
-      if (state.page && state.page > 0) {
+      if (state.page && state.page > 1) {
         state.page -= 1;
       }
     },

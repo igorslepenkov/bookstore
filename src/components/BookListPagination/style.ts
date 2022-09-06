@@ -16,6 +16,7 @@ export const PaginationNumbers = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 10px;
   list-style: none;
 `;
 
@@ -39,4 +40,5 @@ export const PaginationArrow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 `;
