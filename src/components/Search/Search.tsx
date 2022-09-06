@@ -1,5 +1,12 @@
+import { ChangeEventHandler, KeyboardEventHandler } from "react";
 import { StyledSearch } from "./style";
 
-export const Search = () => {
-  return <StyledSearch type="text" placeholder="Search" />;
+interface IProps {
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown: KeyboardEventHandler<HTMLInputElement | SVGSVGElement>;
+}
+
+export const Search = (props: IProps) => {
+  return <StyledSearch type="text" placeholder="Search" {...props} />;
 };

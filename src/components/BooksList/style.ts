@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { Media } from "../../ui";
+import { Indent, indentsConstructor, Media } from "../../ui";
 
 export const StyledBooksList = styled.ul`
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
   padding: 0;
+  ${indentsConstructor.create(Indent.MT, 3)}
+  ${indentsConstructor.create(Indent.MB, 3)}
   list-style: none;
 
   ${Media.SM} {

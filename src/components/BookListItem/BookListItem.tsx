@@ -10,18 +10,16 @@ import {
   StyledLink,
   StyledTitle,
 } from "./style";
-import ClipLoader from "react-spinners/ClipLoader";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
 import { BookCostAndRating } from "../BookCostAndRating";
-import { Navigate } from "react-router-dom";
+import { Navigate, resolvePath } from "react-router-dom";
 
 interface IProps {
   book: IBook;
 }
 
 export const BookListItem = ({ book }: IProps) => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError>();
   const [bookDetails, setBookDetails] = useState<IBookApiDetails>({
     language: "",
@@ -49,24 +47,20 @@ export const BookListItem = ({ book }: IProps) => {
       .getByISBN(book.isbn13)
       .then((result) => {
         setBookDetails(result);
-        setLoading(false);
       })
       .catch((err) => {
         setError(err);
-        setLoading(false);
       });
   }, [book.isbn13]);
-
-  if (loading) {
-    return <ClipLoader loading={loading} />;
-  }
 
   if (error) {
     return <Navigate to={RoutesUrl.ERROR} />;
   }
 
   return (
-    <StyledLink to={createDinamicPath(RoutesUrl.BOOK, book.isbn13)}>
+    <StyledLink
+      to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
+    >
       <StyledBookListItem>
         <BookImageWrapper>
           <BookImage src={bookDetails.image} />

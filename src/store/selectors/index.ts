@@ -14,6 +14,13 @@ import {
   useGetBookIsLoading,
   useGetBookError,
 } from "./bookSelectors";
+import {
+  useGetSearchBooks,
+  useGetSearchBooksIsLoading,
+  useGetSearchBooksError,
+  useGetSearchBooksPage,
+  useGetSearchBooksTotal,
+} from "./searchBooksSelectors";
 
 export {
   useGetNewBooks,
@@ -26,4 +33,9 @@ export {
   useGetBook,
   useGetBookIsLoading,
   useGetBookError,
+  useGetSearchBooks,
+  useGetSearchBooksIsLoading,
+  useGetSearchBooksError,
+  useGetSearchBooksPage,
+  useGetSearchBooksTotal,
 };

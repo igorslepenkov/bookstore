@@ -108,7 +108,7 @@ const signOut = createAsyncThunk("user/signOut", async (_) => {
 });
 
 export const userSlice = createSlice({
-  name: "newBooks",
+  name: "user",
   initialState,
   reducers: {
     clearErrors: (state) => {

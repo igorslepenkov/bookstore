@@ -9,6 +9,11 @@ import {
   clearErrors,
   bookSlice,
   fetchBook,
+  fetchBooksBySearch,
+  incrementPage,
+  decrementPage,
+  searchBooksSlice,
+  clearSearch,
 } from "./features";
 import {
   useGetNewBooks,
@@ -21,7 +26,13 @@ import {
   useGetBook,
   useGetBookIsLoading,
   useGetBookError,
+  useGetSearchBooks,
+  useGetSearchBooksIsLoading,
+  useGetSearchBooksError,
+  useGetSearchBooksPage,
+  useGetSearchBooksTotal,
 } from "./selectors";
+
 export {
   store,
   newBooksSlice,
@@ -43,4 +54,14 @@ export {
   useGetBook,
   useGetBookIsLoading,
   useGetBookError,
+  fetchBooksBySearch,
+  incrementPage,
+  decrementPage,
+  searchBooksSlice,
+  useGetSearchBooks,
+  useGetSearchBooksIsLoading,
+  useGetSearchBooksError,
+  useGetSearchBooksPage,
+  useGetSearchBooksTotal,
+  clearSearch,
 };

@@ -55,7 +55,7 @@ const fetchBook = createAsyncThunk<
 });
 
 export const bookSlice = createSlice({
-  name: "newBooks",
+  name: "book",
   initialState,
   reducers: {},
   extraReducers(builder) {

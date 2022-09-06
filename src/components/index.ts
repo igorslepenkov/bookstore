@@ -28,6 +28,8 @@ import { FormInputLabel } from "./FormInputLabel";
 import { Form } from "./Form";
 import { ConfirmResetPasswordForm } from "./ConfirmResetPasswordForm";
 import { FormServerMessage } from "./FormServerMessage";
+import { SearchDropdown } from "./SearchDropdown";
+import { BookListPagination } from "./BookListPagination";
 
 export {
   BookCostAndRating,
@@ -60,4 +62,6 @@ export {
   Form,
   ConfirmResetPasswordForm,
   FormServerMessage,
+  SearchDropdown,
+  BookListPagination,
 };
