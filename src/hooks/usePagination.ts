@@ -1,0 +1,50 @@
+import { useEffect, useState } from "react";
+import { useGetSearchBooksPage, useGetSearchBooksTotal } from "../store";
+
+export const usePagination = () => {
+  const [paginationArray, setPaginationArray] = useState<
+    (string | number)[] | null
+  >(null);
+  const currentPage = useGetSearchBooksPage();
+  const totalBooks = useGetSearchBooksTotal();
+  const booksPerPage = 10;
+
+  useEffect(() => {
+    if (totalBooks && currentPage) {
+      const totalPages = totalBooks / booksPerPage;
+      const totalPagesArray = [];
+      for (let i = 1; i < totalPages; i++) {
+        totalPagesArray.push(i);
+      }
+      if (totalPagesArray.length <= 7) {
+        setPaginationArray(totalPagesArray);
+      } else if (totalPagesArray.length - currentPage <= 7) {
+        const numbersToRight = totalPagesArray.length - currentPage;
+        const numbersToLeft = 6 - numbersToRight - 2;
+        setPaginationArray(
+          [1, "..."]
+            .concat(
+              totalPagesArray.slice(totalPagesArray.length - numbersToLeft)
+            )
+            .concat(totalPagesArray.slice(currentPage))
+        );
+      } else if (currentPage <= 2) {
+        let paginationArray: (string | number)[] = [];
+        paginationArray = paginationArray.concat(
+          totalPagesArray.slice(0, currentPage + (4 - currentPage))
+        );
+        paginationArray = paginationArray.concat([
+          "...",
+          totalPagesArray[totalPagesArray.length - 1],
+        ]);
+        setPaginationArray(paginationArray);
+      } else {
+        const paginationArray = [1, "..."]
+          .concat(totalPagesArray.slice(currentPage - 2, currentPage + 2))
+          .concat(["...", totalPagesArray[totalPagesArray.length - 1]]);
+        setPaginationArray(paginationArray);
+      }
+    }
+  }, [currentPage, totalBooks]);
+  return { paginationArray, currentPage };
+};

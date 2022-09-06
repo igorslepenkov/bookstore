@@ -2,7 +2,7 @@ import { ErrorNotification, ResetLink } from "./style";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "../../regex";
 import { RoutesUrl } from "../../router";
-import { resolvePath } from "react-router-dom";
+import { resolvePath, useNavigate } from "react-router-dom";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
@@ -14,6 +14,7 @@ import {
 } from "../../store/selectors/userSelectors";
 import { useAppDispatch } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
+import { AxiosError } from "axios";
 
 interface InputFields {
   email: string;
@@ -21,6 +22,7 @@ interface InputFields {
 }
 
 export const SignInForm = () => {
+  const navigate = useNavigate();
   const isRequestPending = useGetUserIsLoading();
   const requestMessage = useGetUserError();
   const dispatch = useAppDispatch();
@@ -30,8 +32,12 @@ export const SignInForm = () => {
     reset,
     formState: { errors },
   } = useForm<InputFields>();
-  const onSubmit = ({ email, password }: InputFields) => {
-    dispatch(signIn({ email, password }));
+  const onSubmit = async ({ email, password }: InputFields) => {
+    const response = await dispatch(signIn({ email, password }));
+    if (response instanceof AxiosError) {
+      return;
+    }
+    navigate(resolvePath(RoutesUrl.ACCOUNT));
     reset();
   };
 

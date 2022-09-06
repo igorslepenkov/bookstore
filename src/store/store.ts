@@ -13,6 +13,10 @@ export const store = configureStore({
     book: bookSlice,
     searchBooks: searchBooksSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

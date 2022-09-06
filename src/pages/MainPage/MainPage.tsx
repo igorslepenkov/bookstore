@@ -12,7 +12,6 @@ import { useGetError, useGetIsLoading, useGetNewBooks } from "../../store";
 
 export const MainPage = () => {
   const loading = useGetIsLoading();
-  console.log(loading);
   const error = useGetError();
   const newBooks = useGetNewBooks();
 

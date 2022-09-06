@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Color, fonts } from "../../ui";
 
-export const StyledSearchDropdown = styled.div`
+export const StyledSearchDropdown = styled.ul`
   position: absolute;
+  width: 100%;
   top: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -19,7 +20,7 @@ export const StyledLink = styled(Link)`
   text-align: center;
 `;
 
-export const BookSearchCard = styled.div`
+export const BookSearchCard = styled.li`
   display: grid;
   grid-template-columns: 85px auto;
   align-items: center;
@@ -37,4 +38,11 @@ export const SearchCardBookImageWrapper = styled.div`
 export const SearchCardBookImage = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+export const NotFoundNotification = styled.div`
+  ${fonts.bodyRegular}
+  color: ${Color.Grey};
+  align-self: center;
+  justify-self: center;
 `;

@@ -1,4 +1,9 @@
-import { MouseEventHandler, useEffect } from "react";
+import {
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch } from "../../store/hooks";
@@ -18,18 +23,39 @@ import {
   StyledLink,
   Title,
 } from "./style";
-import { clearSearch, fetchBooksBySearch } from "../../store";
+import { fetchBooksBySearch } from "../../store";
+import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
+  const location = useLocation();
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const isUserSignedIn = useGetUserIsLoggedIn();
   const searchBooks = useGetSearchBooks();
   const dispatch = useAppDispatch();
-  const [{ value, onChange }] = useInput("");
-  const debouncedValue = useDebounce(value, 500);
+  const [{ value, onChange }, clearInput] = useInput("");
+  const debouncedValue = useDebounce(value, 300);
+  const navigate = useNavigate();
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (event) {
       dispatch(signOut());
+    }
+  };
+
+  const handleSearchClick: MouseEventHandler<SVGSVGElement> = () => {
+    if (debouncedValue !== value) return;
+    navigate(resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue)));
+    clearInput();
+  };
+  const handleSearchKeyDown: KeyboardEventHandler<
+    HTMLInputElement | SVGSVGElement
+  > = (event) => {
+    if (debouncedValue !== value) return;
+    if (event.key === "Enter") {
+      navigate(
+        resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue))
+      );
+      clearInput();
     }
   };
 
@@ -40,10 +66,18 @@ export const Header = () => {
   }, [debouncedValue, dispatch]);
 
   useEffect(() => {
-    if (value === "") {
-      dispatch(clearSearch());
+    if (value.length === 0) {
+      setIsDropdownOpen(false);
+    } else {
+      setIsDropdownOpen(true);
     }
-  });
+  }, [value]);
+
+  useEffect(() => {
+    if (location.pathname.match(/search/) || location.pathname.match(/book/)) {
+      setIsDropdownOpen(false);
+    }
+  }, [location]);
 
   return (
     <StyledHeader>
@@ -51,9 +85,17 @@ export const Header = () => {
         <Title>Bookstore</Title>
       </StyledLink>
       <SearchField>
-        <Search onChange={onChange} value={value} />
-        <SearchLogo />
-        {searchBooks && (
+        <Search
+          onChange={onChange}
+          value={value}
+          onKeyDown={handleSearchKeyDown}
+        />
+        <SearchLogo
+          onClick={handleSearchClick}
+          onKeyDown={handleSearchKeyDown}
+          tabIndex={0}
+        />
+        {searchBooks && isDropdownOpen && (
           <SearchDropdown
             books={searchBooks.slice(0, 5)}
             searchValue={debouncedValue}
