@@ -66,6 +66,9 @@ export const searchBooksSlice = createSlice({
       state.total = null;
       state.searchBooks = null;
     },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchBooksBySearch.fulfilled, (state, action) => {
@@ -89,7 +92,7 @@ export const searchBooksSlice = createSlice({
   },
 });
 
-export const { incrementPage, decrementPage, clearSearch } =
+export const { incrementPage, decrementPage, clearSearch, setPage } =
   searchBooksSlice.actions;
 export { fetchBooksBySearch };
 export default searchBooksSlice.reducer;

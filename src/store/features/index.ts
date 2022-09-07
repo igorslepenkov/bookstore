@@ -6,6 +6,7 @@ import searchBooksSlice, {
   incrementPage,
   decrementPage,
   clearSearch,
+  setPage,
 } from "./searchBooksSlice";
 export {
   newBooksSlice,
@@ -22,4 +23,5 @@ export {
   decrementPage,
   searchBooksSlice,
   clearSearch,
+  setPage,
 };

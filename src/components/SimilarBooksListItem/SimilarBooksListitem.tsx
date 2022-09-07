@@ -10,7 +10,6 @@ import {
   StyledLink,
   StyledTitle,
 } from "./style";
-import ClipLoader from "react-spinners/ClipLoader";
 import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
 import { BookCostAndRating } from "../BookCostAndRating";
@@ -21,7 +20,6 @@ interface IProps {
 }
 
 export const SimilarBooksListItem = ({ book }: IProps) => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError>();
   const [bookDetails, setBookDetails] = useState<IBookApiDetails>({
     language: "",
@@ -49,17 +47,11 @@ export const SimilarBooksListItem = ({ book }: IProps) => {
       .getByISBN(book.isbn13)
       .then((result) => {
         setBookDetails(result);
-        setLoading(false);
       })
       .catch((err) => {
         setError(err);
-        setLoading(false);
       });
   }, [book.isbn13]);
-
-  if (loading) {
-    return <ClipLoader loading={loading} />;
-  }
 
   if (error) {
     return <Navigate to={RoutesUrl.ERROR} />;

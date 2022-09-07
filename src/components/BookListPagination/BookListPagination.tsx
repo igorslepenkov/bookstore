@@ -1,7 +1,7 @@
 import { KeyboardEventHandler, MouseEventHandler } from "react";
 import { ArrowSmallLeft, ArrowSmallRight } from "../../assets";
 import { usePagination } from "../../hooks/usePagination";
-import { decrementPage, incrementPage } from "../../store";
+import { decrementPage, incrementPage, setPage } from "../../store";
 import { useAppDispatch } from "../../store/hooks";
 import {
   PaginationArrow,
@@ -37,6 +37,16 @@ export const BookListPagination = () => {
       dispatch(incrementPage());
     }
   };
+
+  const onPaginationNumberClick: MouseEventHandler<HTMLLIElement> = (event) => {
+    if (event.currentTarget.dataset.page) {
+      const { page } = event.currentTarget.dataset;
+      if (page !== "...") {
+        dispatch(setPage(page));
+      }
+    }
+  };
+
   if (paginationArray) {
     return (
       <StyledBookListPagination>
@@ -46,13 +56,18 @@ export const BookListPagination = () => {
           tabIndex={0}
         >
           <ArrowSmallRight />
-          Next
+          <span>Next</span>
         </PaginationArrow>
 
         <PaginationNumbers>
           {paginationArray.map((character, idx) => {
             return (
-              <PaginationNumber isActive={currentPage === character} key={idx}>
+              <PaginationNumber
+                isActive={currentPage === character}
+                key={idx}
+                data-page={character}
+                onClick={onPaginationNumberClick}
+              >
                 {character}
               </PaginationNumber>
             );
@@ -64,7 +79,7 @@ export const BookListPagination = () => {
           onKeyDown={onRightArrowButtonKeyDown}
           tabIndex={0}
         >
-          Prev
+          <span>Prev</span>
           <ArrowSmallLeft />
         </PaginationArrow>
       </StyledBookListPagination>

@@ -14,6 +14,7 @@ import {
   decrementPage,
   searchBooksSlice,
   clearSearch,
+  setPage,
 } from "./features";
 import {
   useGetNewBooks,
@@ -64,4 +65,5 @@ export {
   useGetSearchBooksPage,
   useGetSearchBooksTotal,
   clearSearch,
+  setPage,
 };

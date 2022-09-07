@@ -18,13 +18,13 @@ interface IProps {
 }
 
 export const SearchDropdown = ({ books, searchValue }: IProps) => {
-  console.log(books);
   return (
     <StyledSearchDropdown>
       {books.map((book) => {
         return (
           <StyledLink
             to={resolvePath(RoutesUrl.BOOK.replace(/:isbn/, book.isbn13))}
+            key={book.isbn13}
           >
             <BookSearchCard as={motion.div} key={book.title}>
               <SearchCardBookImageWrapper>

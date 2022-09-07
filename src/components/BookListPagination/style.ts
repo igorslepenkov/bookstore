@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { Color, fonts } from "../../ui";
+import { Color, fonts, Media } from "../../ui";
 
 type PaginationNumberProps = {
   isActive: boolean;
@@ -16,8 +16,13 @@ export const PaginationNumbers = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 10px;
+  gap: 5px;
   list-style: none;
+  cursor: pointer;
+
+  ${Media.MD} {
+    gap: 15px;
+  }
 `;
 
 export const PaginationNumber = styled.li<PaginationNumberProps>`
@@ -41,4 +46,14 @@ export const PaginationArrow = styled.div`
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+
+  & span {
+    display: none;
+  }
+
+  ${Media.SM} {
+    & span {
+      display: block;
+    }
+  }
 `;
