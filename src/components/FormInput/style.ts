@@ -1,7 +1,20 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 import { Color, fonts } from "../../ui";
 
-export const Input = styled.input`
+type InputStyleProps = {
+  gridArea?: string;
+};
+
+export const Input = styled.input<InputStyleProps>`
+  ${({ gridArea }) => {
+    if (gridArea) {
+      return css`
+        grid-area: ${gridArea};
+      `;
+    }
+    return null;
+  }}
   flex-grow: 1;
   padding: 5px 20px;
   ${fonts.bodyRegular}

@@ -1,7 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Color, fonts } from "../../ui";
 
-export const ErrorNotification = styled.p`
+type ErrorNotificationProps = {
+  gridArea?: string;
+};
+
+export const ErrorNotification = styled.p<ErrorNotificationProps>`
+  ${({ gridArea }) => {
+    if (gridArea) {
+      return css`
+        grid-area: ${gridArea};
+      `;
+    }
+    return null;
+  }}
   ${fonts.bodyBold}
   color: ${Color.Danger};
 `;

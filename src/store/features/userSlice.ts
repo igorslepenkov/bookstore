@@ -8,8 +8,13 @@ import {
 import { FirebaseError } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
+  EmailAuthProvider,
   getAuth,
+  reauthenticateWithCredential,
   signInWithEmailAndPassword,
+  updateEmail,
+  updatePassword,
+  updateProfile,
   UserCredential,
 } from "firebase/auth";
 import { AUTH_ERROR_CODES } from "../../errors";
@@ -26,6 +31,12 @@ type UserInfo = {
   email: string;
   password: string;
 };
+
+type UserInfoUpdate = Partial<Omit<UserInfo, "password">> &
+  Required<Omit<UserInfo, "email">> & {
+    name?: string;
+    newPassword?: string;
+  };
 
 const initialState: InitialState = {
   user: null,
@@ -60,7 +71,7 @@ const signUp = createAsyncThunk<IUser, UserInfo, { rejectValue: string }>(
         );
       }
       return rejectWithValue(
-        "Unexpected error recieved from server. PLease try again later"
+        "Unexpected error recieved from server. Please try again later"
       );
     }
   }
@@ -92,7 +103,7 @@ const signIn = createAsyncThunk<IUser, UserInfo, { rejectValue: string }>(
 
       if (newError.code === AUTH_ERROR_CODES.INVALID_PASSWORD) {
         return rejectWithValue(
-          "It seems that you have entered the wrong password. PLease try again"
+          "It seems that you have entered the wrong password. Please try again"
         );
       }
       return rejectWithValue(
@@ -106,6 +117,66 @@ const signOut = createAsyncThunk("user/signOut", async (_) => {
   const auth = getAuth();
   auth.signOut();
 });
+
+const updateUser = createAsyncThunk<
+  void,
+  UserInfoUpdate,
+  { rejectValue: string }
+>(
+  "user/update",
+  async (
+    { name, email, password, newPassword }: UserInfoUpdate,
+    { rejectWithValue, dispatch }
+  ) => {
+    try {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+      if (name && currentUser?.email && password) {
+        await updateProfile(currentUser, { displayName: name });
+        dispatch(signIn({ email: currentUser.email, password: password }));
+      }
+
+      if (email && currentUser?.email && password) {
+        const credential = EmailAuthProvider.credential(
+          currentUser.email,
+          password
+        );
+        await reauthenticateWithCredential(currentUser, credential);
+        await updateEmail(currentUser, email);
+        dispatch(signIn({ email: currentUser.email, password: password }));
+      }
+
+      if (password && newPassword && currentUser?.email) {
+        const credential = EmailAuthProvider.credential(
+          currentUser.email,
+          password
+        );
+        await reauthenticateWithCredential(currentUser, credential);
+        await updatePassword(currentUser, newPassword);
+        dispatch(signIn({ email: currentUser.email, password: newPassword }));
+      }
+    } catch (err) {
+      const newError = err as FirebaseError;
+      if (newError.code === AUTH_ERROR_CODES.INVALID_EMAIL_USED) {
+        rejectWithValue("Invalid email passed");
+      }
+
+      if (newError.code === AUTH_ERROR_CODES.WEEK_PASSWORD) {
+        rejectWithValue(
+          "Passed password is too week, please provide a new one"
+        );
+      }
+
+      if (newError.code === AUTH_ERROR_CODES.INVALID_PASSWORD) {
+        rejectWithValue("Invalid password provided, please try again");
+      }
+
+      if (newError.code === AUTH_ERROR_CODES.EMAIL_ALLREADY_EXISTS) {
+        rejectWithValue("Sorry this email is allready exists");
+      }
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -142,6 +213,12 @@ export const userSlice = createSlice({
       state.isLoggedIn = false;
     });
 
+    builder.addCase(updateUser.rejected, (state, action) => {
+      if (action?.payload) {
+        state.error = action.payload;
+      }
+    });
+
     builder.addMatcher(isPending(), (state) => {
       state.error = "";
       state.isLoading = true;
@@ -157,6 +234,6 @@ export const userSlice = createSlice({
   },
 });
 
-export { signUp, signIn, signOut };
+export { signUp, signIn, signOut, updateUser };
 export const { clearErrors } = userSlice.actions;
 export default userSlice.reducer;
