@@ -16,6 +16,8 @@ import {
   searchBooksSlice,
   clearSearch,
   setPage,
+  addToFavorites,
+  removeFromFavorites,
 } from "./features";
 import {
   useGetNewBooks,
@@ -33,6 +35,7 @@ import {
   useGetSearchBooksError,
   useGetSearchBooksPage,
   useGetSearchBooksTotal,
+  useGetFavorites,
 } from "./selectors";
 
 export {
@@ -68,4 +71,7 @@ export {
   useGetSearchBooksTotal,
   clearSearch,
   setPage,
+  useGetFavorites,
+  addToFavorites,
+  removeFromFavorites,
 };

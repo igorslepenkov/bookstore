@@ -30,6 +30,8 @@ import { ConfirmResetPasswordForm } from "./ConfirmResetPasswordForm";
 import { FormServerMessage } from "./FormServerMessage";
 import { SearchDropdown } from "./SearchDropdown";
 import { BookListPagination } from "./BookListPagination";
+import { FavoritesCard } from "./FavoritesCard";
+import { FavoritesButton } from "./FavoritesButton";
 
 export {
   BookCostAndRating,
@@ -64,4 +66,6 @@ export {
   FormServerMessage,
   SearchDropdown,
   BookListPagination,
+  FavoritesCard,
+  FavoritesButton,
 };

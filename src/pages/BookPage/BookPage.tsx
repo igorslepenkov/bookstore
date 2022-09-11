@@ -13,16 +13,19 @@ import {
   PreviewLink,
   StyledArrowLeft,
 } from "./style";
+import { FavoritesButton } from "../../components";
 import { BookCostAndRating } from "../../components";
 import { authorsCutter } from "../../utils";
 import { BookDetailsList } from "../../components";
 import { BookDetailsTabs } from "../../components";
 import { SubscribeToNewsletter } from "../../components";
 import { SimilarBooksList } from "../../components";
-import { useSimilarBooks } from "../../hooks";
+import { useFavorites, useSimilarBooks } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import {
+  addToFavorites,
   fetchBook,
+  removeFromFavorites,
   useGetBook,
   useGetBookError,
   useGetBookIsLoading,
@@ -36,6 +39,8 @@ export const BookPage = () => {
   const loading = useGetBookIsLoading();
   const error = useGetBookError();
 
+  const isInFavorites = useFavorites(book.isbn13);
+
   const navigate = useNavigate();
 
   const handleBackArrowClick: MouseEventHandler<SVGSVGElement> = () => {
@@ -46,6 +51,13 @@ export const BookPage = () => {
   ) => {
     if (event.key === "Enter") {
       navigate(-1);
+    }
+  };
+  const handleFavoritesClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isInFavorites) {
+      dispatch(removeFromFavorites(book.isbn13));
+    } else {
+      dispatch(addToFavorites(book));
     }
   };
 
@@ -87,6 +99,10 @@ export const BookPage = () => {
         <Title titleGrade={1} text={book.title} />
         <BookDetailsWrapper>
           <BookDetailsImageWrapper>
+            <FavoritesButton
+              handleFavoritesClick={handleFavoritesClick}
+              isInFavorites={isInFavorites}
+            />
             <BookImage src={book.image} />
           </BookDetailsImageWrapper>
 

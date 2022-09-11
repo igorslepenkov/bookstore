@@ -22,6 +22,7 @@ export const BookDetailsWrapper = styled.section`
 `;
 
 export const BookDetailsImageWrapper = styled.div`
+  position: relative;
   flex-grow: 1;
   display: flex;
   justify-content: center;

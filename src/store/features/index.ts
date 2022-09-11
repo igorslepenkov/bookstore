@@ -1,4 +1,5 @@
 import newBooksSlice, { fetchNewBooks } from "./newBooksSlice";
+
 import userSlice, {
   signUp,
   signIn,
@@ -6,7 +7,9 @@ import userSlice, {
   clearErrors,
   updateUser,
 } from "./userSlice";
+
 import bookSlice, { fetchBook } from "./bookSlice";
+
 import searchBooksSlice, {
   fetchBooksBySearch,
   incrementPage,
@@ -14,6 +17,12 @@ import searchBooksSlice, {
   clearSearch,
   setPage,
 } from "./searchBooksSlice";
+
+import favoritesSlice, {
+  addToFavorites,
+  removeFromFavorites,
+} from "./favoritesSlice";
+
 export {
   newBooksSlice,
   userSlice,
@@ -31,4 +40,7 @@ export {
   searchBooksSlice,
   clearSearch,
   setPage,
+  addToFavorites,
+  removeFromFavorites,
+  favoritesSlice,
 };

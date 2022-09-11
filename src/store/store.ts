@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
   bookSlice,
+  favoritesSlice,
   newBooksSlice,
   searchBooksSlice,
   userSlice,
@@ -12,6 +13,7 @@ export const store = configureStore({
     user: userSlice,
     book: bookSlice,
     searchBooks: searchBooksSlice,
+    favorites: favoritesSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

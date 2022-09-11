@@ -22,6 +22,8 @@ import {
   useGetSearchBooksTotal,
 } from "./searchBooksSelectors";
 
+import { useGetFavorites } from "./favoritesSelectors";
+
 export {
   useGetNewBooks,
   useGetError,
@@ -38,4 +40,5 @@ export {
   useGetSearchBooksError,
   useGetSearchBooksPage,
   useGetSearchBooksTotal,
+  useGetFavorites,
 };

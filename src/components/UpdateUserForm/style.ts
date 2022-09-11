@@ -92,7 +92,7 @@ export const PasswordInputGroup = styled.div`
     grid-template-areas:
       "password-title password-title"
       "password password"
-      "password-input password-input"
+      "password-input ..."
       "new-password confirm"
       "new-password-input confirm-input"
       "new-password-error confirm-error";
