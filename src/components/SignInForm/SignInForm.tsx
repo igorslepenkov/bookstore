@@ -9,12 +9,13 @@ import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
 import {
+  useGetUser,
   useGetUserError,
   useGetUserIsLoading,
 } from "../../store/selectors/userSelectors";
 import { useAppDispatch } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
-import { AxiosError } from "axios";
+import { useEffect } from "react";
 
 interface InputFields {
   email: string;
@@ -23,6 +24,7 @@ interface InputFields {
 
 export const SignInForm = () => {
   const navigate = useNavigate();
+  const user = useGetUser();
   const isRequestPending = useGetUserIsLoading();
   const requestMessage = useGetUserError();
   const dispatch = useAppDispatch();
@@ -33,13 +35,15 @@ export const SignInForm = () => {
     formState: { errors },
   } = useForm<InputFields>();
   const onSubmit = async ({ email, password }: InputFields) => {
-    const response = await dispatch(signIn({ email, password }));
-    if (response instanceof AxiosError) {
-      return;
-    }
-    navigate(resolvePath(RoutesUrl.ACCOUNT));
-    reset();
+    await dispatch(signIn({ email, password }));
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(resolvePath(RoutesUrl.ACCOUNT));
+      reset();
+    }
+  }, [user, reset, navigate]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

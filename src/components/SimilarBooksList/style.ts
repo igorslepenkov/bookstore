@@ -11,7 +11,7 @@ export const StyledSimilarBooksListWrapper = styled.div`
 export const StyledSimilarBooksList = styled.ul`
   display: flex;
   ${indentsConstructor.create(Indent.MT, 2)}
-  column-gap: 32px;
+  gap: 32px;
   overflow-x: hidden;
 `;
 

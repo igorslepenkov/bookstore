@@ -1,5 +1,11 @@
 import newBooksSlice, { fetchNewBooks } from "./newBooksSlice";
-import userSlice, { signUp, signIn, signOut, clearErrors } from "./userSlice";
+import userSlice, {
+  signUp,
+  signIn,
+  signOut,
+  clearErrors,
+  updateUser,
+} from "./userSlice";
 import bookSlice, { fetchBook } from "./bookSlice";
 import searchBooksSlice, {
   fetchBooksBySearch,
@@ -15,6 +21,7 @@ export {
   signUp,
   signIn,
   signOut,
+  updateUser,
   clearErrors,
   bookSlice,
   fetchBook,
