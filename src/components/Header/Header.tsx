@@ -23,7 +23,7 @@ import {
   StyledLink,
   Title,
 } from "./style";
-import { fetchBooksBySearch } from "../../store";
+import { fetchBooksBySearch, persistor } from "../../store";
 import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
@@ -36,9 +36,10 @@ export const Header = () => {
   const debouncedValue = useDebounce(value, 300);
   const navigate = useNavigate();
 
-  const handleSignOut: MouseEventHandler<HTMLButtonElement> = (event) => {
+  const handleSignOut: MouseEventHandler<HTMLButtonElement> = async (event) => {
     if (event) {
-      dispatch(signOut());
+      await dispatch(signOut());
+      await persistor.purge();
     }
   };
 

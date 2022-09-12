@@ -1,4 +1,4 @@
-import { store } from "./store";
+import { store, persistor } from "./store";
 import {
   newBooksSlice,
   userSlice,
@@ -74,4 +74,5 @@ export {
   useGetFavorites,
   addToFavorites,
   removeFromFavorites,
+  persistor,
 };
