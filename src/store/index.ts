@@ -18,6 +18,8 @@ import {
   setPage,
   addToFavorites,
   removeFromFavorites,
+  addToCart,
+  removeFromCart,
 } from "./features";
 import {
   getNewBooks,
@@ -36,6 +38,7 @@ import {
   getSearchBooksPage,
   getSearchBooksTotal,
   getFavorites,
+  getCart,
 } from "./selectors";
 
 export {
@@ -75,4 +78,7 @@ export {
   addToFavorites,
   removeFromFavorites,
   persistor,
+  addToCart,
+  removeFromCart,
+  getCart,
 };

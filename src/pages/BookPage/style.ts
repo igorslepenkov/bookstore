@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ArrowLeft } from "../../assets";
 import { Color, fonts, Indent, indentsConstructor, Media } from "../../ui";
+
+type AddToCartProps = {
+  isInCart: boolean;
+};
 
 export const StyledArrowLeft = styled(ArrowLeft)`
   ${indentsConstructor.create(Indent.MB, 4)}
@@ -41,13 +45,24 @@ export const BookDetails = styled.div`
   border-top: 1px solid ${Color.GreyLight};
 `;
 
-export const AddToCartButton = styled.button`
+export const AddToCartButton = styled.button<AddToCartProps>`
   width: 100%;
   ${indentsConstructor.create(Indent.MB, 4)}
   ${fonts.h3}
   color: ${Color.White};
   border: none;
-  background-color: ${Color.Black};
+  ${({ isInCart }: AddToCartProps) => {
+    if (isInCart) {
+      return css`
+        background-color: ${Color.Danger};
+      `;
+    }
+    return css`
+      background-color: ${Color.Black};
+    `;
+  }}
+
+  cursor: pointer;
 `;
 
 export const PreviewLink = styled.a`

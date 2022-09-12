@@ -9,6 +9,10 @@ import { ReactComponent as ArrowSmallLeft } from "./arrow-small-left.svg";
 import { ReactComponent as ArrowSmallRight } from "./arrow-small-right.svg";
 import { ReactComponent as BlackHeart } from "./black-heart.svg";
 import { ReactComponent as RedHeart } from "./heart-red.svg";
+import { ReactComponent as CrossBlack } from "./cross-black.svg";
+import { ReactComponent as CrossWhite } from "./cross-white.svg";
+import { ReactComponent as FavoritesActive } from "./favorites-active.svg";
+import { ReactComponent as CartActive } from "./cart-active.svg";
 
 export {
   CartLogo,
@@ -22,4 +26,8 @@ export {
   ArrowSmallRight,
   BlackHeart,
   RedHeart,
+  CrossBlack,
+  CrossWhite,
+  FavoritesActive,
+  CartActive,
 };

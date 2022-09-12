@@ -15,6 +15,7 @@ import {
 } from "./searchBooksSelectors";
 
 import { getFavorites } from "./favoritesSelectors";
+import { getCart } from "./cartSelectors";
 
 export {
   getNewBooks,
@@ -33,4 +34,5 @@ export {
   getSearchBooksPage,
   getSearchBooksTotal,
   getFavorites,
+  getCart,
 };

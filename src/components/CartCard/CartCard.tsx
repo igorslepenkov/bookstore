@@ -1,19 +1,20 @@
 import { MouseEventHandler } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
-import { RedHeart } from "../../assets";
-import { useFavorites } from "../../hooks";
+import { CrossBlack, CrossWhite } from "../../assets";
+import { useWindowSize } from "../../hooks";
+import { useCart } from "../../hooks/useCart";
 import { RoutesUrl } from "../../router";
-import { addToFavorites, removeFromFavorites } from "../../store";
+import { addToCart, removeFromCart } from "../../store";
 import { useAppDispatch } from "../../store/hooks";
 import { IBookApiDetails } from "../../types";
+import { MediaBreakpoints } from "../../ui";
 import { authorsCutter, createDinamicPath } from "../../utils";
-import { BookCostAndRating } from "../BookCostAndRating";
 import {
   BookAuthorsAndPublisher,
   BookImage,
   BookImageWrapper,
   CardTextContent,
-  FavoritesButton,
+  CartButton,
   StyledBookListItem,
   StyledTitle,
 } from "./style";
@@ -22,15 +23,17 @@ interface IProps {
   book: IBookApiDetails;
 }
 
-export const FavoritesCard = ({ book }: IProps) => {
+export const CartCard = ({ book }: IProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isInFavorites = useFavorites(book.isbn13);
-  const handleFavoritesClick: MouseEventHandler<HTMLButtonElement> = () => {
-    if (isInFavorites) {
-      dispatch(removeFromFavorites(book.isbn13));
+  const isInCart = useCart(book.isbn13);
+  const windowSize = useWindowSize();
+
+  const handleCartClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isInCart) {
+      dispatch(removeFromCart(book.isbn13));
     } else {
-      dispatch(addToFavorites(book));
+      dispatch(addToCart(book));
     }
   };
   const handleFavoritesCardClick: MouseEventHandler = (event) => {
@@ -46,9 +49,13 @@ export const FavoritesCard = ({ book }: IProps) => {
   return (
     <StyledBookListItem onClick={handleFavoritesCardClick}>
       <BookImageWrapper>
-        <FavoritesButton type="button" onClick={handleFavoritesClick}>
-          <RedHeart />
-        </FavoritesButton>
+        <CartButton type="button" onClick={handleCartClick}>
+          {windowSize.width > MediaBreakpoints.SM ? (
+            <CrossBlack />
+          ) : (
+            <CrossWhite />
+          )}
+        </CartButton>
         <BookImage src={book.image} />
       </BookImageWrapper>
 
@@ -58,12 +65,6 @@ export const FavoritesCard = ({ book }: IProps) => {
         <BookAuthorsAndPublisher>
           {`by ${authorsCutter(book.authors)}, ${book.publisher} ${book.year}`}
         </BookAuthorsAndPublisher>
-
-        <BookCostAndRating
-          appendPlace="list"
-          price={book.price}
-          rating={book.rating}
-        />
       </CardTextContent>
     </StyledBookListItem>
   );

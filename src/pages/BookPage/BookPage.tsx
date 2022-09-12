@@ -29,8 +29,11 @@ import {
   getBook,
   getBookError,
   getBookIsLoading,
+  addToCart,
+  removeFromCart,
 } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useCart } from "../../hooks/useCart";
 
 export const BookPage = () => {
   const { isbn } = useParams();
@@ -40,6 +43,7 @@ export const BookPage = () => {
   const error = useAppSelector(getBookError);
 
   const isInFavorites = useFavorites(book.isbn13);
+  const isInCart = useCart(book.isbn13);
 
   const navigate = useNavigate();
 
@@ -58,6 +62,13 @@ export const BookPage = () => {
       dispatch(removeFromFavorites(book.isbn13));
     } else {
       dispatch(addToFavorites(book));
+    }
+  };
+  const handleAddToCartClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isInCart) {
+      dispatch(removeFromCart(book.isbn13));
+    } else {
+      dispatch(addToCart(book));
     }
   };
 
@@ -115,7 +126,9 @@ export const BookPage = () => {
 
             <BookDetailsList bookDetailsArray={bookDetailsArray} />
 
-            <AddToCartButton>Add to cart</AddToCartButton>
+            <AddToCartButton onClick={handleAddToCartClick} isInCart={isInCart}>
+              {isInCart ? "Remove from cart" : "Add to cart"}
+            </AddToCartButton>
 
             {book.pdf && book.pdf["Free eBook"] && (
               <PreviewLink href={book.pdf["Free eBook"]}>
