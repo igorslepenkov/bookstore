@@ -2,7 +2,6 @@ import { KeyboardEventHandler, MouseEventHandler, useRef } from "react";
 import { useScroll, useWindowSize } from "../../hooks";
 import { IBook } from "../../types";
 import { SimilarBooksListItem } from "../SimilarBooksListItem";
-import { Title } from "../Title";
 import {
   ScrollButtonsGroup,
   ArrowSmallLeftButton,
@@ -46,8 +45,6 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
 
   return (
     <StyledSimilarBooksListWrapper>
-      <Title text="Similar books" titleGrade={2} />
-
       <ScrollButtonsGroup>
         <ArrowSmallRightButton
           tabIndex={0}

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGetFavorites } from "../store";
+import { getFavorites } from "../store";
+import { useAppSelector } from "../store/hooks";
 
 export const useFavorites = (bookIsbn: string) => {
   const [isInFavorites, setIsInFavorites] = useState<boolean>(false);
-  const favorites = useGetFavorites();
+  const favorites = useAppSelector(getFavorites);
 
   useEffect(() => {
     if (favorites && favorites.find((book) => book.isbn13 === bookIsbn)) {

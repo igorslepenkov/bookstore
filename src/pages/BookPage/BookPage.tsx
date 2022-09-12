@@ -26,18 +26,18 @@ import {
   addToFavorites,
   fetchBook,
   removeFromFavorites,
-  useGetBook,
-  useGetBookError,
-  useGetBookIsLoading,
+  getBook,
+  getBookError,
+  getBookIsLoading,
 } from "../../store";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const BookPage = () => {
   const { isbn } = useParams();
   const dispatch = useAppDispatch();
-  const book = useGetBook();
-  const loading = useGetBookIsLoading();
-  const error = useGetBookError();
+  const book = useAppSelector(getBook);
+  const loading = useAppSelector(getBookIsLoading);
+  const error = useAppSelector(getBookError);
 
   const isInFavorites = useFavorites(book.isbn13);
 
@@ -132,6 +132,7 @@ export const BookPage = () => {
         </BookDetailsWrapper>
         <BookDetailsTabs desc={book.desc} authors={book.authors} />
         <SubscribeToNewsletter />
+        <Title text="Similar books" titleGrade={2} />
         <SimilarBooksList similarBooks={similarBooks} />
       </Page>
     );

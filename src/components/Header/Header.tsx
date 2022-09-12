@@ -6,8 +6,8 @@ import {
 } from "react";
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { useGetSearchBooks, useGetUserIsLoggedIn } from "../../store/selectors";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getSearchBooks, getUserIsLoggedIn } from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
@@ -29,8 +29,8 @@ import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 export const Header = () => {
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const isUserSignedIn = useGetUserIsLoggedIn();
-  const searchBooks = useGetSearchBooks();
+  const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
+  const searchBooks = useAppSelector(getSearchBooks);
   const dispatch = useAppDispatch();
   const [{ value, onChange }, clearInput] = useInput("");
   const debouncedValue = useDebounce(value, 300);

@@ -1,4 +1,6 @@
-import { useAppSelector } from "../hooks";
+import { Selector } from "@reduxjs/toolkit";
+import { IBookApiDetails } from "../../types";
+import { RootState } from "../store";
 
-export const useGetFavorites = () =>
-  useAppSelector((state) => state.favorites.favorites);
+export const getFavorites: Selector<RootState, IBookApiDetails[]> = (state) =>
+  state.favorites.favorites;

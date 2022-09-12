@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { emailRegex } from "../../regex";
-import { updateUser, useGetUserError, useGetUserIsLoading } from "../../store";
-import { useAppDispatch } from "../../store/hooks";
+import { updateUser, getUserError, getUserIsLoading } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Color } from "../../ui";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
@@ -27,8 +27,8 @@ type InputFields = {
 };
 
 export const UpdateUserForm = () => {
-  const isLoading = useGetUserIsLoading();
-  const requestMessage = useGetUserError();
+  const isLoading = useAppSelector(getUserIsLoading);
+  const requestMessage = useAppSelector(getUserError);
   const dispatch = useAppDispatch();
   const {
     register,

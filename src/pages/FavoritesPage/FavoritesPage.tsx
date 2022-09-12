@@ -1,11 +1,12 @@
 import { FavoritesCard, Page, SimilarBooksList } from "../../components";
 import { Title } from "../../components";
 import { usePopularBooks } from "../../hooks";
-import { useGetFavorites } from "../../store";
+import { useAppSelector } from "../../store/hooks";
+import { getFavorites } from "../../store/selectors";
 import { FavoritesList, NothingToShow } from "./style";
 
 export const FavoritesPage = () => {
-  const favorites = useGetFavorites();
+  const favorites = useAppSelector(getFavorites);
   const popularBooks = usePopularBooks();
   return (
     <Page>
@@ -19,7 +20,14 @@ export const FavoritesPage = () => {
       ) : (
         <NothingToShow>Nothing to show in favorites</NothingToShow>
       )}
-      {popularBooks && <SimilarBooksList similarBooks={popularBooks} />}
+      <>
+        {popularBooks && (
+          <>
+            <Title text="Popular books" titleGrade={2} />
+            <SimilarBooksList similarBooks={popularBooks} />
+          </>
+        )}
+      </>
     </Page>
   );
 };

@@ -9,11 +9,11 @@ import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
 import {
-  useGetUser,
-  useGetUserError,
-  useGetUserIsLoading,
+  getUser,
+  getUserError,
+  getUserIsLoading,
 } from "../../store/selectors/userSelectors";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
 import { useEffect } from "react";
 
@@ -24,9 +24,9 @@ interface InputFields {
 
 export const SignInForm = () => {
   const navigate = useNavigate();
-  const user = useGetUser();
-  const isRequestPending = useGetUserIsLoading();
-  const requestMessage = useGetUserError();
+  const user = useAppSelector(getUser);
+  const isRequestPending = useAppSelector(getUserIsLoading);
+  const requestMessage = useAppSelector(getUserError);
   const dispatch = useAppDispatch();
   const {
     register,
