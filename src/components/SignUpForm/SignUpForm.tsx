@@ -8,10 +8,10 @@ import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import {
-  useGetUserError,
-  useGetUserIsLoading,
+  getUserError,
+  getUserIsLoading,
 } from "../../store/selectors/userSelectors";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signUp } from "../../store/features/userSlice";
 
 interface InputFields {
@@ -21,8 +21,8 @@ interface InputFields {
 }
 
 export const SignUpForm = () => {
-  const isRequestPending = useGetUserIsLoading();
-  const requestMessage = useGetUserError();
+  const isRequestPending = useAppSelector(getUserIsLoading);
+  const requestMessage = useAppSelector(getUserError);
   const [isModalOpen, toggleIsModalOpen] = useToggle();
   const dispatch = useAppDispatch();
   const {

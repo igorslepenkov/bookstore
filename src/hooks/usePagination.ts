@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useGetSearchBooksPage, useGetSearchBooksTotal } from "../store";
+import { getSearchBooksPage, getSearchBooksTotal } from "../store";
+import { useAppSelector } from "../store/hooks";
 
 export const usePagination = () => {
   const [paginationArray, setPaginationArray] = useState<
     (string | number)[] | null
   >(null);
-  const currentPage = useGetSearchBooksPage();
-  const totalBooks = useGetSearchBooksTotal();
+  const currentPage = useAppSelector(getSearchBooksPage);
+  const totalBooks = useAppSelector(getSearchBooksTotal);
   const booksPerPage = 10;
 
   useEffect(() => {

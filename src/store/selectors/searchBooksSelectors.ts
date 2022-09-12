@@ -1,12 +1,16 @@
-import { useAppSelector } from "../hooks";
+import { Selector } from "@reduxjs/toolkit";
+import { IBook } from "../../types";
+import { RootState } from "../store";
 
-export const useGetSearchBooks = () =>
-  useAppSelector((state) => state.searchBooks.searchBooks);
-export const useGetSearchBooksIsLoading = () =>
-  useAppSelector((state) => state.searchBooks.isLoading);
-export const useGetSearchBooksError = () =>
-  useAppSelector((state) => state.searchBooks.error);
-export const useGetSearchBooksPage = () =>
-  useAppSelector((state) => state.searchBooks.page);
-export const useGetSearchBooksTotal = () =>
-  useAppSelector((state) => state.searchBooks.total);
+export const getSearchBooks: Selector<RootState, IBook[] | null> = (state) =>
+  state.searchBooks.searchBooks;
+export const getSearchBooksIsLoading: Selector<RootState, boolean> = (state) =>
+  state.searchBooks.isLoading;
+export const getSearchBooksError: Selector<RootState, string | null> = (
+  state
+) => state.searchBooks.error;
+export const getSearchBooksPage: Selector<RootState, number | null> = (state) =>
+  state.searchBooks.page;
+export const getSearchBooksTotal: Selector<RootState, number | null> = (
+  state
+) => state.searchBooks.total;

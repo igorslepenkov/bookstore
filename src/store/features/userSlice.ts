@@ -115,7 +115,7 @@ const signIn = createAsyncThunk<IUser, UserInfo, { rejectValue: string }>(
 
 const signOut = createAsyncThunk("user/signOut", async (_) => {
   const auth = getAuth();
-  auth.signOut();
+  await auth.signOut();
 });
 
 const updateUser = createAsyncThunk<
@@ -211,6 +211,7 @@ export const userSlice = createSlice({
 
     builder.addCase(signOut.fulfilled, (state) => {
       state.isLoggedIn = false;
+      state.user = null;
     });
 
     builder.addCase(updateUser.rejected, (state, action) => {

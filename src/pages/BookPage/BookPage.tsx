@@ -13,28 +13,33 @@ import {
   PreviewLink,
   StyledArrowLeft,
 } from "./style";
+import { FavoritesButton } from "../../components";
 import { BookCostAndRating } from "../../components";
 import { authorsCutter } from "../../utils";
 import { BookDetailsList } from "../../components";
 import { BookDetailsTabs } from "../../components";
 import { SubscribeToNewsletter } from "../../components";
 import { SimilarBooksList } from "../../components";
-import { useSimilarBooks } from "../../hooks";
+import { useFavorites, useSimilarBooks } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import {
+  addToFavorites,
   fetchBook,
-  useGetBook,
-  useGetBookError,
-  useGetBookIsLoading,
+  removeFromFavorites,
+  getBook,
+  getBookError,
+  getBookIsLoading,
 } from "../../store";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const BookPage = () => {
   const { isbn } = useParams();
   const dispatch = useAppDispatch();
-  const book = useGetBook();
-  const loading = useGetBookIsLoading();
-  const error = useGetBookError();
+  const book = useAppSelector(getBook);
+  const loading = useAppSelector(getBookIsLoading);
+  const error = useAppSelector(getBookError);
+
+  const isInFavorites = useFavorites(book.isbn13);
 
   const navigate = useNavigate();
 
@@ -46,6 +51,13 @@ export const BookPage = () => {
   ) => {
     if (event.key === "Enter") {
       navigate(-1);
+    }
+  };
+  const handleFavoritesClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isInFavorites) {
+      dispatch(removeFromFavorites(book.isbn13));
+    } else {
+      dispatch(addToFavorites(book));
     }
   };
 
@@ -87,6 +99,10 @@ export const BookPage = () => {
         <Title titleGrade={1} text={book.title} />
         <BookDetailsWrapper>
           <BookDetailsImageWrapper>
+            <FavoritesButton
+              handleFavoritesClick={handleFavoritesClick}
+              isInFavorites={isInFavorites}
+            />
             <BookImage src={book.image} />
           </BookDetailsImageWrapper>
 
@@ -116,6 +132,7 @@ export const BookPage = () => {
         </BookDetailsWrapper>
         <BookDetailsTabs desc={book.desc} authors={book.authors} />
         <SubscribeToNewsletter />
+        <Title text="Similar books" titleGrade={2} />
         <SimilarBooksList similarBooks={similarBooks} />
       </Page>
     );

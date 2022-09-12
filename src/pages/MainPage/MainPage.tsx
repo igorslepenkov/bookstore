@@ -7,13 +7,13 @@ import { SubscribeToNewsletter } from "../../components/SubscribeToNewsletter";
 import { Navigate } from "react-router-dom";
 import { RoutesUrl } from "../../router";
 import { fetchNewBooks } from "../../store/features/newBooksSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { useGetError, useGetIsLoading, useGetNewBooks } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getError, getIsLoading, getNewBooks } from "../../store";
 
 export const MainPage = () => {
-  const loading = useGetIsLoading();
-  const error = useGetError();
-  const newBooks = useGetNewBooks();
+  const loading = useAppSelector(getIsLoading);
+  const error = useAppSelector(getError);
+  const newBooks = useAppSelector(getNewBooks);
 
   const dispatch = useAppDispatch();
 

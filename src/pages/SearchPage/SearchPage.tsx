@@ -4,15 +4,15 @@ import { BookListPagination, BooksList, Page } from "../../components";
 import { Title } from "../../components";
 import {
   fetchBooksBySearch,
-  useGetSearchBooks,
-  useGetSearchBooksPage,
+  getSearchBooks,
+  getSearchBooksPage,
 } from "../../store";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const SearchPage = () => {
   const params = useParams();
-  const books = useGetSearchBooks();
-  const currentPage = useGetSearchBooksPage();
+  const books = useAppSelector(getSearchBooks);
+  const currentPage = useAppSelector(getSearchBooksPage);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (params.pattern && currentPage) {

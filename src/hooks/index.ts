@@ -4,6 +4,8 @@ import { useWindowSize } from "./useWindowSize";
 import { useToggle } from "./useToggle";
 import { useInput } from "./useInput";
 import { useDebounce } from "./useDebounce";
+import { useFavorites } from "./useFavorites";
+import { usePopularBooks } from "./usePopularBooks";
 export {
   useSimilarBooks,
   useScroll,
@@ -11,4 +13,6 @@ export {
   useToggle,
   useInput,
   useDebounce,
+  useFavorites,
+  usePopularBooks,
 };

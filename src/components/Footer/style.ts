@@ -7,6 +7,7 @@ export const StyledFooter = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 32px;
   border-top: 1px solid ${Color.GreyLight};
 
   ${Media.MD} {

@@ -7,6 +7,8 @@ import { ReactComponent as UserLogo } from "./person.svg";
 import { ReactComponent as ArrowLeft } from "./arrow-left.svg";
 import { ReactComponent as ArrowSmallLeft } from "./arrow-small-left.svg";
 import { ReactComponent as ArrowSmallRight } from "./arrow-small-right.svg";
+import { ReactComponent as BlackHeart } from "./black-heart.svg";
+import { ReactComponent as RedHeart } from "./heart-red.svg";
 
 export {
   CartLogo,
@@ -18,4 +20,6 @@ export {
   ArrowLeft,
   ArrowSmallLeft,
   ArrowSmallRight,
+  BlackHeart,
+  RedHeart,
 };
