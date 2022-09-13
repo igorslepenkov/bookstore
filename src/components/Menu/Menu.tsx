@@ -47,6 +47,18 @@ export const Menu = ({
     navigate(resolvePath(RoutesUrl.REGISTER));
     setIsOpen();
   };
+  const handleSearchKeyDown: React.KeyboardEventHandler<HTMLInputElement | SVGSVGElement> = (
+    event
+  ) => {
+    if (event.key === "Enter") {
+      searchOnKeyDown(event);
+      setIsOpen();
+    }
+  };
+  const handleSearchClick: MouseEventHandler<SVGSVGElement> = (event) => {
+    searchOnClick(event);
+    setIsOpen();
+  };
 
   const transition = { x: { duration: 1 }, type: "spring", stiffness: 100 };
 
@@ -62,8 +74,16 @@ export const Menu = ({
           </MenuTop>
           <MenuContent>
             <SearchField>
-              <Search onChange={searchOnChange} onKeyDown={searchOnKeyDown} value={searchValue} />
-              <SearchLogo onClick={searchOnClick} onKeyDown={searchOnKeyDown} tabIndex={0} />
+              <Search
+                onChange={searchOnChange}
+                onKeyDown={handleSearchKeyDown}
+                value={searchValue}
+              />
+              <SearchLogo
+                onClick={handleSearchClick}
+                onKeyDown={handleSearchKeyDown}
+                tabIndex={0}
+              />
             </SearchField>
             {isUserLoggedIn && (
               <MenuLinksList>
