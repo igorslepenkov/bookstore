@@ -37,13 +37,13 @@ export const SearchDropdown = ({ books, searchValue }: IProps) => {
       })}
 
       {books.length > 0 ? (
-        <StyledLink
-          to={resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, searchValue))}
-        >
+        <StyledLink to={resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, searchValue))}>
           all results
         </StyledLink>
       ) : (
-        <NotFoundNotification>{`No results found for the request: ${searchValue}`}</NotFoundNotification>
+        <NotFoundNotification>
+          {`No results found for the request: ${searchValue}`}
+        </NotFoundNotification>
       )}
     </StyledSearchDropdown>
   );

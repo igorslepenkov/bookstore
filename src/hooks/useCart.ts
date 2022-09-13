@@ -7,7 +7,7 @@ export const useCart = (bookIsbn: string) => {
   const cart = useAppSelector(getCart);
 
   useEffect(() => {
-    if (cart && cart.find((book) => book.isbn13 === bookIsbn)) {
+    if (cart && cart.find((cartObj) => cartObj.book.isbn13 === bookIsbn)) {
       setIsInCart(true);
     } else {
       setIsInCart(false);

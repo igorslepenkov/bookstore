@@ -50,9 +50,7 @@ export const BookPage = () => {
   const handleBackArrowClick: MouseEventHandler<SVGSVGElement> = () => {
     navigate(-1);
   };
-  const handleBackArrowKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const handleBackArrowKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       navigate(-1);
     }
@@ -71,17 +69,15 @@ export const BookPage = () => {
       dispatch(addToCart(book));
     }
   };
-
-  const bookDetailsArray: BookDetailType[] = book
-    ? [
-        ["Authors", authorsCutter(book.authors)],
-        ["Publisher", book.publisher],
-        ["Published", book.year],
-        ["Pages", book.pages],
-        ["Language", book.language],
-        ["ISBN", book.isbn13],
-      ]
-    : [];
+  const bookDetailsList: BookDetailType[] = [
+    ["Authors", authorsCutter(book.authors)],
+    ["Publisher", book.publisher],
+    ["Published", book.year],
+    ["Pages", book.pages],
+    ["Language", book.language],
+    ["ISBN", book.isbn13],
+  ];
+  const bookDetailsArray: BookDetailType[] = book ? bookDetailsList : [];
 
   const similarBooks = useSimilarBooks(book.title, book.isbn13);
 
@@ -118,11 +114,7 @@ export const BookPage = () => {
           </BookDetailsImageWrapper>
 
           <BookDetails>
-            <BookCostAndRating
-              appendPlace="page"
-              price={book.price}
-              rating={book.rating}
-            />
+            <BookCostAndRating appendPlace="page" price={book.price} rating={book.rating} />
 
             <BookDetailsList bookDetailsArray={bookDetailsArray} />
 
@@ -131,15 +123,11 @@ export const BookPage = () => {
             </AddToCartButton>
 
             {book.pdf && book.pdf["Free eBook"] && (
-              <PreviewLink href={book.pdf["Free eBook"]}>
-                Free eBook
-              </PreviewLink>
+              <PreviewLink href={book.pdf["Free eBook"]}>Free eBook</PreviewLink>
             )}
 
             {book.pdf && !book.pdf["Free eBook"] && (
-              <PreviewLink href={Object.values(book.pdf)[0]}>
-                Preview book
-              </PreviewLink>
+              <PreviewLink href={Object.values(book.pdf)[0]}>Preview book</PreviewLink>
             )}
           </BookDetails>
         </BookDetailsWrapper>

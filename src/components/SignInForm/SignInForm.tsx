@@ -8,11 +8,7 @@ import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
-import {
-  getUser,
-  getUserError,
-  getUserIsLoading,
-} from "../../store/selectors/userSelectors";
+import { getUser, getUserError, getUserIsLoading } from "../../store/selectors/userSelectors";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
 import { useEffect } from "react";
@@ -47,26 +43,22 @@ export const SignInForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {requestMessage && (
-        <FormServerMessage>{requestMessage}</FormServerMessage>
-      )}
+      {requestMessage && <FormServerMessage>{requestMessage}</FormServerMessage>}
       <FormInputLabel htmlFor="email">Email</FormInputLabel>
       <FormInput
         {...register("email", {
           required: "Please enter your email",
           pattern: {
             value: emailRegex,
-            message:
-              "Looks like email you entered is not valid, please check it, or consider using another one",
+            message: `Looks like email you entered is not valid, 
+              please check it, or consider using another one`,
           },
         })}
         id="email"
         type="email"
         placeholder="Your email"
       />
-      {errors.email && (
-        <ErrorNotification>{errors.email.message}</ErrorNotification>
-      )}
+      {errors.email && <ErrorNotification>{errors.email.message}</ErrorNotification>}
 
       <FormInputLabel htmlFor="password">Password</FormInputLabel>
       <FormInput
@@ -81,9 +73,7 @@ export const SignInForm = () => {
         type="password"
         placeholder="Your password"
       />
-      {errors.password && (
-        <ErrorNotification>{errors.password.message}</ErrorNotification>
-      )}
+      {errors.password && <ErrorNotification>{errors.password.message}</ErrorNotification>}
 
       <ResetLink to={resolvePath(RoutesUrl.RESET)}>Forgot password?</ResetLink>
 

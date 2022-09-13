@@ -9,6 +9,7 @@ export const StyledBookListItem = styled.li`
   justify-content: center;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 
   ${Media.SM} {
     flex-direction: row;
@@ -51,7 +52,6 @@ export const CardTextContent = styled.div`
 `;
 
 export const StyledTitle = styled.h3`
-  flex-grow: 1;
   margin: 0;
   ${fonts.h3}
   color: ${Color.Black};
@@ -63,7 +63,8 @@ export const BookImage = styled.img`
 `;
 
 export const BookAuthorsAndPublisher = styled.p`
-  ${indentsConstructor.create(Indent.MB, 3)}
+  flex-grow: 1;
+  ${indentsConstructor.create(Indent.MB, 5)}
   ${indentsConstructor.create(Indent.MT, 8)}
   ${fonts.bodyRegular}
   color: ${Color.Grey};
@@ -86,4 +87,47 @@ export const CartButton = styled.button`
     top: 50%;
     transform: translate(0, -50%);
   }
+`;
+
+export const BookCost = styled.p`
+  position: relative;
+  ${fonts.h2}
+  color: ${Color.Black};
+
+  ${Media.LG} {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export const BookCostAndAmount = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ${Media.LG} {
+    position: static;
+  }
+`;
+
+export const BookAmount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  ${indentsConstructor.create(Indent.MB, 5)}
+`;
+
+export const BookAmountText = styled.span`
+  ${fonts.h3}
+  color: ${Color.Black};
+`;
+
+export const BookAmountButton = styled.button`
+  ${fonts.h3}
+  color: ${Color.Black};
+  border: none;
+  background-color: transparent;
 `;

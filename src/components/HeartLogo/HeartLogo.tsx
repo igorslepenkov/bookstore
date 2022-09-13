@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { StyledLogo } from "./style";
+import { StyledLogo, StyledActiveLogo } from "./style";
 
-export const HeartLogo = () => {
+interface IProps {
+  isActive: boolean;
+}
+
+export const HeartLogo = ({ isActive }: IProps) => {
   return (
     <Link to={RoutesUrl.FAVORITES}>
-      <StyledLogo />
+      {isActive ? <StyledActiveLogo /> : <StyledLogo />}
     </Link>
   );
 };

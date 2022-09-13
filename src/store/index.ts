@@ -20,6 +20,8 @@ import {
   removeFromFavorites,
   addToCart,
   removeFromCart,
+  incrementBookAmount,
+  decrementBookAmount,
 } from "./features";
 import {
   getNewBooks,
@@ -81,4 +83,6 @@ export {
   addToCart,
   removeFromCart,
   getCart,
+  incrementBookAmount,
+  decrementBookAmount,
 };

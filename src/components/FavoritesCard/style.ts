@@ -9,6 +9,7 @@ export const StyledBookListItem = styled.li`
   justify-content: center;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 
   ${Media.SM} {
     flex-direction: row;

@@ -12,8 +12,8 @@ export const CartPage = () => {
       <Title titleGrade={1} text="Your cart" />
       {cartBooks.length > 0 ? (
         <CartList>
-          {cartBooks.map((cartBook) => (
-            <CartCard book={cartBook} key={cartBook.isbn13} />
+          {cartBooks.map((cartObj) => (
+            <CartCard book={cartObj.book} key={cartObj.book.isbn13} />
           ))}
         </CartList>
       ) : (

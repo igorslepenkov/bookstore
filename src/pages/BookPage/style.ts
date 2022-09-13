@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
-import { ArrowLeft } from "../../assets";
+import { ArrowLeftIcon } from "../../assets";
 import { Color, fonts, Indent, indentsConstructor, Media } from "../../ui";
 
 type AddToCartProps = {
   isInCart: boolean;
 };
 
-export const StyledArrowLeft = styled(ArrowLeft)`
+export const StyledArrowLeft = styled(ArrowLeftIcon)`
   ${indentsConstructor.create(Indent.MB, 4)}
   color: ${Color.Black};
   cursor: pointer;

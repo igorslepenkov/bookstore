@@ -7,7 +7,12 @@ import {
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getSearchBooks, getUserIsLoggedIn } from "../../store/selectors";
+import {
+  getCart,
+  getFavorites,
+  getSearchBooks,
+  getUserIsLoggedIn,
+} from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
@@ -30,6 +35,8 @@ export const Header = () => {
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
+  const favorites = useAppSelector(getFavorites);
+  const cart = useAppSelector(getCart);
   const searchBooks = useAppSelector(getSearchBooks);
   const dispatch = useAppDispatch();
   const [{ value, onChange }, clearInput] = useInput("");
@@ -105,8 +112,8 @@ export const Header = () => {
       </SearchField>
 
       <NavLinks>
-        <HeartLogo />
-        <CartLogo />
+        <HeartLogo isActive={favorites.length > 0 && isUserSignedIn} />
+        <CartLogo isActive={cart.length > 0 && isUserSignedIn} />
         <UserLogo />
         {isUserSignedIn ? (
           <SignOutButton type="button" onClick={handleSignOut}>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { fonts, Indent, indentsConstructor, Media } from "../../ui";
 import { Color } from "../../ui";
-import { SearchLogo as Logo } from "../../assets";
+import { SearchLogoIcon as Logo } from "../../assets";
 import { Link } from "react-router-dom";
 
 export const StyledHeader = styled.header`
