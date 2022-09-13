@@ -1,6 +1,7 @@
 import { Page } from "../../components";
 import { Title } from "../../components";
 import { CartCard } from "../../components/CartCard/CartCard";
+import { CartTotal } from "../../components/CartTotal";
 import { getCart } from "../../store";
 import { useAppSelector } from "../../store/hooks";
 import { CartList, NothingToShow } from "./style";
@@ -19,6 +20,7 @@ export const CartPage = () => {
       ) : (
         <NothingToShow>No books in cart</NothingToShow>
       )}
+      <CartTotal />
     </Page>
   );
 };

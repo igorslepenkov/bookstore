@@ -9,6 +9,7 @@ export const StyledBookListItem = styled.li`
   justify-content: center;
   height: 100%;
   width: 100%;
+  border-bottom: 1px solid #e7e7e7;
   cursor: pointer;
 
   ${Media.SM} {
@@ -18,7 +19,6 @@ export const StyledBookListItem = styled.li`
     height: 170px;
     ${indentsConstructor.create(Indent.MT, 3)}
     ${indentsConstructor.create(Indent.MB, 3)}
-    border-bottom: 1px solid #e7e7e7;
   }
 
   ${Media.MD} {
@@ -106,7 +106,7 @@ export const BookCostAndAmount = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 
   ${Media.LG} {
     position: static;
@@ -126,8 +126,11 @@ export const BookAmountText = styled.span`
 `;
 
 export const BookAmountButton = styled.button`
+  width: 40px;
+  height: 40px;
   ${fonts.h3}
   color: ${Color.Black};
   border: none;
   background-color: transparent;
+  cursor: pointer;
 `;
