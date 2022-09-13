@@ -1,24 +1,14 @@
-import {
-  KeyboardEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from "react";
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  getCart,
-  getFavorites,
-  getSearchBooks,
-  getUserIsLoggedIn,
-} from "../../store/selectors";
+import { getCart, getFavorites, getSearchBooks, getUserIsLoggedIn } from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
 import { SearchDropdown } from "../SearchDropdown";
 import { UserLogo } from "../UserLogo";
-import { useDebounce, useInput } from "../../hooks";
+import { useDebounce, useInput, useWindowSize } from "../../hooks";
 import {
   NavLinks,
   SearchField,
@@ -30,8 +20,13 @@ import {
 } from "./style";
 import { fetchBooksBySearch, persistor } from "../../store";
 import { resolvePath, useLocation, useNavigate } from "react-router-dom";
+import { Burger } from "../Burger";
+import { MediaBreakpoints } from "../../ui";
+import { Menu } from "../Menu";
 
 export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  console.log(isMenuOpen);
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
@@ -42,6 +37,14 @@ export const Header = () => {
   const [{ value, onChange }, clearInput] = useInput("");
   const debouncedValue = useDebounce(value, 300);
   const navigate = useNavigate();
+
+  const windowSize = useWindowSize();
+
+  const toggleBurgerClick = () => {
+    setIsMenuOpen((state) => {
+      return !state;
+    });
+  };
 
   const handleSignOut: MouseEventHandler<HTMLButtonElement> = async (event) => {
     if (event) {
@@ -55,14 +58,10 @@ export const Header = () => {
     navigate(resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue)));
     clearInput();
   };
-  const handleSearchKeyDown: KeyboardEventHandler<
-    HTMLInputElement | SVGSVGElement
-  > = (event) => {
+  const handleSearchKeyDown: KeyboardEventHandler<HTMLInputElement | SVGSVGElement> = (event) => {
     if (debouncedValue !== value) return;
     if (event.key === "Enter") {
-      navigate(
-        resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue))
-      );
+      navigate(resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue)));
       clearInput();
     }
   };
@@ -93,21 +92,10 @@ export const Header = () => {
         <Title>Bookstore</Title>
       </StyledLink>
       <SearchField>
-        <Search
-          onChange={onChange}
-          value={value}
-          onKeyDown={handleSearchKeyDown}
-        />
-        <SearchLogo
-          onClick={handleSearchClick}
-          onKeyDown={handleSearchKeyDown}
-          tabIndex={0}
-        />
+        <Search onChange={onChange} value={value} onKeyDown={handleSearchKeyDown} />
+        <SearchLogo onClick={handleSearchClick} onKeyDown={handleSearchKeyDown} tabIndex={0} />
         {searchBooks && isDropdownOpen && (
-          <SearchDropdown
-            books={searchBooks.slice(0, 5)}
-            searchValue={debouncedValue}
-          />
+          <SearchDropdown books={searchBooks.slice(0, 5)} searchValue={debouncedValue} />
         )}
       </SearchField>
 
@@ -120,7 +108,20 @@ export const Header = () => {
             Sign Out
           </SignOutButton>
         ) : null}
+        {windowSize.width < MediaBreakpoints.MD && (
+          <Burger isOpen={isMenuOpen} setIsOpen={toggleBurgerClick} />
+        )}
       </NavLinks>
+      {isMenuOpen && (
+        <Menu
+          isOpen={isMenuOpen}
+          setIsOpen={toggleBurgerClick}
+          searchOnChange={onChange}
+          searchOnKeyDown={handleSearchKeyDown}
+          searchOnClick={handleSearchClick}
+          searchValue={value}
+        />
+      )}
     </StyledHeader>
   );
 };

@@ -1,0 +1,94 @@
+import { MouseEventHandler } from "react";
+import { resolvePath, useNavigate } from "react-router-dom";
+import { CrossBlackIcon } from "../../assets";
+import { RoutesUrl } from "../../router";
+import { getUserIsLoggedIn, signOut } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { Title } from "../Header/style";
+import { Portal, PortalTarget } from "../Portal";
+import { Search } from "../Search";
+import {
+  MenuContent,
+  StyledMenuWrapper,
+  MenuTop,
+  CloseButton,
+  SearchLogo,
+  SearchField,
+  MenuLink,
+  MenuLinksList,
+  Button,
+} from "./style";
+
+interface IProps {
+  isOpen: boolean;
+  setIsOpen: () => void;
+  searchOnChange: React.ChangeEventHandler<HTMLInputElement>;
+  searchOnKeyDown: React.KeyboardEventHandler<HTMLInputElement | SVGSVGElement>;
+  searchOnClick: MouseEventHandler<SVGSVGElement>;
+  searchValue: string;
+}
+
+export const Menu = ({
+  isOpen,
+  setIsOpen,
+  searchOnChange,
+  searchOnKeyDown,
+  searchOnClick,
+  searchValue,
+}: IProps) => {
+  const isUserLoggedIn = useAppSelector(getUserIsLoggedIn);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleSignOutClick = () => {
+    dispatch(signOut());
+    setIsOpen();
+  };
+  const handleSignInClick = () => {
+    navigate(resolvePath(RoutesUrl.REGISTER));
+    setIsOpen();
+  };
+
+  const transition = { x: { duration: 1 }, type: "spring", stiffness: 100 };
+
+  if (isOpen) {
+    return (
+      <Portal target={PortalTarget.MENU}>
+        <StyledMenuWrapper initial={{ x: "+100%" }} animate={{ x: 0 }} transition={transition}>
+          <MenuTop>
+            <Title>Bookstore</Title>
+            <CloseButton onClick={setIsOpen}>
+              <CrossBlackIcon />
+            </CloseButton>
+          </MenuTop>
+          <MenuContent>
+            <SearchField>
+              <Search onChange={searchOnChange} onKeyDown={searchOnKeyDown} value={searchValue} />
+              <SearchLogo onClick={searchOnClick} onKeyDown={searchOnKeyDown} tabIndex={0} />
+            </SearchField>
+            {isUserLoggedIn && (
+              <MenuLinksList>
+                <MenuLink to={resolvePath(RoutesUrl.FAVORITES)} onClick={setIsOpen}>
+                  Favorites
+                </MenuLink>
+                <MenuLink to={resolvePath(RoutesUrl.CART)} onClick={setIsOpen}>
+                  Cart
+                </MenuLink>
+              </MenuLinksList>
+            )}
+            {isUserLoggedIn ? (
+              <Button type="button" onClick={handleSignOutClick}>
+                Log Out
+              </Button>
+            ) : (
+              <Button type="button" onClick={handleSignInClick}>
+                Sign In
+              </Button>
+            )}
+          </MenuContent>
+        </StyledMenuWrapper>
+      </Portal>
+    );
+  }
+
+  return null;
+};
