@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
-import { RedHeart } from "../../assets";
+import { RedHeartIcon } from "../../assets";
 import { useFavorites } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import { addToFavorites, removeFromFavorites } from "../../store";
@@ -34,7 +34,11 @@ export const FavoritesCard = ({ book }: IProps) => {
     }
   };
   const handleFavoritesCardClick: MouseEventHandler = (event) => {
-    if (event.target instanceof HTMLLIElement) {
+    if (
+      !(event.target instanceof HTMLButtonElement) &&
+      !(event.target instanceof SVGSVGElement) &&
+      !(event.target instanceof SVGPathElement)
+    ) {
       navigate(resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13)));
     }
   };
@@ -43,7 +47,7 @@ export const FavoritesCard = ({ book }: IProps) => {
     <StyledBookListItem onClick={handleFavoritesCardClick}>
       <BookImageWrapper>
         <FavoritesButton type="button" onClick={handleFavoritesClick}>
-          <RedHeart />
+          <RedHeartIcon />
         </FavoritesButton>
         <BookImage src={book.image} />
       </BookImageWrapper>

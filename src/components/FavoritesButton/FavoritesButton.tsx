@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { BlackHeart, RedHeart } from "../../assets";
+import { BlackHeartIcon, RedHeartIcon } from "../../assets";
 import { StyledFavoritesButton } from "./style";
 
 interface IProps {
@@ -13,7 +13,7 @@ export const FavoritesButton = ({
 }: IProps) => {
   return (
     <StyledFavoritesButton onClick={handleFavoritesClick} type="button">
-      {isInFavorites ? <RedHeart /> : <BlackHeart />}
+      {isInFavorites ? <RedHeartIcon /> : <BlackHeartIcon />}
     </StyledFavoritesButton>
   );
 };

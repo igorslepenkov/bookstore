@@ -29,8 +29,11 @@ import {
   getBook,
   getBookError,
   getBookIsLoading,
+  addToCart,
+  removeFromCart,
 } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useCart } from "../../hooks/useCart";
 
 export const BookPage = () => {
   const { isbn } = useParams();
@@ -40,15 +43,14 @@ export const BookPage = () => {
   const error = useAppSelector(getBookError);
 
   const isInFavorites = useFavorites(book.isbn13);
+  const isInCart = useCart(book.isbn13);
 
   const navigate = useNavigate();
 
   const handleBackArrowClick: MouseEventHandler<SVGSVGElement> = () => {
     navigate(-1);
   };
-  const handleBackArrowKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const handleBackArrowKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       navigate(-1);
     }
@@ -60,17 +62,22 @@ export const BookPage = () => {
       dispatch(addToFavorites(book));
     }
   };
-
-  const bookDetailsArray: BookDetailType[] = book
-    ? [
-        ["Authors", authorsCutter(book.authors)],
-        ["Publisher", book.publisher],
-        ["Published", book.year],
-        ["Pages", book.pages],
-        ["Language", book.language],
-        ["ISBN", book.isbn13],
-      ]
-    : [];
+  const handleAddToCartClick: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isInCart) {
+      dispatch(removeFromCart(book.isbn13));
+    } else {
+      dispatch(addToCart(book));
+    }
+  };
+  const bookDetailsList: BookDetailType[] = [
+    ["Authors", authorsCutter(book.authors)],
+    ["Publisher", book.publisher],
+    ["Published", book.year],
+    ["Pages", book.pages],
+    ["Language", book.language],
+    ["ISBN", book.isbn13],
+  ];
+  const bookDetailsArray: BookDetailType[] = book ? bookDetailsList : [];
 
   const similarBooks = useSimilarBooks(book.title, book.isbn13);
 
@@ -107,26 +114,20 @@ export const BookPage = () => {
           </BookDetailsImageWrapper>
 
           <BookDetails>
-            <BookCostAndRating
-              appendPlace="page"
-              price={book.price}
-              rating={book.rating}
-            />
+            <BookCostAndRating appendPlace="page" price={book.price} rating={book.rating} />
 
             <BookDetailsList bookDetailsArray={bookDetailsArray} />
 
-            <AddToCartButton>Add to cart</AddToCartButton>
+            <AddToCartButton onClick={handleAddToCartClick} isInCart={isInCart}>
+              {isInCart ? "Remove from cart" : "Add to cart"}
+            </AddToCartButton>
 
             {book.pdf && book.pdf["Free eBook"] && (
-              <PreviewLink href={book.pdf["Free eBook"]}>
-                Free eBook
-              </PreviewLink>
+              <PreviewLink href={book.pdf["Free eBook"]}>Free eBook</PreviewLink>
             )}
 
             {book.pdf && !book.pdf["Free eBook"] && (
-              <PreviewLink href={Object.values(book.pdf)[0]}>
-                Preview book
-              </PreviewLink>
+              <PreviewLink href={Object.values(book.pdf)[0]}>Preview book</PreviewLink>
             )}
           </BookDetails>
         </BookDetailsWrapper>

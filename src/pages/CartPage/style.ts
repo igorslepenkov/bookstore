@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Color, fonts, Indent, indentsConstructor } from "../../ui";
 
-export const FavoritesList = styled.ul`
+export const CartList = styled.ul`
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: repeat(1, 1fr);

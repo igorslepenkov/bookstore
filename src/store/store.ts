@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
   bookSlice,
+  cartSlice,
   favoritesSlice,
   newBooksSlice,
   searchBooksSlice,
@@ -12,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "favorites"],
+  whitelist: ["user", "favorites", "cart"],
 };
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   book: bookSlice,
   searchBooks: searchBooksSlice,
   favorites: favoritesSlice,
+  cart: cartSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -9,6 +9,7 @@ export const StyledBookListItem = styled.li`
   justify-content: center;
   height: 100%;
   width: 100%;
+  border-bottom: 1px solid #e7e7e7;
   cursor: pointer;
 
   ${Media.SM} {
@@ -18,7 +19,6 @@ export const StyledBookListItem = styled.li`
     height: 170px;
     ${indentsConstructor.create(Indent.MT, 3)}
     ${indentsConstructor.create(Indent.MB, 3)}
-    border-bottom: 1px solid #e7e7e7;
   }
 
   ${Media.MD} {
@@ -52,7 +52,6 @@ export const CardTextContent = styled.div`
 `;
 
 export const StyledTitle = styled.h3`
-  flex-grow: 1;
   margin: 0;
   ${fonts.h3}
   color: ${Color.Black};
@@ -64,13 +63,14 @@ export const BookImage = styled.img`
 `;
 
 export const BookAuthorsAndPublisher = styled.p`
-  ${indentsConstructor.create(Indent.MB, 3)}
+  flex-grow: 1;
+  ${indentsConstructor.create(Indent.MB, 5)}
   ${indentsConstructor.create(Indent.MT, 8)}
   ${fonts.bodyRegular}
   color: ${Color.Grey};
 `;
 
-export const FavoritesButton = styled.button`
+export const CartButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
@@ -87,4 +87,50 @@ export const FavoritesButton = styled.button`
     top: 50%;
     transform: translate(0, -50%);
   }
+`;
+
+export const BookCost = styled.p`
+  position: relative;
+  ${fonts.h2}
+  color: ${Color.Black};
+
+  ${Media.LG} {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export const BookCostAndAmount = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  ${Media.LG} {
+    position: static;
+  }
+`;
+
+export const BookAmount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  ${indentsConstructor.create(Indent.MB, 5)}
+`;
+
+export const BookAmountText = styled.span`
+  ${fonts.h3}
+  color: ${Color.Black};
+`;
+
+export const BookAmountButton = styled.button`
+  width: 40px;
+  height: 40px;
+  ${fonts.h3}
+  color: ${Color.Black};
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;

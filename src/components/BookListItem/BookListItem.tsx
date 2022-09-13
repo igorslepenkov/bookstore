@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { bookstoreApi } from "../../services";
 import { IBook, IBookApiDetails } from "../../types";
+import { authorsCutter, createDinamicPath } from "../../utils";
 import {
   BookAuthorsAndPublisher,
   BookImage,
@@ -10,7 +11,6 @@ import {
   StyledLink,
   StyledTitle,
 } from "./style";
-import { authorsCutter, createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
 import { BookCostAndRating } from "../BookCostAndRating";
 import { Navigate, resolvePath } from "react-router-dom";

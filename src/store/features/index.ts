@@ -23,6 +23,13 @@ import favoritesSlice, {
   removeFromFavorites,
 } from "./favoritesSlice";
 
+import cartSlice, {
+  addToCart,
+  removeFromCart,
+  incrementBookAmount,
+  decrementBookAmount,
+} from "./cartSlice";
+
 export {
   newBooksSlice,
   userSlice,
@@ -43,4 +50,9 @@ export {
   addToFavorites,
   removeFromFavorites,
   favoritesSlice,
+  cartSlice,
+  addToCart,
+  removeFromCart,
+  incrementBookAmount,
+  decrementBookAmount,
 };

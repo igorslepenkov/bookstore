@@ -1,5 +1,5 @@
-import { Star } from "../../assets";
-import { GreyStar } from "../../assets";
+import { StarIcon } from "../../assets";
+import { GreyStarIcon } from "../../assets";
 import { StyledBookRating } from "./style";
 
 interface IProps {
@@ -12,10 +12,10 @@ export const BookRating = ({ rating }: IProps) => {
     const starsArray = [];
     for (let i = 0; i < 5; i++) {
       if (stars > 0) {
-        starsArray.push(<Star key={i} />);
+        starsArray.push(<StarIcon key={i} />);
         stars -= 1;
       } else {
-        starsArray.push(<GreyStar key={i} />);
+        starsArray.push(<GreyStarIcon key={i} />);
       }
     }
     return starsArray;

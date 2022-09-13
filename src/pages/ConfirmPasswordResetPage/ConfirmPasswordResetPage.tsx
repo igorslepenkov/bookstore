@@ -3,7 +3,7 @@ import { ConfirmResetPasswordForm, FormWrapper, Page } from "../../components";
 import { getFirebaseParamsFromUrl } from "../../utils";
 
 export const ConfirmPasswordResetPage = () => {
-  let { search } = useLocation();
+  const { search } = useLocation();
   const firebaseParams = getFirebaseParamsFromUrl(search);
   if (firebaseParams) {
     const oobCode = firebaseParams;

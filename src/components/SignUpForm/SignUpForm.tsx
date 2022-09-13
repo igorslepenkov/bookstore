@@ -7,10 +7,7 @@ import { FormSubmitButton } from "../FormSubmitButton";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
-import {
-  getUserError,
-  getUserIsLoading,
-} from "../../store/selectors/userSelectors";
+import { getUserError, getUserIsLoading } from "../../store/selectors/userSelectors";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signUp } from "../../store/features/userSlice";
 
@@ -52,17 +49,15 @@ export const SignUpForm = () => {
           required: "Please enter your email",
           pattern: {
             value: emailRegex,
-            message:
-              "Looks like email you entered is not valid, please check it, or consider using another one",
+            message: `Looks like email you entered is not valid,
+               please check it, or consider using another one`,
           },
         })}
         id="email"
         type="email"
         placeholder="Your email"
       />
-      {errors.email && (
-        <ErrorNotification>{errors.email.message}</ErrorNotification>
-      )}
+      {errors.email && <ErrorNotification>{errors.email.message}</ErrorNotification>}
 
       <FormInputLabel htmlFor="password">Password</FormInputLabel>
       <FormInput
@@ -77,9 +72,7 @@ export const SignUpForm = () => {
         type="password"
         placeholder="Your password"
       />
-      {errors.password && (
-        <ErrorNotification>{errors.password.message}</ErrorNotification>
-      )}
+      {errors.password && <ErrorNotification>{errors.password.message}</ErrorNotification>}
 
       <FormInputLabel htmlFor="confirm">Confirm new password</FormInputLabel>
       <FormInput
@@ -90,9 +83,7 @@ export const SignUpForm = () => {
         type="password"
         placeholder="Confirm your password"
       />
-      {errors.confirm && (
-        <ErrorNotification>{errors.confirm.message}</ErrorNotification>
-      )}
+      {errors.confirm && <ErrorNotification>{errors.confirm.message}</ErrorNotification>}
 
       <FormSubmitButton isRequestPending={isRequestPending} />
 
@@ -102,7 +93,8 @@ export const SignUpForm = () => {
         message={
           requestMessage
             ? requestMessage
-            : "User has been successfully registered! You are allready signed in and may continue using this app"
+            : `User has been successfully registered! 
+            You are allready signed in and may continue using this app`
         }
         handler={toggleIsModalOpen}
       />
