@@ -17,6 +17,7 @@ import {
   MenuLink,
   MenuLinksList,
   Button,
+  ListPlug,
 } from "./style";
 
 interface IProps {
@@ -85,7 +86,7 @@ export const Menu = ({
                 tabIndex={0}
               />
             </SearchField>
-            {isUserLoggedIn && (
+            {isUserLoggedIn ? (
               <MenuLinksList>
                 <MenuLink to={resolvePath(RoutesUrl.FAVORITES)} onClick={setIsOpen}>
                   Favorites
@@ -94,6 +95,8 @@ export const Menu = ({
                   Cart
                 </MenuLink>
               </MenuLinksList>
+            ) : (
+              <ListPlug />
             )}
             {isUserLoggedIn ? (
               <Button type="button" onClick={handleSignOutClick}>

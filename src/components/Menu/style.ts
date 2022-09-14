@@ -88,3 +88,7 @@ export const Button = styled.button`
   background-color: ${Color.Black};
   cursor: pointer;
 `;
+
+export const ListPlug = styled.div`
+  flex-grow: 1;
+`;
