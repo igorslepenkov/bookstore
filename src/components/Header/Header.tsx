@@ -26,7 +26,6 @@ import { Menu } from "../Menu";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  console.log(isMenuOpen);
   const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
