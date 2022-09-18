@@ -147,7 +147,7 @@ https://igorslepenkov.github.io/bookstore/
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/igorslepenkov/bookstore/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: www.linkedin.com/in/igor-slepenkov-b17704198/
+[linkedin-url]: http://www.linkedin.com/in/igor-slepenkov-b17704198/
 [product-screenshot]: images/screenshot.png
 [screenshot-adaptivness]: images/adaptivness.png
 [screenshot-search]: images/search.png
