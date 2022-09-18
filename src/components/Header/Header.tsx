@@ -2,13 +2,19 @@ import { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from "re
 import { RoutesUrl } from "../../router";
 import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCart, getFavorites, getSearchBooks, getUserIsLoggedIn } from "../../store/selectors";
+import {
+  getCart,
+  getFavorites,
+  getSearchBooks,
+  getUserError,
+  getUserIsLoggedIn,
+} from "../../store/selectors";
 import { CartLogo } from "../CartLogo";
 import { HeartLogo } from "../HeartLogo";
 import { Search } from "../Search";
 import { SearchDropdown } from "../SearchDropdown";
 import { UserLogo } from "../UserLogo";
-import { useDebounce, useInput, useWindowSize } from "../../hooks";
+import { useDebounce, useInput, useToggle, useWindowSize } from "../../hooks";
 import {
   NavLinks,
   SearchField,
@@ -23,19 +29,25 @@ import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 import { Burger } from "../Burger";
 import { MediaBreakpoints } from "../../ui";
 import { Menu } from "../Menu";
+import { Modal } from "../Modal";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const location = useLocation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isModalOpen, toggleIsModalOpen] = useToggle();
+  const error = useAppSelector(getUserError);
   const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
   const favorites = useAppSelector(getFavorites);
   const cart = useAppSelector(getCart);
   const searchBooks = useAppSelector(getSearchBooks);
-  const dispatch = useAppDispatch();
   const [{ value, onChange }, clearInput] = useInput("");
-  const debouncedValue = useDebounce(value, 300);
+
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  const debouncedValue = useDebounce(value, 300);
 
   const windowSize = useWindowSize();
 
@@ -85,6 +97,12 @@ export const Header = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    if (error && error === "needReAuth") {
+      toggleIsModalOpen();
+    }
+  }, [error, toggleIsModalOpen]);
+
   return (
     <StyledHeader>
       <StyledLink to={RoutesUrl.HOME}>
@@ -121,6 +139,13 @@ export const Header = () => {
           searchValue={value}
         />
       )}
+
+      <Modal
+        isOpen={isModalOpen}
+        status={"error"}
+        message="Sorry, you need to log in again to perform profile update"
+        handler={toggleIsModalOpen}
+      />
     </StyledHeader>
   );
 };

@@ -93,6 +93,7 @@ export const PasswordInputGroup = styled.div`
       "password-title password-title"
       "password password"
       "password-input ..."
+      "password-error ..."
       "new-password confirm"
       "new-password-input confirm-input"
       "new-password-error confirm-error";

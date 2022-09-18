@@ -8,7 +8,12 @@ import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
-import { getUser, getUserError, getUserIsLoading } from "../../store/selectors/userSelectors";
+import {
+  getUser,
+  getUserError,
+  getUserIsLoading,
+  getUserIsLoggedIn,
+} from "../../store/selectors/userSelectors";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
 import { useEffect } from "react";
@@ -21,6 +26,7 @@ interface InputFields {
 export const SignInForm = () => {
   const navigate = useNavigate();
   const user = useAppSelector(getUser);
+  const isUserLoggerin = useAppSelector(getUserIsLoggedIn);
   const isRequestPending = useAppSelector(getUserIsLoading);
   const requestMessage = useAppSelector(getUserError);
   const dispatch = useAppDispatch();
@@ -35,11 +41,11 @@ export const SignInForm = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && isUserLoggerin) {
       navigate(resolvePath(RoutesUrl.ACCOUNT));
       reset();
     }
-  }, [user, reset, navigate]);
+  }, [user, reset, navigate, isUserLoggerin]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

@@ -6,6 +6,7 @@ import userSlice, {
   signOut,
   clearErrors,
   updateUser,
+  toggleIsLoggedIn,
 } from "./userSlice";
 
 import bookSlice, { fetchBook } from "./bookSlice";
@@ -18,10 +19,7 @@ import searchBooksSlice, {
   setPage,
 } from "./searchBooksSlice";
 
-import favoritesSlice, {
-  addToFavorites,
-  removeFromFavorites,
-} from "./favoritesSlice";
+import favoritesSlice, { addToFavorites, removeFromFavorites } from "./favoritesSlice";
 
 import cartSlice, {
   addToCart,
@@ -55,4 +53,5 @@ export {
   removeFromCart,
   incrementBookAmount,
   decrementBookAmount,
+  toggleIsLoggedIn,
 };

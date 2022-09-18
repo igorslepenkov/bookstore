@@ -22,6 +22,7 @@ import {
   removeFromCart,
   incrementBookAmount,
   decrementBookAmount,
+  toggleIsLoggedIn,
 } from "./features";
 import {
   getNewBooks,
@@ -85,4 +86,5 @@ export {
   getCart,
   incrementBookAmount,
   decrementBookAmount,
+  toggleIsLoggedIn,
 };

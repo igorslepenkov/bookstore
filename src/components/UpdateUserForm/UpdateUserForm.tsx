@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
+import { useToggle } from "../../hooks";
 import { emailRegex } from "../../regex";
 import { updateUser, getUserError, getUserIsLoading } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -7,6 +8,7 @@ import { Color } from "../../ui";
 import { FormInput } from "../FormInput";
 import { FormInputLabel } from "../FormInputLabel";
 import { FormServerMessage } from "../FormServerMessage";
+import { Modal } from "../Modal";
 import { ErrorNotification } from "../SignUpForm/style";
 import { Title } from "../Title";
 import {
@@ -27,6 +29,7 @@ type InputFields = {
 };
 
 export const UpdateUserForm = () => {
+  const [isModalOpen, toggleIsModalOpen] = useToggle();
   const isLoading = useAppSelector(getUserIsLoading);
   const requestMessage = useAppSelector(getUserError);
   const dispatch = useAppDispatch();
@@ -46,6 +49,7 @@ export const UpdateUserForm = () => {
       return;
     }
     await dispatch(updateUser({ name, email, password, newPassword }));
+    toggleIsModalOpen();
     reset();
   };
 
@@ -169,6 +173,13 @@ export const UpdateUserForm = () => {
           Cancel
         </CancelButton>
       </ButtonGroup>
+
+      <Modal
+        isOpen={isModalOpen}
+        status={requestMessage ? "error" : "success"}
+        message={requestMessage ? requestMessage : "User has been successfully updated!"}
+        handler={toggleIsModalOpen}
+      />
     </StyledUpdateUserForm>
   );
 };
