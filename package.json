@@ -1,6 +1,7 @@
 {
   "name": "bookstore",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
@@ -15,6 +16,7 @@
     "axios": "^0.27.2",
     "firebase": "^9.9.3",
     "framer-motion": "^7.2.1",
+    "gh-pages": "^4.0.0",
     "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -34,7 +36,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint -c .eslintrc --ext .ts,.tsx ."
+    "lint": "eslint -c .eslintrc --ext .ts,.tsx .",
+    "deploy": "npm run build && npm run gh-pages",
+    "gh-pages": "gh-pages -d ./build -b gh-pages"
   },
   "eslintConfig": {
     "extends": [
