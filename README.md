@@ -144,13 +144,13 @@ Project Link: [https://github.com/igorslepenkov/react-budget-app](https://github
 
 Deploy link: [https://igorslepenkov.github.io/react-budget-app/](https://igorslepenkov.github.io/bookstore/)
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/igorslepenkov/bookstore.svg?style=for-the-badge
 [contributors-url]: https://github.com/igorslepenkov/bookstore/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/igorslepenkov/bookstore.svg?style=for-the-badge
 [forks-url]: https://github.com/igorslepenkov/bookstore/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/igorslepenkov/bookstore.svg?style=for-the-badge
 [stars-url]: https://github.com/igorslepenkov/bookstore/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/igorslepenkov/bookstore.svg?style=for-the-badge
 [issues-url]: https://github.com/igorslepenkov/bookstore/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: http://www.linkedin.com/in/igor-slepenkov-b17704198/
