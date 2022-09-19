@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.js": "./static/js/main.1f4d2f00.js",
-    "static/media/favorites-active.svg": "./static/media/favorites-active.8baa25c26365a5ba97a18486ded689cf.svg",
-    "static/media/arrow-small-right.svg": "./static/media/arrow-small-right.10cbc2d13303cde842d279797c208a57.svg",
-    "static/media/arrow-small-left.svg": "./static/media/arrow-small-left.9594b1bea620b31138a18f83756d37ba.svg",
-    "static/media/arrow-left.svg": "./static/media/arrow-left.b315f0d68bcde4649daca47b3bd7f372.svg",
-    "static/media/grey-star.svg": "./static/media/grey-star.6aa045a089ae47a9c77fb1a04a71b425.svg",
-    "static/media/star.svg": "./static/media/star.9ca8abcb8605d8380eb92652f06299cf.svg",
-    "static/media/cart-active.svg": "./static/media/cart-active.606107193a1ed7dab68bf02a313f23f5.svg",
+    "main.js": "./static/js/main.9a2d56f1.js",
+    "static/media/favorites-active.svg": "./static/media/favorites-active.51059b8d43017eb94ca6ee59c3123788.svg",
+    "static/media/arrow-small-right.svg": "./static/media/arrow-small-right.55a45471d86955e76a85b9fd5f54392d.svg",
+    "static/media/arrow-small-left.svg": "./static/media/arrow-small-left.bcf693ee460669aa98ea6552bad84fec.svg",
+    "static/media/cart-active.svg": "./static/media/cart-active.8a4dc4c012c067f0d7fe4a84b0b5b963.svg",
+    "static/media/arrow-left.svg": "./static/media/arrow-left.3063ef93a84c8059f2fa931c46c27746.svg",
+    "static/media/grey-star.svg": "./static/media/grey-star.2ac4ea0e3e778ec18db0fd77aed42109.svg",
+    "static/media/star.svg": "./static/media/star.af537a685fdbffeccac2a25ae5192f25.svg",
     "index.html": "./index.html",
-    "static/media/heart.svg": "./static/media/heart.28220c581538742fc7469c10d8a9e269.svg",
-    "static/media/black-heart.svg": "./static/media/black-heart.82e958b37372985dfdcd3027f15bd670.svg",
-    "static/media/heart-red.svg": "./static/media/heart-red.66fedd525b9d2c21bce78e5498a5e349.svg",
-    "static/media/cross-black.svg": "./static/media/cross-black.a9773138f61e6a7e764f474d2a14cfc0.svg",
-    "static/media/cross-white.svg": "./static/media/cross-white.b1b7638f0ea4ffab6a6f2d776f39cddd.svg",
-    "static/media/cart.svg": "./static/media/cart.291776166f59fef865d350aaa5d72385.svg",
-    "static/media/search.svg": "./static/media/search.fb7c71339a4b264dfb3e9806f3b103eb.svg",
-    "static/media/person.svg": "./static/media/person.f95ce053779a6201d74bbfa54c39de4c.svg",
-    "main.1f4d2f00.js.map": "./static/js/main.1f4d2f00.js.map"
+    "static/media/heart.svg": "./static/media/heart.c4e05aa7bd6bd249fff1f5109beb1810.svg",
+    "static/media/black-heart.svg": "./static/media/black-heart.aa20f932486b8deac02fec701d0d56ab.svg",
+    "static/media/heart-red.svg": "./static/media/heart-red.de550270ce71f4b20e9dcd02ce802178.svg",
+    "static/media/cross-black.svg": "./static/media/cross-black.764f7c22c08458c7a91fece0895a7ac8.svg",
+    "static/media/cross-white.svg": "./static/media/cross-white.60af40daba6d953e6123e6976b4d4782.svg",
+    "static/media/cart.svg": "./static/media/cart.a51a4fa6dc3e32e1f120122e08524ef9.svg",
+    "static/media/search.svg": "./static/media/search.418dccf9c6c8b0954454ca888587b644.svg",
+    "static/media/person.svg": "./static/media/person.374f708c85fcf8816cf4227ff19d9d9b.svg",
+    "main.9a2d56f1.js.map": "./static/js/main.9a2d56f1.js.map"
   },
   "entrypoints": [
-    "static/js/main.1f4d2f00.js"
+    "static/js/main.9a2d56f1.js"
   ]
 }
