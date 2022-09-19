@@ -1,12 +1,15 @@
 import { MouseEventHandler } from "react";
 import { resolvePath, useNavigate } from "react-router-dom";
 import { CrossBlackIcon } from "../../assets";
+import { useWindowSize } from "../../hooks";
 import { RoutesUrl } from "../../router";
 import { getUserIsLoggedIn, signOut } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { MediaBreakpoints } from "../../ui";
 import { Title } from "../Header/style";
 import { Portal, PortalTarget } from "../Portal";
 import { Search } from "../Search";
+import { ThemeChanger } from "../ThemeChanger";
 import {
   MenuContent,
   StyledMenuWrapper,
@@ -37,6 +40,7 @@ export const Menu = ({
   searchOnClick,
   searchValue,
 }: IProps) => {
+  const windowSize = useWindowSize();
   const isUserLoggedIn = useAppSelector(getUserIsLoggedIn);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -86,6 +90,8 @@ export const Menu = ({
                 tabIndex={0}
               />
             </SearchField>
+            {windowSize.width < MediaBreakpoints.SM && <ThemeChanger />}
+
             {isUserLoggedIn ? (
               <MenuLinksList>
                 <MenuLink to={resolvePath(RoutesUrl.FAVORITES)} onClick={setIsOpen}>

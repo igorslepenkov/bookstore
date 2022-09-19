@@ -30,6 +30,7 @@ import { Burger } from "../Burger";
 import { MediaBreakpoints } from "../../ui";
 import { Menu } from "../Menu";
 import { Modal } from "../Modal";
+import { ThemeChanger } from "../ThemeChanger";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -115,7 +116,7 @@ export const Header = () => {
           <SearchDropdown books={searchBooks.slice(0, 5)} searchValue={debouncedValue} />
         )}
       </SearchField>
-
+      {windowSize.width > MediaBreakpoints.SM && <ThemeChanger />}
       <NavLinks>
         <HeartLogo isActive={favorites.length > 0 && isUserSignedIn} />
         <CartLogo isActive={cart.length > 0 && isUserSignedIn} />

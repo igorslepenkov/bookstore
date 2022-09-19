@@ -29,6 +29,7 @@ export const StyledTitle = styled.h3`
   margin: 0;
   ${fonts.h3}
   color: ${Color.Black};
+  text-align: center;
 `;
 
 export const BookImage = styled.img`

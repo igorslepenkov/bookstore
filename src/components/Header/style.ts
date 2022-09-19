@@ -5,17 +5,23 @@ import { SearchLogoIcon as Logo } from "../../assets";
 import { Link } from "react-router-dom";
 
 export const StyledHeader = styled.header`
-  display: flex;
+  display: grid;
+  grid-template-columns: 10fr 4fr;
+  grid-gap: 3%;
   justify-content: space-between;
   align-items: center;
   max-height: 100px;
   padding: 24px 0;
   border-bottom: 1px solid ${Color.GreyLight};
 
+  ${Media.SM} {
+    grid-template-columns: 10fr 3fr 4fr;
+  }
+
   ${Media.MD} {
     display: grid;
-    grid-template-columns: 3fr 12fr 6fr;
-    grid-gap: 10%;
+    grid-template-columns: 6fr 10fr 3fr 6fr;
+    grid-gap: 3%;
   }
 `;
 
@@ -49,11 +55,12 @@ export const SearchLogo = styled(Logo)`
 `;
 
 export const NavLinks = styled.nav`
+  justify-self: flex-end;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 `;
 
 export const SignOutButton = styled.button`

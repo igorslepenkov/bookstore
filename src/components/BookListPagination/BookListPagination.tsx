@@ -18,9 +18,7 @@ export const BookListPagination = () => {
     dispatch(decrementPage());
   };
 
-  const onLeftArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (
-    event
-  ) => {
+  const onLeftArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === "Enter") {
       dispatch(decrementPage());
     }
@@ -30,9 +28,7 @@ export const BookListPagination = () => {
     dispatch(incrementPage());
   };
 
-  const onRightArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (
-    event
-  ) => {
+  const onRightArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === "Enter") {
       dispatch(incrementPage());
     }
@@ -56,7 +52,7 @@ export const BookListPagination = () => {
           tabIndex={0}
         >
           <ArrowSmallRightIcon />
-          <span>Next</span>
+          <span>Prev</span>
         </PaginationArrow>
 
         <PaginationNumbers>
@@ -79,7 +75,7 @@ export const BookListPagination = () => {
           onKeyDown={onRightArrowButtonKeyDown}
           tabIndex={0}
         >
-          <span>Prev</span>
+          <span>Next</span>
           <ArrowSmallLeftIcon />
         </PaginationArrow>
       </StyledBookListPagination>

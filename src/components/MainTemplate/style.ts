@@ -13,3 +13,7 @@ export const StyledMainTemplate = styled.div`
     padding: 0 24px;
   }
 `;
+
+export const OutletWrapper = styled.div`
+  flex-grow: 1;
+`;

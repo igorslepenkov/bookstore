@@ -13,6 +13,7 @@ export const StyledBooksList = styled.ul`
   ${Media.SM} {
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
+    row-gap: 30px;
   }
 
   ${Media.MD} {

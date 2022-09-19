@@ -140,9 +140,9 @@ https://igorslepenkov.github.io/bookstore/
 
 Igor Slepenkov - [My LinkedIn](https://www.linkedin.com/in/%D0%B8%D0%B3%D0%BE%D1%80%D1%8C-%D1%81%D0%BB%D0%B5%D0%BF%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2-b17704198)
 
-Project Link: [https://github.com/igorslepenkov/react-budget-app](https://github.com/igorslepenkov/bookstore)
+Project Link: [https://github.com/igorslepenkov/bookstore](https://github.com/igorslepenkov/bookstore)
 
-Deploy link: [https://igorslepenkov.github.io/react-budget-app/](https://igorslepenkov.github.io/bookstore/)
+Deploy link: [https://igorslepenkov.github.io/bookstore](https://igorslepenkov.github.io/bookstore/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/igorslepenkov/bookstore.svg?style=for-the-badge
 [contributors-url]: https://github.com/igorslepenkov/bookstore/graphs/contributors

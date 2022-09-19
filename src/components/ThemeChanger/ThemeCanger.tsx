@@ -33,17 +33,16 @@ export const ThemeChanger = () => {
       styles={{
         container: (provided) => ({
           ...provided,
-          position: "relative",
-          top: 5,
+          justifySelf: "flex-end",
           width: "fit-content",
           fontFamily: "Bebas Neue",
-          fontSize: "24px",
+          fontSize: "14px",
           fontWeight: 700,
           fontStyle: "normal",
-          lineHeight: "32px",
+          lineHeight: "16px",
           "@media (min-width: 768px)": {
-            fontSize: "28px",
-            lineHeight: "36px",
+            fontSize: "16px",
+            lineHeight: "18px",
           },
         }),
       }}

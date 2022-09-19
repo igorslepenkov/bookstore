@@ -1,6 +1,5 @@
 import { KeyboardEventHandler, MouseEventHandler, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 import { BookDetailType } from "../../types";
 import { Page } from "../../components";
 import { Title } from "../../components";
@@ -34,6 +33,7 @@ import {
 } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useCart } from "../../hooks/useCart";
+import { LoaderWindow } from "../../components/LoaderWindow";
 
 export const BookPage = () => {
   const { isbn } = useParams();
@@ -88,7 +88,7 @@ export const BookPage = () => {
   }, [isbn, dispatch]);
 
   if (loading) {
-    return <ClipLoader loading={loading} />;
+    return <LoaderWindow loading={loading} />;
   }
 
   if (error) {
