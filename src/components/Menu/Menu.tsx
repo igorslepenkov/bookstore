@@ -90,7 +90,7 @@ export const Menu = ({
                 tabIndex={0}
               />
             </SearchField>
-            {windowSize.width < MediaBreakpoints.SM && <ThemeChanger />}
+            {windowSize.width < MediaBreakpoints.MD && <ThemeChanger />}
 
             {isUserLoggedIn ? (
               <MenuLinksList>
@@ -99,6 +99,9 @@ export const Menu = ({
                 </MenuLink>
                 <MenuLink to={resolvePath(RoutesUrl.CART)} onClick={setIsOpen}>
                   Cart
+                </MenuLink>
+                <MenuLink to={resolvePath(RoutesUrl.ACCOUNT)} onClick={setIsOpen}>
+                  Account
                 </MenuLink>
               </MenuLinksList>
             ) : (

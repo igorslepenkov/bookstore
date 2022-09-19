@@ -1,11 +1,11 @@
 import { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from "react";
 import { RoutesUrl } from "../../router";
-import { signOut } from "../../store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   getCart,
   getFavorites,
   getSearchBooks,
+  getSearchBooksPage,
   getUserError,
   getUserIsLoggedIn,
 } from "../../store/selectors";
@@ -15,16 +15,8 @@ import { Search } from "../Search";
 import { SearchDropdown } from "../SearchDropdown";
 import { UserLogo } from "../UserLogo";
 import { useDebounce, useInput, useToggle, useWindowSize } from "../../hooks";
-import {
-  NavLinks,
-  SearchField,
-  SearchLogo,
-  SignOutButton,
-  StyledHeader,
-  StyledLink,
-  Title,
-} from "./style";
-import { fetchBooksBySearch, persistor } from "../../store";
+import { NavLinks, SearchField, SearchLogo, StyledHeader, StyledLink, Title } from "./style";
+import { fetchBooksBySearch } from "../../store";
 import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 import { Burger } from "../Burger";
 import { MediaBreakpoints } from "../../ui";
@@ -41,6 +33,7 @@ export const Header = () => {
   const favorites = useAppSelector(getFavorites);
   const cart = useAppSelector(getCart);
   const searchBooks = useAppSelector(getSearchBooks);
+  const searchPage = useAppSelector(getSearchBooksPage);
   const [{ value, onChange }, clearInput] = useInput("");
 
   const location = useLocation();
@@ -58,22 +51,25 @@ export const Header = () => {
     });
   };
 
-  const handleSignOut: MouseEventHandler<HTMLButtonElement> = async (event) => {
-    if (event) {
-      await dispatch(signOut());
-      await persistor.purge();
-    }
-  };
-
   const handleSearchClick: MouseEventHandler<SVGSVGElement> = () => {
-    if (debouncedValue !== value) return;
-    navigate(resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue)));
+    if (debouncedValue !== value || !debouncedValue) return;
+    const page = searchPage || 1;
+    navigate(
+      resolvePath(
+        RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue).replace(/:page/, page.toString())
+      )
+    );
     clearInput();
   };
   const handleSearchKeyDown: KeyboardEventHandler<HTMLInputElement | SVGSVGElement> = (event) => {
-    if (debouncedValue !== value) return;
+    if (debouncedValue !== value || !debouncedValue) return;
     if (event.key === "Enter") {
-      navigate(resolvePath(RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue)));
+      const page = searchPage || 1;
+      navigate(
+        resolvePath(
+          RoutesUrl.SEARCH.replace(/:pattern/, debouncedValue).replace(/:page/, page.toString())
+        )
+      );
       clearInput();
     }
   };
@@ -116,16 +112,11 @@ export const Header = () => {
           <SearchDropdown books={searchBooks.slice(0, 5)} searchValue={debouncedValue} />
         )}
       </SearchField>
-      {windowSize.width > MediaBreakpoints.SM && <ThemeChanger />}
       <NavLinks>
+        {windowSize.width > MediaBreakpoints.MD && <ThemeChanger />}
         <HeartLogo isActive={favorites.length > 0 && isUserSignedIn} />
         <CartLogo isActive={cart.length > 0 && isUserSignedIn} />
         <UserLogo />
-        {isUserSignedIn ? (
-          <SignOutButton type="button" onClick={handleSignOut}>
-            Sign Out
-          </SignOutButton>
-        ) : null}
         {windowSize.width < MediaBreakpoints.MD && (
           <Burger isOpen={isMenuOpen} setIsOpen={toggleBurgerClick} />
         )}

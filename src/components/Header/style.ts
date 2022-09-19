@@ -15,13 +15,17 @@ export const StyledHeader = styled.header`
   border-bottom: 1px solid ${Color.GreyLight};
 
   ${Media.SM} {
-    grid-template-columns: 10fr 3fr 4fr;
+    grid-template-columns: 10fr 4fr;
   }
 
   ${Media.MD} {
     display: grid;
-    grid-template-columns: 6fr 10fr 3fr 6fr;
-    grid-gap: 3%;
+    grid-template-columns: 4fr 8fr 7fr;
+    column-gap: 3%;
+  }
+
+  ${Media.LG} {
+    grid-template-columns: 5fr 9fr 7fr;
   }
 `;
 
@@ -60,13 +64,5 @@ export const NavLinks = styled.nav`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px;
-`;
-
-export const SignOutButton = styled.button`
-  ${fonts.bodyBold}
-  color: ${Color.Black};
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+  gap: 30px;
 `;
