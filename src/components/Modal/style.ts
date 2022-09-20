@@ -6,7 +6,7 @@ interface ModalStatusProps {
 }
 
 export const StyledModal = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -30,8 +30,7 @@ export const ModalNotificationWrapper = styled.div`
 
 export const ModalStatusHeading = styled.h2`
   ${fonts.h2}
-  color: ${({ status }: ModalStatusProps) =>
-    status === "success" ? Color.Success : Color.Danger};
+  color: ${({ status }: ModalStatusProps) => (status === "success" ? Color.Success : Color.Danger)};
 `;
 
 export const ModalNotification = styled.p`

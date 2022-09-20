@@ -9,6 +9,7 @@ export const StyledSearchDropdown = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
+  z-index: 10;
   border: 1px solid #e7e7e7;
   background-color: ${Color.White};
 `;

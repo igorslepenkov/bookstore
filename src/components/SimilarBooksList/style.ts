@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Indent, indentsConstructor } from "../../ui";
-import { ArrowSmallLeft } from "../../assets";
-import { ArrowSmallRight } from "../../assets";
+import { ArrowSmallLeftIcon } from "../../assets";
+import { ArrowSmallRightIcon } from "../../assets";
 
 export const StyledSimilarBooksListWrapper = styled.div`
   display: flex;
@@ -20,12 +20,12 @@ export const ScrollButtonsGroup = styled.div`
   justify-content: space-between;
 `;
 
-export const ArrowSmallLeftButton = styled(ArrowSmallLeft)`
+export const ArrowSmallLeftButton = styled(ArrowSmallLeftIcon)`
   ${indentsConstructor.create(Indent.MT, 5)}
   cursor: pointer;
 `;
 
-export const ArrowSmallRightButton = styled(ArrowSmallRight)`
+export const ArrowSmallRightButton = styled(ArrowSmallRightIcon)`
   ${indentsConstructor.create(Indent.MT, 5)}
   cursor: pointer;
 `;

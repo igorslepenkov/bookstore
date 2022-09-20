@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { CartLogo as Logo } from "../../assets";
+import { CartLogoIcon as Logo } from "../../assets";
+import { CartActiveIcon as ActiveLogo } from "../../assets";
 
-export const CartLogo = () => {
+interface IProps {
+  isActive: boolean;
+}
+
+export const CartLogo = ({ isActive }: IProps) => {
   return (
-    <Link to={RoutesUrl.CART}>
-      <Logo />
-    </Link>
+    <Link to={RoutesUrl.CART}>{isActive ? <ActiveLogo /> : <Logo />}</Link>
   );
 };

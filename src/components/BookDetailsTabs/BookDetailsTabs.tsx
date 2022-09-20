@@ -1,13 +1,6 @@
-import React from "react";
 import { MouseEventHandler, useState } from "react";
 import { authorsLister } from "../../utils";
-import {
-  StyledBookDetailsTabs,
-  Tab,
-  TabContent,
-  TabContentText,
-  TabList,
-} from "./style";
+import { StyledBookDetailsTabs, Tab, TabContent, TabContentText, TabList } from "./style";
 
 interface IProps {
   desc: string;
@@ -17,9 +10,7 @@ interface IProps {
 export const BookDetailsTabs = ({ desc, authors }: IProps) => {
   const [activeTab, setActiveTab] = useState<string>("desc");
 
-  const handleTabChange: MouseEventHandler<HTMLLIElement> = ({
-    currentTarget,
-  }) => {
+  const handleTabChange: MouseEventHandler<HTMLLIElement> = ({ currentTarget }) => {
     if (currentTarget.dataset.tabType) {
       setActiveTab(currentTarget.dataset.tabType);
     }
@@ -46,12 +37,11 @@ export const BookDetailsTabs = ({ desc, authors }: IProps) => {
         </Tab>
       </TabList>
       <TabContent>
-        {activeTab === "desc" ? <TabContentText>{desc}</TabContentText> : false}
-        {activeTab === "authors"
-          ? authorsLister(authors).map((author, idx) => (
-              <TabContentText key={idx}>{author}</TabContentText>
-            ))
-          : false}
+        {activeTab === "desc" && <TabContentText>{desc}</TabContentText>}
+        {activeTab === "authors" &&
+          authorsLister(authors).map((author, idx) => (
+            <TabContentText key={idx}>{author}</TabContentText>
+          ))}
       </TabContent>
     </StyledBookDetailsTabs>
   );

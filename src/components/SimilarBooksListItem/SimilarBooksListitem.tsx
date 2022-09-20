@@ -1,84 +1,39 @@
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
-import { bookstoreApi } from "../../services";
-import { IBook, IBookApiDetails } from "../../types";
-import {
-  BookAuthorsAndPublisher,
-  BookImage,
-  BookImageWrapper,
-  StyledBookListItem,
-  StyledLink,
-  StyledTitle,
-} from "./style";
-import { authorsCutter, createDinamicPath } from "../../utils";
+import { IBook } from "../../types";
+import { BookImage, BookImageWrapper, StyledBookListItem, StyledLink, StyledTitle } from "./style";
+import { createDinamicPath } from "../../utils";
 import { RoutesUrl } from "../../router";
-import { BookCostAndRating } from "../BookCostAndRating";
-import { resolvePath, Navigate } from "react-router-dom";
+import { resolvePath } from "react-router-dom";
+import { useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 interface IProps {
   book: IBook;
 }
 
 export const SimilarBooksListItem = ({ book }: IProps) => {
-  const [error, setError] = useState<AxiosError>();
-  const [bookDetails, setBookDetails] = useState<IBookApiDetails>({
-    language: "",
-    error: "",
-    title: "",
-    subtitle: "",
-    authors: "",
-    publisher: "",
-    isbn10: "",
-    isbn13: "",
-    pages: "",
-    year: "",
-    rating: "",
-    desc: "",
-    price: "",
-    image: "",
-    url: "",
-    pdf: {
-      Chapter1: "",
-    },
-  });
+  const [variant, setVariant] = useState<"hidden" | "visible">("hidden");
+  const ref = useRef(null);
+  const inView = useInView(ref);
+  const variants = {
+    visible: { opacity: 1, translateX: 0, scale: 1, transition: { duration: 1.2 } },
+    hidden: { opacity: 0, scale: 0, translateX: 150 },
+  };
 
   useEffect(() => {
-    bookstoreApi
-      .getByISBN(book.isbn13)
-      .then((result) => {
-        setBookDetails(result);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, [book.isbn13]);
-
-  if (error) {
-    return <Navigate to={RoutesUrl.ERROR} />;
-  }
+    if (inView) {
+      setVariant("visible");
+    } else {
+      setVariant("hidden");
+    }
+  }, [inView]);
 
   return (
-    <StyledBookListItem>
-      <StyledLink
-        to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}
-      >
+    <StyledBookListItem ref={ref} variants={variants} animate={variant}>
+      <StyledLink to={resolvePath(createDinamicPath(RoutesUrl.BOOK, book.isbn13))}>
         <BookImageWrapper>
-          <BookImage src={bookDetails.image} />
+          <BookImage src={book.image} />
         </BookImageWrapper>
-
-        <StyledTitle>{bookDetails.title}</StyledTitle>
-
-        <BookAuthorsAndPublisher>
-          {`by ${authorsCutter(bookDetails.authors)}, ${
-            bookDetails.publisher
-          } ${bookDetails.year}`}
-        </BookAuthorsAndPublisher>
-
-        <BookCostAndRating
-          appendPlace="list"
-          price={bookDetails.price}
-          rating={bookDetails.rating}
-        />
+        <StyledTitle>{book.title}</StyledTitle>
       </StyledLink>
     </StyledBookListItem>
   );

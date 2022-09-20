@@ -2,7 +2,6 @@ import { KeyboardEventHandler, MouseEventHandler, useRef } from "react";
 import { useScroll, useWindowSize } from "../../hooks";
 import { IBook } from "../../types";
 import { SimilarBooksListItem } from "../SimilarBooksListItem";
-import { Title } from "../Title";
 import {
   ScrollButtonsGroup,
   ArrowSmallLeftButton,
@@ -24,9 +23,7 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
     scrollLeft();
   };
 
-  const onLeftArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const onLeftArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       scrollLeft();
     }
@@ -36,9 +33,7 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
     scrollRight();
   };
 
-  const onRightArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const onRightArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       scrollRight();
     }
@@ -46,8 +41,6 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
 
   return (
     <StyledSimilarBooksListWrapper>
-      <Title text="Similar books" titleGrade={2} />
-
       <ScrollButtonsGroup>
         <ArrowSmallRightButton
           tabIndex={0}

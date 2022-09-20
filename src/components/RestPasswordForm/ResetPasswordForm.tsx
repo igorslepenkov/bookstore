@@ -34,7 +34,8 @@ export const ResetPasswordForm = () => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         setRequestMessage(
-          `Please, check your email. You will recieve link to reset your password. Click here if you want to go back to register page.`
+          `Please, check your email. You will recieve link to reset your password. 
+          Click here if you want to go back to register page.`
         );
       })
       .catch((err) => {
@@ -62,17 +63,15 @@ export const ResetPasswordForm = () => {
           required: "Please enter your email",
           pattern: {
             value: emailRegex,
-            message:
-              "Looks like email you entered is not valid, please check it, or consider using another one",
+            message: `Looks like email you entered is not valid, 
+              please check it, or consider using another one`,
           },
         })}
         id="email"
         type="email"
         placeholder="Your email"
       />
-      {errors.email && (
-        <ErrorNotification>{errors.email.message}</ErrorNotification>
-      )}
+      {errors.email && <ErrorNotification>{errors.email.message}</ErrorNotification>}
 
       <FormSubmitButton isRequestPending={isRequestPending} />
     </Form>

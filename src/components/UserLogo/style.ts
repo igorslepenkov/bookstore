@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { UserLogo as Logo } from "../../assets";
+import { UserLogoIcon as Logo } from "../../assets";
 import { Media } from "../../ui";
 
 export const StyledLogo = styled(Logo)`

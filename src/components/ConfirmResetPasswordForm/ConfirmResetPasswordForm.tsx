@@ -1,9 +1,5 @@
 import { ErrorNotification } from "./style";
-import {
-  getAuth,
-  verifyPasswordResetCode,
-  confirmPasswordReset,
-} from "firebase/auth";
+import { getAuth, verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { firebaseApp } from "../../firebase";
 import { useState } from "react";
@@ -36,14 +32,13 @@ export const ConfirmResetPasswordForm = ({ oobCode }: IProps) => {
   const auth = getAuth(firebaseApp);
 
   const onSubmit = ({ password, confirm }: InputFields) => {
-    setIsRequestPending(true);
-
     if (password !== confirm) {
       setError("confirm", {
         message: "Passwords do not match",
       });
       return;
     }
+    setIsRequestPending(true);
 
     verifyPasswordResetCode(auth, oobCode)
       .then(() => {
@@ -73,9 +68,7 @@ export const ConfirmResetPasswordForm = ({ oobCode }: IProps) => {
         type="password"
         placeholder="Your password"
       />
-      {errors.password && (
-        <ErrorNotification>{errors.password.message}</ErrorNotification>
-      )}
+      {errors.password && <ErrorNotification>{errors.password.message}</ErrorNotification>}
 
       <FormInputLabel htmlFor="confirm">Confirm new password</FormInputLabel>
       <FormInput
@@ -86,9 +79,7 @@ export const ConfirmResetPasswordForm = ({ oobCode }: IProps) => {
         type="password"
         placeholder="Confirm your password"
       />
-      {errors.confirm && (
-        <ErrorNotification>{errors.confirm.message}</ErrorNotification>
-      )}
+      {errors.confirm && <ErrorNotification>{errors.confirm.message}</ErrorNotification>}
 
       <FormSubmitButton isRequestPending={isRequestPending} />
     </Form>

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useGetSearchBooksPage, useGetSearchBooksTotal } from "../store";
+import { getSearchBooksPage, getSearchBooksTotal } from "../store";
+import { useAppSelector } from "../store/hooks";
 
 export const usePagination = () => {
-  const [paginationArray, setPaginationArray] = useState<
-    (string | number)[] | null
-  >(null);
-  const currentPage = useGetSearchBooksPage();
-  const totalBooks = useGetSearchBooksTotal();
+  const [paginationArray, setPaginationArray] = useState<(string | number)[] | null>(null);
+  const currentPage = useAppSelector(getSearchBooksPage);
+  const totalBooks = useAppSelector(getSearchBooksTotal);
   const booksPerPage = 10;
 
   useEffect(() => {
@@ -21,9 +20,7 @@ export const usePagination = () => {
       } else if (totalPagesArray.length - currentPage < 5) {
         const numbersToRight = totalPagesArray.length - currentPage;
         const numbersToLeft = 8 - numbersToRight - 1;
-        setPaginationArray(
-          [1, "..."].concat(totalPagesArray.slice(currentPage - numbersToLeft))
-        );
+        setPaginationArray([1, "..."].concat(totalPagesArray.slice(currentPage - numbersToLeft)));
       } else if (currentPage <= 2) {
         let paginationArray: (string | number)[] = [];
         paginationArray = paginationArray.concat(

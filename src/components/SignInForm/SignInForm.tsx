@@ -9,11 +9,12 @@ import { FormInputLabel } from "../FormInputLabel";
 import { Form } from "../Form";
 import { FormServerMessage } from "../FormServerMessage";
 import {
-  useGetUser,
-  useGetUserError,
-  useGetUserIsLoading,
+  getUser,
+  getUserError,
+  getUserIsLoading,
+  getUserIsLoggedIn,
 } from "../../store/selectors/userSelectors";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { signIn } from "../../store/features/userSlice";
 import { useEffect } from "react";
 
@@ -24,9 +25,10 @@ interface InputFields {
 
 export const SignInForm = () => {
   const navigate = useNavigate();
-  const user = useGetUser();
-  const isRequestPending = useGetUserIsLoading();
-  const requestMessage = useGetUserError();
+  const user = useAppSelector(getUser);
+  const isUserLoggerin = useAppSelector(getUserIsLoggedIn);
+  const isRequestPending = useAppSelector(getUserIsLoading);
+  const requestMessage = useAppSelector(getUserError);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -39,34 +41,30 @@ export const SignInForm = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && isUserLoggerin) {
       navigate(resolvePath(RoutesUrl.ACCOUNT));
       reset();
     }
-  }, [user, reset, navigate]);
+  }, [user, reset, navigate, isUserLoggerin]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {requestMessage && (
-        <FormServerMessage>{requestMessage}</FormServerMessage>
-      )}
+      {requestMessage && <FormServerMessage>{requestMessage}</FormServerMessage>}
       <FormInputLabel htmlFor="email">Email</FormInputLabel>
       <FormInput
         {...register("email", {
           required: "Please enter your email",
           pattern: {
             value: emailRegex,
-            message:
-              "Looks like email you entered is not valid, please check it, or consider using another one",
+            message: `Looks like email you entered is not valid, 
+              please check it, or consider using another one`,
           },
         })}
         id="email"
         type="email"
         placeholder="Your email"
       />
-      {errors.email && (
-        <ErrorNotification>{errors.email.message}</ErrorNotification>
-      )}
+      {errors.email && <ErrorNotification>{errors.email.message}</ErrorNotification>}
 
       <FormInputLabel htmlFor="password">Password</FormInputLabel>
       <FormInput
@@ -81,9 +79,7 @@ export const SignInForm = () => {
         type="password"
         placeholder="Your password"
       />
-      {errors.password && (
-        <ErrorNotification>{errors.password.message}</ErrorNotification>
-      )}
+      {errors.password && <ErrorNotification>{errors.password.message}</ErrorNotification>}
 
       <ResetLink to={resolvePath(RoutesUrl.RESET)}>Forgot password?</ResetLink>
 

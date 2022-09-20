@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { RoutesUrl } from "../../router";
-import { useGetUserIsLoggedIn } from "../../store";
+import { getUserIsLoggedIn } from "../../store";
+import { useAppSelector } from "../../store/hooks";
 
 export const ProtectedRoute = () => {
-  const isUserSignedIn = useGetUserIsLoggedIn();
+  const isUserSignedIn = useAppSelector(getUserIsLoggedIn);
   if (isUserSignedIn) {
     return <Outlet />;
   } else {

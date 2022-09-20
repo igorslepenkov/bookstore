@@ -1,46 +1,164 @@
-# Getting Started with Create React App
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Available Scripts
+<br />
+<div align="center">
+  <a href="https://github.com/igorslepenkov/bookstore">
+    <img src="images/logo.jpg" alt="Logo" width="80" height="80">
+  </a>
 
-In the project directory, you can run:
+  <h3 align="center">Bookstore</h3>
 
-### `npm start`
+  <p align="center">The only IT bookstore that you need!</p>
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
 
-### `npm test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Product Name Screen Shot][product-screenshot]
 
-### `npm run build`
+Hello, my name is Igor I am from Belarus and i am beginning full-stack developer. This project I made myself as graduation project while I was studing frontend development in TeachMeSkill IT school. I know that there are a lot of things to improve it, but i really think i made my best to finish it.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+There are many different technologies I used to make this client-side application, there will be a short list further.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Here is the quick overview of my project's functionality:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<hr/>
 
-### `npm run eject`
+### Great Adaptiveness
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Product adaptiveness screenshot][screenshot-adaptivness]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+You will never see something sticking out of page or horizontal scroll on pages of my app (Only in places where it meant to be :) ).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<hr/>
 
-## Learn More
+### Convenient search
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Product search screenshot][screenshot-search]
+It is really usefull and easy to use, also I used debounce to prevent multiple requests to API.
+
+<hr/>
+
+### Stylish bookpage
+
+<br/>
+
+![Product search screenshot][screenshot-bookpage]
+
+Pretty and clear.
+
+<hr/>
+
+### REALLY Similar Books
+
+![Product similar books screenshot][screenshot-similar]
+I used my custom algorithm to provide similar books on client side (I know, I know, using it is slow and everything, but I wanted similar books to be as much similar as possible) + Good slider(it works well on all screen and slides ONLY one card further)
+
+<hr/>
+
+### Fully validated forms
+
+![Product similar books screenshot][screenshot-form]
+React Hook Forms library allowed me to create this fully validated forms, they are really everywhere (sign up, sing in, reset password, confirm password reset, update user)
+
+<hr/>
+
+### Production-ready firebase authentification
+
+Authentification is based on firebase basic email and password authentification.
+It is simple but works just fine for a small projects like mine.
+
+<hr/>
+
+### And so on ......on .......on .......on .......on
+
+<hr/>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Built With
+
+- [![React][react.js]][react-url]
+- [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+- ![ts](https://badgen.net/badge/-/TypeScript/blue?icon=typescript&label)
+- [react-select](https://github.com/JedWatson/react-select)
+- [react-hook-forms](https://react-hook-form.com/)
+- [react-router-dom](https://github.com/remix-run/react-router)
+- [framer-motion](https://github.com/framer/motion)
+- [google-firebase](https://github.com/firebase/firebase-js-sdk)
+- [redux-toolkit](https://github.com/reduxjs/redux-toolkit)
+- [axios](https://github.com/axios/axios)
+- [redux-persist](https://github.com/rt2zz/redux-persist)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+In order to use application locally you need Node and NPM installed on your machine. In all other cases just go to
+
+```
+https://igorslepenkov.github.io/bookstore/
+```
+
+## Contact
+
+Igor Slepenkov - [My LinkedIn](https://www.linkedin.com/in/%D0%B8%D0%B3%D0%BE%D1%80%D1%8C-%D1%81%D0%BB%D0%B5%D0%BF%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2-b17704198)
+
+Project Link: [https://github.com/igorslepenkov/bookstore](https://github.com/igorslepenkov/bookstore)
+
+Deploy link: [https://igorslepenkov.github.io/bookstore](https://igorslepenkov.github.io/bookstore/)
+
+[contributors-shield]: https://img.shields.io/github/contributors/igorslepenkov/bookstore.svg?style=for-the-badge
+[contributors-url]: https://github.com/igorslepenkov/bookstore/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/igorslepenkov/bookstore.svg?style=for-the-badge
+[forks-url]: https://github.com/igorslepenkov/bookstore/network/members
+[stars-shield]: https://img.shields.io/github/stars/igorslepenkov/bookstore.svg?style=for-the-badge
+[stars-url]: https://github.com/igorslepenkov/bookstore/stargazers
+[issues-shield]: https://img.shields.io/github/issues/igorslepenkov/bookstore.svg?style=for-the-badge
+[issues-url]: https://github.com/igorslepenkov/bookstore/issues
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: http://www.linkedin.com/in/igor-slepenkov-b17704198/
+[product-screenshot]: images/screenshot.png
+[screenshot-adaptivness]: images/adaptivness.png
+[screenshot-search]: images/search.png
+[screenshot-bookpage]: images/book-page.png
+[screenshot-similar]: images/similar.png
+[screenshot-form]: images/form.png
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/

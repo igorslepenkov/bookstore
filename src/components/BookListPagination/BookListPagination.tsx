@@ -1,5 +1,5 @@
 import { KeyboardEventHandler, MouseEventHandler } from "react";
-import { ArrowSmallLeft, ArrowSmallRight } from "../../assets";
+import { ArrowSmallLeftIcon, ArrowSmallRightIcon } from "../../assets";
 import { usePagination } from "../../hooks/usePagination";
 import { decrementPage, incrementPage, setPage } from "../../store";
 import { useAppDispatch } from "../../store/hooks";
@@ -18,9 +18,7 @@ export const BookListPagination = () => {
     dispatch(decrementPage());
   };
 
-  const onLeftArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (
-    event
-  ) => {
+  const onLeftArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === "Enter") {
       dispatch(decrementPage());
     }
@@ -30,9 +28,7 @@ export const BookListPagination = () => {
     dispatch(incrementPage());
   };
 
-  const onRightArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (
-    event
-  ) => {
+  const onRightArrowButtonKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === "Enter") {
       dispatch(incrementPage());
     }
@@ -55,8 +51,8 @@ export const BookListPagination = () => {
           onKeyDown={onLeftArrowButtonKeyDown}
           tabIndex={0}
         >
-          <ArrowSmallRight />
-          <span>Next</span>
+          <ArrowSmallRightIcon />
+          <span>Prev</span>
         </PaginationArrow>
 
         <PaginationNumbers>
@@ -79,8 +75,8 @@ export const BookListPagination = () => {
           onKeyDown={onRightArrowButtonKeyDown}
           tabIndex={0}
         >
-          <span>Prev</span>
-          <ArrowSmallLeft />
+          <span>Next</span>
+          <ArrowSmallLeftIcon />
         </PaginationArrow>
       </StyledBookListPagination>
     );
