@@ -23,9 +23,7 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
     scrollLeft();
   };
 
-  const onLeftArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const onLeftArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       scrollLeft();
     }
@@ -35,9 +33,7 @@ export const SimilarBooksList = ({ similarBooks }: IProps) => {
     scrollRight();
   };
 
-  const onRightArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (
-    event
-  ) => {
+  const onRightArrowButtonKeyDown: KeyboardEventHandler<SVGSVGElement> = (event) => {
     if (event.key === "Enter") {
       scrollRight();
     }

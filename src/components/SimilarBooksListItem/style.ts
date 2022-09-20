@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Color, indentsConstructor, Indent, Media } from "../../ui";
@@ -7,7 +8,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const StyledBookListItem = styled.li`
+export const StyledBookListItem = styled(motion.li)`
   min-width: 250px;
   height: 100%;
   display: flex;
