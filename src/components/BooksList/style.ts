@@ -5,6 +5,7 @@ export const StyledBooksList = styled.ul`
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;
+  row-gap: 30px;
   padding: 0;
   ${indentsConstructor.create(Indent.MT, 3)}
   ${indentsConstructor.create(Indent.MB, 3)}
